@@ -19,7 +19,7 @@ class User {
 
     }
 
-    public function serialize() {
+    public function userData() {
         if (!is_dir('utilisateur')) {
             mkdir('utilisateur');
         }
@@ -28,7 +28,11 @@ class User {
         fwrite($file, $userdata);
         fclose($file);
     }
-
+    
+    public function getData() {
+        return $this->mdp;
+    }
+    
     public function showHtml() {
         return '<pre>Pseudo : '.$this->pseudo.'</pre><pre><img src="'.
                                 $this->avatar.'"></pre><pre>'.
