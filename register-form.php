@@ -10,6 +10,11 @@
                 flex-direction: column;
                 width: 50%;
             }
+            
+            label{
+               margin-top: 20px;
+               margin-bottom: 5px;
+            }
         </style>
     </head>
     <body>
@@ -22,8 +27,8 @@
             <label for="avatar">Avatar</label>
             <input type="file" name="avatar"/>
             <label for="genre">Genre</label>
-            <input type="radio" name="genre" value="feminin"/>Féminin
-            <input type="radio" name="genre" value="masculin"/>Masculin
+            <div><input type="radio" name="genre" value="feminin"/>Féminin
+                <input type="radio" name="genre" value="masculin"/>Masculin</div>
             <label for="age">Age</label>
             <input type="number" name="age"/>
             <label for="evaluation">Evaluation</label>
