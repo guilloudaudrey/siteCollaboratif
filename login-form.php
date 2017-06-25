@@ -30,6 +30,7 @@
         <?php } else {
             echo 'Bonjour '.$_SESSION['nom'];
             echo '<form action="logout.php" method="POST"><button>Se déconnecter</button></form>';
+            echo '<a href="espaceperso.php">Espace personnel</a>';
         }
 ?>
     </body>

@@ -8,9 +8,9 @@ if (isset($_POST['pseudo']) && (isset($_POST['mdp']))) {
     $mdp = md5($post['mdp']);
 
     if (is_file('utilisateur/' . $pseudo . '.txt')) {
-
         $contenu = unserialize(file_get_contents('utilisateur/' . $pseudo . '.txt'));
         $mdp_data = $contenu->getData();
+        
         if ($mdp_data == $mdp) {
             session_start();
             $_SESSION['nom'] = $pseudo;

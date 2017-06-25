@@ -4,11 +4,10 @@ class User {
 
     private $pseudo;
     private $mdp;
-    private $diplomes;
     private $avatar;
     private $genre;
     private $age;
-    private $evaluation;
+    private $annonces;
 
     function __construct($pseudo, $mdp, $avatar, $genre, $age) {
         $this->pseudo = $pseudo;
@@ -16,7 +15,46 @@ class User {
         $this->avatar = $avatar;
         $this->genre = $genre;
         $this->age = $age;
+    }
 
+    function getPseudo() {
+        return $this->pseudo;
+    }
+
+    function getMdp() {
+        return $this->mdp;
+    }
+
+    function getAvatar() {
+        return $this->avatar;
+    }
+
+    function getGenre() {
+        return $this->genre;
+    }
+
+    function getAge() {
+        return $this->age;
+    }
+
+    function setPseudo($pseudo) {
+        $this->pseudo = $pseudo;
+    }
+
+    function setMdp($mdp) {
+        $this->mdp = $mdp;
+    }
+
+    function setAvatar($avatar) {
+        $this->avatar = $avatar;
+    }
+
+    function setGenre($genre) {
+        $this->genre = $genre;
+    }
+
+    function setAge($age) {
+        $this->age = $age;
     }
 
     public function userData() {
@@ -28,18 +66,16 @@ class User {
         fwrite($file, $userdata);
         fclose($file);
     }
-    
+
     public function getData() {
         return $this->mdp;
     }
-    
+
     public function showHtml() {
-        return '<pre>Pseudo : '.$this->pseudo.'</pre><pre><img src="'.
-                                $this->avatar.'"></pre><pre>'.
-                                $this->genre.'</pre><pre>'.
-                                $this->diplomes.'</pre><pre>'.
-                                $this->age.'</pre>';
-        
+        return '<pre>Pseudo : ' . $this->pseudo . '</pre><pre><img src="' .
+                $this->avatar . '"></pre><pre>' .
+                $this->genre . '</pre><pre>' .
+                $this->age . '</pre>';
     }
 
 }

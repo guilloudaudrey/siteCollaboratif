@@ -10,10 +10,10 @@
                 flex-direction: column;
                 width: 50%;
             }
-            
+
             label{
-               margin-top: 20px;
-               margin-bottom: 5px;
+                margin-top: 20px;
+                margin-bottom: 5px;
             }
         </style>
     </head>
@@ -33,7 +33,7 @@
             <input type="number" name="age"/>
             <label for="evaluation">Evaluation</label>
             <input type="submit" name="inscription" value="Valider" />
-            
+
 
         </form>
     </body>
