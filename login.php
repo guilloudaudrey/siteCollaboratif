@@ -15,7 +15,7 @@ if (isset($_POST['pseudo']) && (isset($_POST['mdp']))) {
             session_start();
             $_SESSION['nom'] = $pseudo;
             echo 'connecté';
-            header("location:login-form.php");
+            header("location:index.php");
         } else {
             echo 'pas connecté';
         }

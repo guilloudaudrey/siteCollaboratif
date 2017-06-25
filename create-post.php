@@ -8,6 +8,9 @@ if (isset($_POST['newpost'])) {
     $newpost->postData();
     $newpostdata = unserialize(file_get_contents('posts/' . $post['title'] . '.txt'));
     echo $newpostdata->showHtml();
+    
+
+    
 } else {
     echo 'pas d\'article';
 }
