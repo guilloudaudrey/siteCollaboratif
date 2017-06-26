@@ -57,17 +57,9 @@ class User {
         $this->age = $age;
     }
 
-
-
     public function getData() {
         return $this->mdp;
     }
 
-    public function showHtml() {
-        return '<pre>Pseudo : ' . $this->pseudo . '</pre><pre><img src="' .
-                $this->avatar . '"></pre><pre>' .
-                $this->genre . '</pre><pre>' .
-                $this->age . '</pre>';
-    }
 
 }
