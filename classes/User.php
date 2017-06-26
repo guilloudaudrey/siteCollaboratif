@@ -2,12 +2,12 @@
 
 class User {
 
-    protected $pseudo;
-    protected $mdp;
-    protected $avatar;
-    protected $genre;
-    protected $age;
-    protected $annonces;
+    private $pseudo;
+    private $mdp;
+    private $avatar;
+    private $genre;
+    private $age;
+    private $annonces;
 
     function __construct($pseudo, $mdp, $avatar, $genre, $age) {
         $this->pseudo = $pseudo;
@@ -57,15 +57,7 @@ class User {
         $this->age = $age;
     }
 
-    public function userData() {
-        if (!is_dir('utilisateur')) {
-            mkdir('utilisateur');
-        }
-        $userdata = serialize($this);
-        $file = fopen('utilisateur/' . $this->pseudo . '.txt', 'w');
-        fwrite($file, $userdata);
-        fclose($file);
-    }
+
 
     public function getData() {
         return $this->mdp;
