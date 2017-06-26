@@ -65,7 +65,8 @@ and open the template in the editor.
             if (!is_dir($content)) {
                 echo '<section><h3>' . basename($content, ".txt") . '</h3>';
                 echo '<div class="text">';
-                echo file_get_contents($dossier . $content);
+                $contenu = unserialize(file_get_contents($dossier . $content));
+                echo $contenu->showHtml();
                 echo '</div>';
             }
         }

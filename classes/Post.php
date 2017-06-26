@@ -77,7 +77,7 @@ class Post {
     }
     
     public function showHtml() {
-        return '<pre>Titre : ' . $this->title . '</pre><pre><img src="' .
+        return '</pre><pre><img src="' .
                 $this->photo . '"></pre><pre>' .
                 $this->description . '</pre><pre>' .
                 $this->price . '</pre>';
