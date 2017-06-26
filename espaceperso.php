@@ -8,7 +8,6 @@
     <body>
         <?php
         include_once 'classes/User.php';
-        include_once 'classes/DataBase.php';
         session_start();
 
         if (isset($_SESSION['nom'])) {
@@ -17,7 +16,7 @@
             if (is_file('utilisateur/' . $user . '.txt')) {
                 $contenu = unserialize(file_get_contents('utilisateur/' . $user . '.txt'));
                 
-                echo $contenu->showUser($user);
+                echo $contenu->showHtml();
                 echo '<button>Créer une nouvelle annonce</button>';
                 echo '<form action="logout.php" method="POST"><button>Se déconnecter</button></form>';
             }
