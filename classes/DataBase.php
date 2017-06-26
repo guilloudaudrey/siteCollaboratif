@@ -33,7 +33,8 @@ class DataBase {
         return '</pre><pre><img src="' .
                 $post->getPhoto() . '"></pre><pre>' .
                 $post->getDescription() . '</pre><pre>' .
-                $post->getPrice() . '</pre>';
+                $post->getPrice() . '</pre><pre>' .
+                $post->getDate()->format('d/m/y H:i') . '</pre>';
     }
 
 }
