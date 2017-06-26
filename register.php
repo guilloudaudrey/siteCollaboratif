@@ -7,12 +7,13 @@
  */
 
 include_once 'classes/User.php';
+include_once 'classes/DataBase.php';
 
 if (isset($_POST['inscription'])) {
     $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-    $user = new User($post['pseudo'], md5($post['mdp']), $post['avatar'], $post['genre'], $post['age']);
-    $user->userData();
-    header("location:login-form.php");
+    $user = new DataBase();
+    $user->createUser(new User($post['pseudo'], md5($post['mdp']), $post['avatar'], $post['genre'], $post['age']));
+    header("location:index.php");
 
     session_start();
     $_SESSION['nom'] = $post['pseudo'];

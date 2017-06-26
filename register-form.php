@@ -21,14 +21,14 @@
         <h1>INSCRIPTION</h1>
         <form action="register.php" method="POST">
             <label for="pseudo">Pseudo</label>
-            <input type="text" name ="pseudo"/>
+            <input type="text" name ="pseudo" required="required"/>
             <label for="mdp">Mot de passe</label>
-            <input type="password" name="mdp"/>
+            <input type="password" name="mdp" required="required"/>
             <label for="avatar">Avatar</label>
-            <input type="file" name="avatar"/>
+            <input type="file" name="avatar" required="required"/>
             <label for="genre">Genre</label>
-            <div><input type="radio" name="genre" value="feminin"/>Féminin
-                <input type="radio" name="genre" value="masculin"/>Masculin</div>
+            <div><input type="radio" name="genre" value="feminin" required="required"/>Féminin
+                <input type="radio" name="genre" value="masculin" required="required"/>Masculin</div>
             <label for="age">Age</label>
             <input type="number" name="age"/>
             <label for="evaluation">Evaluation</label>

@@ -2,12 +2,12 @@
 
 class User {
 
-    private $pseudo;
-    private $mdp;
-    private $avatar;
-    private $genre;
-    private $age;
-    private $annonces;
+    protected $pseudo;
+    protected $mdp;
+    protected $avatar;
+    protected $genre;
+    protected $age;
+    protected $annonces;
 
     function __construct($pseudo, $mdp, $avatar, $genre, $age) {
         $this->pseudo = $pseudo;
