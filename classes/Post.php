@@ -66,22 +66,9 @@ class Post {
         $this->price = $price;
     }
 
-    public function postData() {
-        if (!is_dir('posts')) {
-            mkdir('posts');
-        }
-        $postdata = serialize($this);
-        $file = fopen('posts/' . $this->title . '.txt', 'w');
-        fwrite($file, $postdata);
-        fclose($file);
-    }
+
     
-    public function showHtml() {
-        return '</pre><pre><img src="' .
-                $this->photo . '"></pre><pre>' .
-                $this->description . '</pre><pre>' .
-                $this->price . '</pre>';
-    }
+
         
     }
 
