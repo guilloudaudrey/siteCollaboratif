@@ -1,6 +1,8 @@
 <?php
 
 class DataBase {
+    
+    //création et stockage d'un nouvel utilisateur
 
     public function createUser(User $user) {
         if (!is_dir('utilisateur')) {
@@ -11,6 +13,8 @@ class DataBase {
         fwrite($file, $userdata);
         fclose($file);
     }
+    
+    //affichage des informations de l'utilisateur
 
     public function showUser(User $user) {
         return '<pre>Pseudo : ' . $user->getPseudo() . '</pre><pre><img src="' .
@@ -18,6 +22,8 @@ class DataBase {
                 $user->getGenre() . '</pre><pre>' .
                 $user->getAge() . '</pre>';
     }
+    
+    //création et stockage d'un nouvel article
 
     public function createPost(Post $post) {
         if (!is_dir('posts')) {
@@ -28,13 +34,16 @@ class DataBase {
         fwrite($file, $postdata);
         fclose($file);
     }
+    
+    //affichage de l'annonce
 
     public function showPost(Post $post) {
         return '</pre><pre><img src="' .
                 $post->getPhoto() . '"></pre><pre>' .
                 $post->getDescription() . '</pre><pre>' .
                 $post->getPrice() . '</pre><pre>' .
-                $post->getDate()->format('d/m/y H:i') . '</pre>';
+                $post->getDate()->format('d/m/y H:i') . '</pre><pre>'.
+                $post->getAuthor() .'</pre>';
     }
 
 }

@@ -3,9 +3,12 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">      
+        <meta name="viewport" content="width=device-width, user-scalable=yes" /><!--user-scalable=yes” sert à indiquer que l’utilisateur peut zoomer sur le contenu-->
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Index</title>
         <style>
-            
+
             h1{
                 text-align: center;
             }
@@ -51,7 +54,7 @@
             <input type="text" placeholder="Localisation"/>
             <input type="submit" value="Rechercher"/>
         </form>
-        
+
         <?php
         include_once 'classes/Post.php';
         include_once 'classes/DataBase.php';

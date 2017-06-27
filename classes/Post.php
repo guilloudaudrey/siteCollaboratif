@@ -1,6 +1,7 @@
 <?php
 
 class Post {
+
     protected $title;
     protected $categorie;
     protected $photo;
@@ -8,18 +9,23 @@ class Post {
     protected $description;
     protected $localisation;
     protected $price;
-    
-    
-    function __construct($title, $photo, $description, $price) {
+    protected $author;
+
+    function __construct($title, $photo, $description, $price, User $author) {
         $this->title = $title;
         $this->photo = $photo;
         $this->date = new DateTime();
         $this->description = $description;
         $this->price = $price;
+        $this->author = $author->getPseudo();
     }
-    
+
     function getTitle() {
         return $this->title;
+    }
+
+    function getCategorie() {
+        return $this->categorie;
     }
 
     function getPhoto() {
@@ -42,8 +48,16 @@ class Post {
         return $this->price;
     }
 
+    function getAuthor() {
+        return $this->author;
+    }
+
     function setTitle($title) {
         $this->title = $title;
+    }
+
+    function setCategorie($categorie) {
+        $this->categorie = $categorie;
     }
 
     function setPhoto($photo) {
@@ -66,12 +80,8 @@ class Post {
         $this->price = $price;
     }
 
-
-    
-
-        
+    function setAuthor($author) {
+        $this->author = $author;
     }
 
-
-
-
+}
