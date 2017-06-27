@@ -42,8 +42,12 @@ class DataBase {
                 $post->getPhoto() . '"></pre><pre>' .
                 $post->getDescription() . '</pre><pre>' .
                 $post->getPrice() . '</pre><pre>' .
-                $post->getDate()->format('d/m/y H:i') . '</pre><pre>'.
+                $post->getDate()->format('d/m/y H:i') . '</pre><pre>Auteur : '.
                 $post->getAuthor() .'</pre>';
+    }
+    
+    public function getAuthor(Post $post){
+        return $post->getAuthor();
     }
 
 }

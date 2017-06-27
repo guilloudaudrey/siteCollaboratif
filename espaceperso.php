@@ -32,5 +32,34 @@
         </form>';
         }
         ?>
+
+        <h2>Mes annonces</h2>
+
+        <?php
+        include_once 'classes/Post.php';
+        include_once 'classes/DataBase.php';
+        include_once 'classes/User.php';
+
+        if (isset($_SESSION['nom'])) {
+            $user = $_SESSION ['nom'];
+           
+
+            $dossier = 'posts/';
+            $files = scandir($dossier);
+            foreach ($files as $content) {
+                if (!is_dir($content)) {
+                    $contenu = unserialize(file_get_contents($dossier . $content));
+
+                    $instance = new DataBase();
+                    $author =  $instance->getAuthor($contenu);
+                    
+                    if ($author === $user){
+                        echo $instance->showPost($contenu);
+                    }                  
+                }
+            }
+        }
+        ?>
+
     </body>
 </html>
