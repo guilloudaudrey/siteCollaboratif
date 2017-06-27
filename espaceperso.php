@@ -18,8 +18,9 @@
                 $contenu = unserialize(file_get_contents('utilisateur/' . $user . '.txt'));
                 $instance = new DataBase;
                 echo $instance->showUser($contenu);
-                echo '<button>Créer une nouvelle annonce</button>';
                 echo '<form action="logout.php" method="POST"><button>Se déconnecter</button></form>';
+                echo '<a href="post_form.php">Créer une nouvelle annonce</a><br/>';
+                echo '<a href="index.php">Index</a>';
             }
         } else {
             echo'
@@ -42,7 +43,7 @@
 
         if (isset($_SESSION['nom'])) {
             $user = $_SESSION ['nom'];
-           
+
 
             $dossier = 'posts/';
             $files = scandir($dossier);
@@ -51,15 +52,18 @@
                     $contenu = unserialize(file_get_contents($dossier . $content));
 
                     $instance = new DataBase();
-                    $author =  $instance->getAuthor($contenu);
-                    
-                    if ($author === $user){
+                    $author = $instance->getAuthor($contenu);
+
+                    if ($author === $user) {
                         echo $instance->showPost($contenu);
-                    }                  
+                        echo '<button>Modifier</button>
+                <button>Supprimer</button>';
+                    }
                 }
             }
         }
         ?>
+
 
     </body>
 </html>
