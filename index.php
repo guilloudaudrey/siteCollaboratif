@@ -58,6 +58,7 @@
         <?php
         include_once 'classes/Post.php';
         include_once 'classes/DataBase.php';
+        $instance = new DataBase();
 
         $dossier = 'posts/';
         $files = scandir($dossier);
@@ -66,7 +67,7 @@
                 echo '<section><h3>' . basename($content, ".txt") . '</h3>';
                 echo '<div class="text">';
                 $contenu = unserialize(file_get_contents($dossier . $content));
-                $instance = new DataBase();
+
                 echo $instance->showPost($contenu);
                 echo '</div>';
             }

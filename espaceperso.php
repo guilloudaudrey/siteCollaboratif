@@ -23,14 +23,7 @@
                 echo '<a href="index.php">Index</a>';
             }
         } else {
-            echo'
-        <form method="POST" action="login.php">
-            <label for="pseudo">Pseudo</label>
-            <input type="text" name="pseudo"/>
-            <label for="mdp">Mot de passe</label>
-            <input type="password" name="mdp"/>
-            <input type="submit" name="login"/>
-        </form>';
+            include_once 'html/connexion-html.php';
         }
         ?>
 
@@ -51,7 +44,7 @@
                 if (!is_dir($content)) {
                     $contenu = unserialize(file_get_contents($dossier . $content));
 
-                    $instance = new DataBase();
+
                     $author = $instance->getAuthor($contenu);
 
                     if ($author === $user) {
@@ -61,13 +54,13 @@
 
                                     <div class="boutons">
             <form method="POST" action="delete.php">
-            <input type="hidden" name="filename" value="'.$content.'" class="text">
-            <input type="submit" value="delete">
+            <input type="hidden" name="filename" value="' . $content . '" class="text">
+            <input type="submit" value="supprimer">
             </form>
     
-            <form method="POST" action="create.php">
-            <input type="hidden" name="filename" value="'.$content.'">
-                <input type="submit" value="edit">
+            <form method="POST" action="edit_form.php">
+            <input type="hidden" name="filename" value="' . $content . '">
+                <input type="submit" value="modifier">
             </form>
             </div>';
                     }
@@ -75,7 +68,6 @@
             }
         }
         ?>
-
-
+ 
     </body>
 </html>
