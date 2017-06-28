@@ -35,6 +35,17 @@ class DataBase {
         fclose($file);
     }
 
+    //mofication d'un article
+
+    public function editPost(Post $post, $previoustitle) {
+
+        unlink('posts/' . $previoustitle . '.txt');
+        $postdata = serialize($post);
+        $fichier = fopen('posts/' . $post->getTitle() . '.txt', 'w');
+        fwrite($fichier, $postdata);
+        fclose($fichier); 
+    }
+
 //parcourir les posts
 
     public function browsePosts() {
@@ -63,20 +74,20 @@ class DataBase {
     public function getAuthor(Post $post) {
         return $post->getAuthor();
     }
-    
-    public function getTitle(Post $post){
+
+    public function getTitle(Post $post) {
         return $post->getTitle();
     }
-    
-    public function getDescription(Post $post){
+
+    public function getDescription(Post $post) {
         return $post->getDescription();
     }
-    
-    public function getPrice(Post $post){
+
+    public function getPrice(Post $post) {
         return $post->getPrice();
     }
 
-    public function getPhoto(Post $post){
+    public function getPhoto(Post $post) {
         return $post->getPhoto();
     }
 
@@ -84,15 +95,6 @@ class DataBase {
 
     public function deletePost($post) {
         unlink('posts/' . $post);
-    }
-
-//modification d'une annonce
-
-    public function editPost($previoustitle, $title, $message) {
-        unlink('posts/' . $previoustitle . '.txt');
-        $fichier = fopen('posts/' . $title . '.txt', 'w');
-        fwrite($fichier, $message);
-        fclose($fichier);
     }
 
     public function parcourirDossier() {

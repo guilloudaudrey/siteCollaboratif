@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -26,16 +22,12 @@ and open the template in the editor.
                  $description = $instance->getDescription($content);
                  $price = $instance->getPrice($content);
                  $photo = $instance->getPhoto($content);
-    
-                 
-        
-            
-            
-               
+
                 echo'
                 <form action="edit.php" method="POST">
                     <label for="title">Titre</label>
                     <input type="text" name="title" value="'.$title .'"/>
+                    <input type="hidden" name="previoustitle" value="'.$title .'"/>
                     <label for="description">Description</label>
                     <textarea cols="30" rows="10" name="description" >'.$description.'</textarea>
                     <label for="price">Prix</label>
