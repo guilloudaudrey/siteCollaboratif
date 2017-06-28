@@ -46,8 +46,15 @@ class DataBase {
                 $post->getAuthor() .'</pre>';
     }
     
+    
+    //récupération de la propriété author de la classe Post
+    
     public function getAuthor(Post $post){
         return $post->getAuthor();
+    }
+    
+    public function deletePost($post){
+          unlink('posts/'.$post);
     }
 
 }

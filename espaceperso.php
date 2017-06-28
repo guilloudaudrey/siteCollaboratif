@@ -55,9 +55,21 @@
                     $author = $instance->getAuthor($contenu);
 
                     if ($author === $user) {
+                        echo '<section><h3>' . basename($content, ".txt") . '</h3>';
                         echo $instance->showPost($contenu);
-                        echo '<button>Modifier</button>
-                <button>Supprimer</button>';
+                        echo'
+
+                                    <div class="boutons">
+            <form method="POST" action="delete.php">
+            <input type="hidden" name="filename" value="'.$content.'" class="text">
+            <input type="submit" value="delete">
+            </form>
+    
+            <form method="POST" action="create.php">
+            <input type="hidden" name="filename" value="'.$content.'">
+                <input type="submit" value="edit">
+            </form>
+            </div>';
                     }
                 }
             }
