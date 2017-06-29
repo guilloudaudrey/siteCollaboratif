@@ -46,7 +46,7 @@
                     echo $annonce->asHtml();
                     echo'
 
-                                    <div class="boutons">
+            <div class="boutons">
             <form method="POST" action="delete.php">
             <input type="hidden" name="filename" value="' . serialize($annonce) . '" class="text">
             <input type="submit" value="supprimer">

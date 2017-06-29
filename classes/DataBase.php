@@ -109,11 +109,7 @@ class DataBase {
     }
 
 
-//récupération des propriétés de la classe Post
 
-    public function getAuthor(Post $post) {
-        return $post->getAuthor();
-    }
 
  
 }
