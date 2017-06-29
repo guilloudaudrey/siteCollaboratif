@@ -17,8 +17,6 @@ if (isset($_POST['inscription'])) {
 
     session_start();
     $_SESSION['nom'] = $post['pseudo'];
-  //  $_SESSION['avatar'] = $post['avatar'];
-  //  $_SESSION['genre'] = $post['genre'];
-  //  $_SESSION['age'] = $post['age'];
+
 }
   

@@ -60,8 +60,7 @@
         include_once 'classes/DataBase.php';
         $instance = new DataBase();
 
-        // $dossier = 'posts/';
-        //$files = scandir($dossier);
+
         $listeAnnonces = $instance->readPostsList();
         foreach ($listeAnnonces as $annonce) {
             echo '<section><h3>' . $annonce->getTitle() . '</h3>';

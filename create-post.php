@@ -9,19 +9,14 @@ if (isset($_POST['newpost'])) {
     session_start();
     if (isset($_SESSION['nom'])) {
         $user = $_SESSION['nom'];
+        $instance = new DataBase();
 
         if (is_file('utilisateur/' . $user . '.txt')) {
-            $contenu = unserialize(file_get_contents('utilisateur/' . $user . '.txt'));
-           
+            $contenu = $instance->readUser($user);
+
             //création et stockage de l'annonce
             $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-            $newpost = new DataBase();
-            $newpost->createPost(new Post($post['title'], $post['photo'], $post['description'], $post['price'], $contenu));
-            $newpostdata = unserialize(file_get_contents('posts/' . $post['title'] . '.txt'));
-
-            //affichage de l'annonce créée
-            $instance = new DataBase();
-            echo $instance->showPost($newpostdata);
+            $instance->createPost(new Post($post['title'], $post['photo'], $post['description'], $post['price'], $contenu));
             header("location:index.php");
         }
     }

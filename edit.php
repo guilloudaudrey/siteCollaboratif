@@ -15,10 +15,10 @@ if (isset($_POST['editpost'])) {
 
         if (is_file('utilisateur/' . $user . '.txt')) {
             $previoustitle = htmlspecialchars($_POST['previoustitle']);
-            $contenu = unserialize(file_get_contents('utilisateur/' . $user . '.txt'));
+            $author = $newpost->readUser($user);
 
             $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-            $newpost->editPost(new Post($post['title'], $post['photo'], $post['description'], $post['price'], $contenu), $previoustitle);
+            $newpost->updatePost(new Post($post['title'], $post['photo'], $post['description'], $post['price'], $contenu), $previoustitle);
 
 
 

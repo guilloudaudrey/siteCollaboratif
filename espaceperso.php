@@ -9,15 +9,14 @@
         <?php
         include_once 'classes/User.php';
         include_once 'classes/DataBase.php';
+        $instance = new DataBase;
         session_start();
 
         if (isset($_SESSION['nom'])) {
             $user = $_SESSION ['nom'];
-
             if (is_file('utilisateur/' . $user . '.txt')) {
-                $contenu = unserialize(file_get_contents('utilisateur/' . $user . '.txt'));
-                $instance = new DataBase;
-                echo $instance->showUser($contenu);
+                $contenu = $instance->readUser($user);
+                echo $contenu->asHtml();
                 echo '<form action="logout.php" method="POST"><button>Se déconnecter</button></form>';
                 echo '<a href="post_form.php">Créer une nouvelle annonce</a><br/>';
                 echo '<a href="index.php">Index</a>';
@@ -38,36 +37,30 @@
             $user = $_SESSION ['nom'];
 
 
-            $dossier = 'posts/';
-            $files = scandir($dossier);
-            foreach ($files as $content) {
-                if (!is_dir($content)) {
-                    $contenu = unserialize(file_get_contents($dossier . $content));
+            $listeAnnonces = $instance->readPostsList();
+            foreach ($listeAnnonces as $annonce) {
+                $author = $annonce->getAuthor();
 
-
-                    $author = $instance->getAuthor($contenu);
-
-                    if ($author === $user) {
-                        echo '<section><h3>' . basename($content, ".txt") . '</h3>';
-                        echo $instance->showPost($contenu);
-                        echo'
+                if ($author === $user) {
+                    echo '<section><h3>' . $annonce->getTitle() . '</h3>';
+                    echo $annonce->asHtml();
+                    echo'
 
                                     <div class="boutons">
             <form method="POST" action="delete.php">
-            <input type="hidden" name="filename" value="' . $content . '" class="text">
+            <input type="hidden" name="filename" value="' . serialize($annonce) . '" class="text">
             <input type="submit" value="supprimer">
             </form>
     
             <form method="POST" action="edit_form.php">
-            <input type="hidden" name="filename" value="' . $content . '">
+            <input type="hidden" name="filename" value="' . serialize($annonce) . '">
                 <input type="submit" value="modifier">
             </form>
             </div>';
-                    }
                 }
             }
         }
         ?>
- 
+
     </body>
 </html>

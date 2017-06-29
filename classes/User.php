@@ -61,5 +61,11 @@ class User {
         return $this->mdp;
     }
 
+    public function asHtml() {
+        return '<pre>Pseudo : ' . $this->getPseudo() . '</pre><pre><img src="' .
+        $this->getAvatar() . '"></pre><pre>' .
+        $this->getGenre() . '</pre><pre>' .
+        $this->getAge() . '</pre>';
+    }
 
 }
