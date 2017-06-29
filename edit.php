@@ -29,4 +29,3 @@ if (isset($_POST['editpost'])) {
     echo'<p>formulaire non envoyé</p>';
 }
 ?>
-

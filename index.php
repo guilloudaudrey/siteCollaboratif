@@ -60,17 +60,14 @@
         include_once 'classes/DataBase.php';
         $instance = new DataBase();
 
-        $dossier = 'posts/';
-        $files = scandir($dossier);
-        foreach ($files as $content) {
-            if (!is_dir($content)) {
-                echo '<section><h3>' . basename($content, ".txt") . '</h3>';
-                echo '<div class="text">';
-                $contenu = unserialize(file_get_contents($dossier . $content));
-
-                echo $instance->showPost($contenu);
-                echo '</div>';
-            }
+        // $dossier = 'posts/';
+        //$files = scandir($dossier);
+        $listeAnnonces = $instance->readPostsList();
+        foreach ($listeAnnonces as $annonce) {
+            echo '<section><h3>' . $annonce->getTitle() . '</h3>';
+            echo '<div class="text">';
+            echo $annonce->asHtml();
+            echo '</div>';
         }
         ?>
     </body>

@@ -83,5 +83,14 @@ class Post {
     function setAuthor($author) {
         $this->author = $author;
     }
+    
+        public function asHtml() {
+        return '</pre><pre><img src="' .
+                $this->getPhoto() . '"></pre><pre>' .
+                $this->getDescription() . '</pre><pre>' .
+                $this->getPrice() . '</pre><pre>' .
+                $this->getDate()->format('d/m/y H:i') . '</pre><pre>Auteur : ' .
+                $this->getAuthor() . '</pre>';
+    }
 
 }

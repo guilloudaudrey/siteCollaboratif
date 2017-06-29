@@ -14,8 +14,32 @@ class DataBase {
         fclose($file);
     }
 
-//affichage des informations de l'utilisateur
+//connexion
+    // TODO : remove from this class
+    public function connexion($identifiant, $mdp) {
+        if (is_file('utilisateur/' . $identifiant . '.txt')) {
+            $user = unserialize(file_get_contents('utilisateur/' . $identifiant . '.txt'));
+            $mdp_data = $user->getData();
 
+            if ($mdp_data === $mdp) {
+                session_start();
+                $_SESSION['nom'] = $identifiant;
+            } else {
+                return 'pas connecté';
+            }
+        } else {
+            return 'l\'utilisateur ' . $identifiant . ' n\'existe pas';
+        }
+    }
+
+//unserialize des données user
+
+    public function readUser($user) : User {
+        return unserialize(file_get_contents('utilisateur/' . $user . '.txt'));
+    }
+
+//affichage des informations de l'utilisateur
+//TODO bouger dans User
     public function showUser(User $user) {
         return '<pre>Pseudo : ' . $user->getPseudo() . '</pre><pre><img src="' .
                 $user->getAvatar() . '"></pre><pre>' .
@@ -23,7 +47,7 @@ class DataBase {
                 $user->getAge() . '</pre>';
     }
 
-//création et stockage d'un nouvel article
+//création et stockage d'une nouvelle annonce
 
     public function createPost(Post $post) {
         if (!is_dir('posts')) {
@@ -35,39 +59,44 @@ class DataBase {
         fclose($file);
     }
 
-    //mofication d'un article
+//unserialize d'une annonce
+    public function readPost($title) : Post {
+        $post = unserialize(file_get_contents('posts/' . $title . '.txt'));
+        return $post;
+    }
 
+//mofication d'un article
+//TODO edit = update
     public function editPost(Post $post, $previoustitle) {
 
         unlink('posts/' . $previoustitle . '.txt');
         $postdata = serialize($post);
         $fichier = fopen('posts/' . $post->getTitle() . '.txt', 'w');
         fwrite($fichier, $postdata);
-        fclose($fichier); 
+        fclose($fichier);
     }
 
 //parcourir les posts
 
-    public function browsePosts() {
+
+
+//parcourir l'annonce
+    public function readPostsList() :Array {
         $dossier = './posts/';
         $files = scandir($dossier);
+        $listeAnnonces = [];
         foreach ($files as $content) {
             if (!is_dir($content)) {
-                unserialize(file_get_contents($dossier . $content));
+         
+                $listeAnnonces[] = unserialize(file_get_contents($dossier . $content));
+                
             }
         }
+        return $listeAnnonces;
     }
 
-//affichage de l'annonce
+    //TODO déplacer dans Post
 
-    public function showPost(Post $post) {
-        return '</pre><pre><img src="' .
-                $post->getPhoto() . '"></pre><pre>' .
-                $post->getDescription() . '</pre><pre>' .
-                $post->getPrice() . '</pre><pre>' .
-                $post->getDate()->format('d/m/y H:i') . '</pre><pre>Auteur : ' .
-                $post->getAuthor() . '</pre>';
-    }
 
 //récupération des propriétés de la classe Post
 
@@ -95,10 +124,6 @@ class DataBase {
 
     public function deletePost($post) {
         unlink('posts/' . $post);
-    }
-
-    public function parcourirDossier() {
-        
     }
 
 }
