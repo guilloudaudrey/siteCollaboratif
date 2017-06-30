@@ -18,7 +18,7 @@ if (isset($_POST['editpost'])) {
             $author = $newpost->readUser($user);
 
             $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-            $newpost->updatePost(new Post($post['title'], $post['photo'], $post['description'], $post['price'], $contenu), $previoustitle);
+            $newpost->updatePost(new Post($post['title'], $post['photo'], $post['description'], $post['price'], $author), $previoustitle);
 
 
 

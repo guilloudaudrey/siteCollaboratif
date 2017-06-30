@@ -85,7 +85,7 @@ class DataBase {
 //suppression d'une annonce
 
     public function deletePost($post) {
-        unlink('posts/' . $post);
+        unlink('posts/' . $post .'.txt');
     }
 
     

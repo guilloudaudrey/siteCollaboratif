@@ -44,16 +44,17 @@
                 if ($author === $user) {
                     echo '<section><h3>' . $annonce->getTitle() . '</h3>';
                     echo $annonce->asHtml();
+                
                     echo'
 
             <div class="boutons">
             <form method="POST" action="delete.php">
-            <input type="hidden" name="filename" value="' . serialize($annonce) . '" class="text">
+            <input type="hidden" name="filename" value="' . $annonce->getTitle(). '" class="text">
             <input type="submit" value="supprimer">
             </form>
     
             <form method="POST" action="edit_form.php">
-            <input type="hidden" name="filename" value="' . serialize($annonce) . '">
+            <input type="hidden" name="filename" value="' . $annonce->getTitle().  '">
                 <input type="submit" value="modifier">
             </form>
             </div>';
