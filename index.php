@@ -75,17 +75,10 @@
                 if ($categorie == $inputcat) {
                     echo '<section><h3>' . $annonce->getTitle() . '</h3>';
                     echo $annonce->asHtml();
-                
+                } if ($inputcat == "toutescategories") {
+                    echo '<section><h3>' . $annonce->getTitle() . '</h3>';
+                    echo $annonce->asHtml();
                 }
-            }
-        } else {
-
-            $listeAnnonces = $instance->readPostsList();
-            foreach ($listeAnnonces as $annonce) {
-                echo '<section><h3>' . $annonce->getTitle() . '</h3>';
-                echo '<div class="text">';
-                echo $annonce->asHtml();
-                echo '</div>';
             }
         }
         ?>
