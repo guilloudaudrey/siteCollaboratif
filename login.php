@@ -9,9 +9,21 @@ if (isset($_POST['pseudo']) && (isset($_POST['mdp']))) {
     $pseudo = $post['pseudo'];
     $mdp = md5($post['mdp']);
 
-    echo $instance->connexion($pseudo, $mdp);
+    if (is_file('utilisateur/' . $pseudo . '.txt')) {
+        $user = $instance->readUser($pseudo);
+        $mdp_data = $user->getMdp();
+
+        if ($mdp_data === $mdp) {
+            session_start();
+            $_SESSION['nom'] = $pseudo;
+        } else {
+            return 'pas connecté';
+        }
+    } else {
+        return 'l\'utilisateur ' . $identifiant . ' n\'existe pas';
+    }
+
     header("location:index.php");
-    
 } else {
     echo 'pas de données';
 }

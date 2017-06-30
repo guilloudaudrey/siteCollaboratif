@@ -86,30 +86,5 @@ class DataBase {
 
     public function deletePost($post) {
         unlink('posts/' . $post .'.txt');
-    }
-
-    
-////////////////////////////// TODO /////////////////////////
-    //connexion
-    // TODO : remove from this class
-    public function connexion($identifiant, $mdp) {
-        if (is_file('utilisateur/' . $identifiant . '.txt')) {
-            $user = unserialize(file_get_contents('utilisateur/' . $identifiant . '.txt'));
-            $mdp_data = $user->getData();
-
-            if ($mdp_data === $mdp) {
-                session_start();
-                $_SESSION['nom'] = $identifiant;
-            } else {
-                return 'pas connecté';
-            }
-        } else {
-            return 'l\'utilisateur ' . $identifiant . ' n\'existe pas';
-        }
-    }
-
-
-
-
- 
+    } 
 }
