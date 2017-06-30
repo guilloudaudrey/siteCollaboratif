@@ -3,6 +3,7 @@
 class DataBase {
 
 /////////////////// CREATE //////////////////// 
+//
 //création d'un nouvel utilisateur
 
     public function createUser(User $user) {
@@ -21,6 +22,7 @@ class DataBase {
         if (!is_dir('posts')) {
             mkdir('posts');
         }
+        
         $postdata = serialize($post);
         $file = fopen('posts/' . $post->getTitle() . '.txt', 'w');
         fwrite($file, $postdata);
@@ -28,6 +30,7 @@ class DataBase {
     }
 
 ////////////////////////// READ ///////////////////////////////
+//
 //unserialize user
 
     public function readUser($user): User {
@@ -35,8 +38,7 @@ class DataBase {
     }
 
 //unserialize annonce
-    public function readPost($title): Post 
-    {
+    public function readPost($title): Post {
         $post = unserialize(file_get_contents('posts/' . $title . '.txt'));
         return $post;
     }
@@ -53,23 +55,22 @@ class DataBase {
         }
         return $listeAnnonces;
     }
-    
+
 //parcourir les utilisateurs 
-    public function readUsersList() : Array {
+    public function readUsersList(): Array {
         $dossier = './utilisateur/';
         $files = scandir($dossier);
         $listeUsers = [];
-        foreach ($files as $user){
-            if(!is_dir($user)){
+        foreach ($files as $user) {
+            if (!is_dir($user)) {
                 $listeUsers[] = unserialize(file_get_contents($dossier . $user));
             }
         }
         return $listeUsers;
     }
 
-
 ///////////////////////////// UPDATE /////////////////////////
-
+//
 //mofication d'un article
     public function updatePost(Post $post, $previoustitle) {
 
@@ -80,11 +81,12 @@ class DataBase {
         fclose($fichier);
     }
 
-  
 /////////////////////////////// DELETE ////////////////////////
+//
 //suppression d'une annonce
 
     public function deletePost($post) {
-        unlink('posts/' . $post .'.txt');
-    } 
+        unlink('posts/' . $post . '.txt');
+    }
+
 }

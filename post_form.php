@@ -21,6 +21,15 @@ and open the template in the editor.
                 <input type="text" name="title"/>
                 <label for="description">Description</label>
                 <textarea cols="30" rows="10" name="description"></textarea>
+                <label for="categories">Catégories</label>
+                <select name ="categories">
+                    <option value="toutescategories" selected="selected">Toutes les catégories</option>
+                    <option value="animaux">Animaux</option>
+                    <option value="artisanat">Artisanat</option>
+                    <option value="cours" >Cours</option>
+                    <option value="enfants">Garde d'enfants</option>
+                    <option value="informatique">Informatique</option>
+                </select>
                 <label for="price">Prix</label>
                 <input type="number" name="price"/> €
                 <label for="photo">Photo</label>

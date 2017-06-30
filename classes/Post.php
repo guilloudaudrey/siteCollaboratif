@@ -11,13 +11,16 @@ class Post {
     protected $price;
     protected $author;
 
-    function __construct($title, $photo, $description, $price, User $author) {
+            
+            
+                function __construct($title, $photo, $description, $price, User $author, $categorie) {
         $this->title = $title;
         $this->photo = $photo;
         $this->date = new DateTime();
         $this->description = $description;
         $this->price = $price;
         $this->author = $author->getPseudo();
+        $this->categorie = $categorie;
     }
 
     function getTitle() {
@@ -88,9 +91,10 @@ class Post {
         return '</pre><pre><img src="' .
                 $this->getPhoto() . '"></pre><pre>' .
                 $this->getDescription() . '</pre><pre>' .
-                $this->getPrice() . '</pre><pre>' .
+                $this->getPrice() . ' €</pre><pre>' .
                 $this->getDate()->format('d/m/y H:i') . '</pre><pre>Auteur : ' .
-                $this->getAuthor() . '</pre>';
+                $this->getAuthor() . '</pre><pre>Catégories : ' .
+                $this->getCategorie() . '</pre>';
     }
 
 }

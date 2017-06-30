@@ -16,7 +16,7 @@ if (isset($_POST['newpost'])) {
 
             //création et stockage de l'annonce
             $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-            $instance->createPost(new Post($post['title'], $post['photo'], $post['description'], $post['price'], $contenu));
+            $instance->createPost(new Post($post['title'], $post['photo'], $post['description'], $post['price'], $contenu, $post['categories']));
             header("location:index.php");
         }
     }

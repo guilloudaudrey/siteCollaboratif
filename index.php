@@ -45,14 +45,18 @@
         ?>
 
         <h1>Accueil</h1>
-        <form class="recherche">
-            <select>
-                <option value="0" selected="">catégories</option>
-                <option value="1">1</option>
+        <form class="recherche" method="POST" action="index.php">
+            <select name ="categories">
+                <option value="toutescategories" selected="selected">Toutes les catégories</option>
+                <option value="animaux">Animaux</option>
+                <option value="artisanat">Artisanat</option>
+                <option value="cours" >Cours</option>
+                <option value="enfants">Garde d'enfants</option>
+                <option value="informatique">Informatique</option>
             </select>
             <input type="text" placeholder="mot-clé"/>
             <input type="text" placeholder="Localisation"/>
-            <input type="submit" value="Rechercher"/>
+            <input type="submit" value="Rechercher" name="search"/>
         </form>
 
         <?php
@@ -61,12 +65,28 @@
         $instance = new DataBase();
 
 
-        $listeAnnonces = $instance->readPostsList();
-        foreach ($listeAnnonces as $annonce) {
-            echo '<section><h3>' . $annonce->getTitle() . '</h3>';
-            echo '<div class="text">';
-            echo $annonce->asHtml();
-            echo '</div>';
+        if (isset($_POST['search'])) {
+            $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $inputcat = $post['categories'];
+            $listeAnnonces = $instance->readPostsList();
+            foreach ($listeAnnonces as $annonce) {
+                $categorie = $annonce->getCategorie();
+
+                if ($categorie == $inputcat) {
+                    echo '<section><h3>' . $annonce->getTitle() . '</h3>';
+                    echo $annonce->asHtml();
+                
+                }
+            }
+        } else {
+
+            $listeAnnonces = $instance->readPostsList();
+            foreach ($listeAnnonces as $annonce) {
+                echo '<section><h3>' . $annonce->getTitle() . '</h3>';
+                echo '<div class="text">';
+                echo $annonce->asHtml();
+                echo '</div>';
+            }
         }
         ?>
     </body>

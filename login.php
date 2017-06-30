@@ -22,8 +22,7 @@ if (isset($_POST['pseudo']) && (isset($_POST['mdp']))) {
     } else {
         return 'l\'utilisateur ' . $identifiant . ' n\'existe pas';
     }
-
-    header("location:index.php");
+    header("location:espaceperso.php");
 } else {
     echo 'pas de données';
 }
