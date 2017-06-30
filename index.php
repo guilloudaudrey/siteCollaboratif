@@ -64,6 +64,7 @@
         include_once 'classes/DataBase.php';
         $instance = new DataBase();
 
+        
 
         if (isset($_POST['search'])) {
             $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -81,6 +82,18 @@
                 }
             }
         }
+        
+                if (!isset($_POST['search'])) {
+            $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $inputcat = $post['categories'];
+            $listeAnnonces = $instance->readPostsList();
+            foreach ($listeAnnonces as $annonce) {
+                $categorie = $annonce->getCategorie();
+                    echo '<section><h3>' . $annonce->getTitle() . '</h3>';
+                    echo $annonce->asHtml();
+                }
+            }
+        
         ?>
     </body>
 </html>
