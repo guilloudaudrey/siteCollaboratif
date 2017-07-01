@@ -30,6 +30,8 @@ and open the template in the editor.
                     <option value="enfants">Garde d'enfants</option>
                     <option value="informatique">Informatique</option>
                 </select>
+                <label for="localisation">Localisation</label>
+                <input type="text" name="localisation" placeholder="ville"/>
                 <label for="price">Prix</label>
                 <input type="number" name="price"/> €
                 <label for="photo">Photo</label>

@@ -13,7 +13,7 @@ class Post {
 
             
             
-                function __construct($title, $photo, $description, $price, User $author, $categorie) {
+                function __construct($title, $photo, $description, $price, User $author, $categorie, $localisation) {
         $this->title = $title;
         $this->photo = $photo;
         $this->date = new DateTime();
@@ -21,6 +21,7 @@ class Post {
         $this->price = $price;
         $this->author = $author->getPseudo();
         $this->categorie = $categorie;
+        $this->localisation = $localisation;
     }
 
     function getTitle() {
@@ -92,9 +93,10 @@ class Post {
                 $this->getPhoto() . '"></pre><pre>' .
                 $this->getDescription() . '</pre><pre>' .
                 $this->getPrice() . ' €</pre><pre>' .
-                $this->getDate()->format('d/m/y H:i') . '</pre><pre>Auteur : ' .
-                $this->getAuthor() . '</pre><pre>Catégories : ' .
-                $this->getCategorie() . '</pre>';
+                $this->getDate()->format('d/m/y H:i') . '</pre><pre>Auteur : <a href="#">' .
+                $this->getAuthor() . '</a></pre><pre>Catégorie : ' .
+                $this->getCategorie() . '</pre><pre>Localisation : '.
+                $this->localisation. '</pre>';
     }
 
 }

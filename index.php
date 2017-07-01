@@ -76,17 +76,14 @@
                 if ($categorie == $inputcat) {
                     echo '<section><h3>' . $annonce->getTitle() . '</h3>';
                     echo $annonce->asHtml();
-                } if ($inputcat == "toutescategories") {
+                } else if ($inputcat == "toutescategories") {
                     echo '<section><h3>' . $annonce->getTitle() . '</h3>';
                     echo $annonce->asHtml();
                 }
             }
-        }
-        
-                if (!isset($_POST['search'])) {
-            $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-            $inputcat = $post['categories'];
-            $listeAnnonces = $instance->readPostsList();
+            
+        } else {
+       
             foreach ($listeAnnonces as $annonce) {
                 $categorie = $annonce->getCategorie();
                     echo '<section><h3>' . $annonce->getTitle() . '</h3>';
