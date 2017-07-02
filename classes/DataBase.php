@@ -22,10 +22,23 @@ class DataBase {
         if (!is_dir('posts')) {
             mkdir('posts');
         }
-        
+
         $postdata = serialize($post);
         $file = fopen('posts/' . $post->getTitle() . '.txt', 'w');
         fwrite($file, $postdata);
+        fclose($file);
+    }
+
+    //création d'un nouveau commentaire
+
+    public function createComment(Comment $comment) {
+        if (!is_dir('commebts')) {
+            mkdir('comments');
+        }
+
+        $commentdata = serialize($comment);
+        $file = fopen('comments/' . $comment->getTitle() . '.txt', 'w');
+        fwrite($file, $commentdata);
         fclose($file);
     }
 
@@ -41,6 +54,12 @@ class DataBase {
     public function readPost($title): Post {
         $post = unserialize(file_get_contents('posts/' . $title . '.txt'));
         return $post;
+    }
+
+//unserialize comment
+    public function readComment($comment): Comment {
+        return unserialize(file_get_contents('comments/' . $comment . '.txt'));
+      
     }
 
 //parcourir les posts
@@ -67,6 +86,19 @@ class DataBase {
             }
         }
         return $listeUsers;
+    }
+    
+//parcourir les commentaires 
+    public function readCommentsList(): Array {
+        $dossier = './comments/';
+        $files = scandir($dossier);
+        $listeComments = [];
+        foreach ($files as $comment) {
+            if (!is_dir($comment)) {
+                $listeComments[] = unserialize(file_get_contents($dossier . $comment));
+            }
+        }
+        return $listeComments;
     }
 
 ///////////////////////////// UPDATE /////////////////////////
