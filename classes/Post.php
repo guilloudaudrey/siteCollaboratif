@@ -89,14 +89,14 @@ class Post {
     }
     
         public function asHtml() {
-        return '</pre><pre><img src="' .
+        return '<pre><h3><a href="#">'.$this->getTitle() .'</a></h3></pre><pre><img src="' .
                 $this->getPhoto() . '"></pre><pre>' .
                 $this->getDescription() . '</pre><pre>' .
                 $this->getPrice() . ' €</pre><pre>' .
-                $this->getDate()->format('d/m/y H:i') . '</pre><pre>Auteur : <a href="#">' .
-                $this->getAuthor() . '</a></pre><pre>Catégorie : ' .
+                $this->getDate()->format('d/m/y H:i') . '</pre><pre>Auteur : ' .
+                $this->getAuthor() . '</pre><pre>Catégorie : ' .
                 $this->getCategorie() . '</pre><pre>Localisation : '.
-                $this->localisation. '</pre>';
+                $this->localisation. '</pre><br/>';
     }
 
 }

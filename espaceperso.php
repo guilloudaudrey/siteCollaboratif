@@ -42,7 +42,6 @@
                 $author = $annonce->getAuthor();
 
                 if ($author === $user) {
-                    echo '<section><h3>' . $annonce->getTitle() . '</h3>';
                     echo $annonce->asHtml();
                 
                     echo'

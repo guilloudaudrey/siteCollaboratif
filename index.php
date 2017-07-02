@@ -63,35 +63,30 @@
         include_once 'classes/Post.php';
         include_once 'classes/DataBase.php';
         $instance = new DataBase();
-          $listeAnnonces = $instance->readPostsList();
+        $listeAnnonces = $instance->readPostsList();
 
-        
+
 
         if (isset($_POST['search'])) {
             $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $inputcat = $post['categories'];
-          
+
             foreach ($listeAnnonces as $annonce) {
                 $categorie = $annonce->getCategorie();
 
                 if ($categorie == $inputcat) {
-                    echo '<section><h3>' . $annonce->getTitle() . '</h3>';
                     echo $annonce->asHtml();
                 } else if ($inputcat == "toutescategories") {
-                    echo '<section><h3>' . $annonce->getTitle() . '</h3>';
                     echo $annonce->asHtml();
                 }
             }
-            
         } else {
-       
+
             foreach ($listeAnnonces as $annonce) {
                 $categorie = $annonce->getCategorie();
-                    echo '<section><h3>' . $annonce->getTitle() . '</h3>';
-                    echo $annonce->asHtml();
-                }
+                echo $annonce->asHtml();
             }
-        
+        }
         ?>
     </body>
 </html>
