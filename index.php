@@ -20,6 +20,7 @@
     <body>
 
         <?php
+        
         session_start();
         if (!isset($_SESSION['nom'])) {
             ?>
@@ -32,10 +33,11 @@
                 <input type="submit" name="login"/>
             </form>
 
+
             <a href="register-form.php">S'inscrire</a>
             <a href="post_form.php">Poster une annonce</a>
 
-            <?php
+            <?php 
         } else {
             echo 'Bonjour ' . $_SESSION['nom'];
             echo '<form action="logout.php" method="POST"><button>Se déconnecter</button></form>';
@@ -78,12 +80,12 @@
                     echo $annonce->asHtml();
                     echo '<form action="annonce.php" method="POST">'
                     . '<input type="submit" value="en savoir plus"><br/>'
-                  . '<input type="hidden" name="filename" value="' . $annonce->getTitle() . '"></form>';
+                    . '<input type="hidden" name="filename" value="' . $annonce->getTitle() . '"></form>';
                 } else if ($inputcat == "toutescategories") {
                     echo $annonce->asHtml();
                     echo '<form action="annonce.php" method="POST">'
                     . '<input type="submit" value="en savoir plus"><br/>'
-                   . '<input type="hidden" name="filename" value="' . $annonce->getTitle() . '"></form>';
+                    . '<input type="hidden" name="filename" value="' . $annonce->getTitle() . '"></form>';
                 }
             }
         } else {

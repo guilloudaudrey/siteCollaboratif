@@ -16,7 +16,7 @@ if (isset($_POST['pseudo']) && (isset($_POST['mdp']))) {
         if ($mdp_data === $mdp) {
             session_start();
             $_SESSION['nom'] = $pseudo;
-            header("location:espaceperso.php");
+            header("location:index.php");
         } else {
             echo 'pas connecté';
         }
