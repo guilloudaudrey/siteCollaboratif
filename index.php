@@ -63,13 +63,14 @@
         include_once 'classes/Post.php';
         include_once 'classes/DataBase.php';
         $instance = new DataBase();
+          $listeAnnonces = $instance->readPostsList();
 
         
 
         if (isset($_POST['search'])) {
             $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $inputcat = $post['categories'];
-            $listeAnnonces = $instance->readPostsList();
+          
             foreach ($listeAnnonces as $annonce) {
                 $categorie = $annonce->getCategorie();
 
