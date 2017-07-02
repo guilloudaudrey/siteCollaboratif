@@ -13,8 +13,6 @@ if (isset($_POST['newpost'])) {
 
         if (is_file('utilisateur/' . $user . '.txt')) {
             $contenu = $instance->readUser($user);
-
-            //création et stockage de l'annonce
             $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $instance->createPost(new Post($post['title'], $post['photo'], $post['description'], $post['price'], $contenu, $post['categories'], $post['localisation']));
             header("location:index.php");

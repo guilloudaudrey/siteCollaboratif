@@ -11,9 +11,7 @@ class Post {
     protected $price;
     protected $author;
 
-            
-            
-                function __construct($title, $photo, $description, $price, User $author, $categorie, $localisation) {
+    function __construct($title, $photo, $description, $price, User $author, $categorie, $localisation) {
         $this->title = $title;
         $this->photo = $photo;
         $this->date = new DateTime();
@@ -87,16 +85,16 @@ class Post {
     function setAuthor($author) {
         $this->author = $author;
     }
-    
-        public function asHtml() {
-        return '<pre><h3><a href="#">'.$this->getTitle() .'</a></h3></pre><pre><img src="' .
+
+    public function asHtml() {
+        return '<br/><pre><h3>' . $this->getTitle() . '</h3></pre><pre><img src="' .
                 $this->getPhoto() . '"></pre><pre>' .
                 $this->getDescription() . '</pre><pre>' .
                 $this->getPrice() . ' €</pre><pre>' .
                 $this->getDate()->format('d/m/y H:i') . '</pre><pre>Auteur : ' .
                 $this->getAuthor() . '</pre><pre>Catégorie : ' .
-                $this->getCategorie() . '</pre><pre>Localisation : '.
-                $this->localisation. '</pre><br/>';
+                $this->getCategorie() . '</pre><pre>Localisation : ' .
+                $this->localisation . '</pre>';
     }
 
 }

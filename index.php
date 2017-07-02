@@ -76,8 +76,14 @@
 
                 if ($categorie == $inputcat) {
                     echo $annonce->asHtml();
+                    echo '<form action="annonce.php" method="POST">'
+                    . '<input type="submit" value="en savoir plus"><br/>'
+                  . '<input type="hidden" name="filename" value="' . $annonce->getTitle() . '"></form>';
                 } else if ($inputcat == "toutescategories") {
                     echo $annonce->asHtml();
+                    echo '<form action="annonce.php" method="POST">'
+                    . '<input type="submit" value="en savoir plus"><br/>'
+                   . '<input type="hidden" name="filename" value="' . $annonce->getTitle() . '"></form>';
                 }
             }
         } else {
@@ -85,6 +91,9 @@
             foreach ($listeAnnonces as $annonce) {
                 $categorie = $annonce->getCategorie();
                 echo $annonce->asHtml();
+                echo '<form action="annonce.php" method="POST">'
+                . '<input type="submit" value="en savoir plus"><br/>'
+                . '<input type="hidden" name="filename" value="' . $annonce->getTitle() . '"></form>';
             }
         }
         ?>
