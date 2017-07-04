@@ -18,6 +18,9 @@ and open the template in the editor.
         include_once 'classes/User.php';
         $newdb = new DataBase();
 
+
+//lien vers le profil de l'auteur de l'annonce + boutons contact
+
         if (isset($_POST['filename'])) {
             $file = htmlspecialchars($_POST['filename']);
             $post = $newdb->readPost($file);
@@ -29,23 +32,26 @@ and open the template in the editor.
             ?>
 
             <h2>Avis</h2>
-
             <p>Laissez un avis sur cette annonce.</p>
             <?php
+//formulaire commentaires
+
             session_start();
             if (isset($_SESSION['nom'])) {
                 ?>
-                <label for="note">Note : </label>
-                <select>
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option
-                    <option value="5">5</option>
-                </select>
-                <textarea cols="50" rows="8"></textarea>
-                <button>Ajouter un avis</button><br/>
+                <form method="POST" action="create-comment.php" name="annonce">
+                    <label for="note">Note : </label>
+                    <select>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option
+                        <option value="5">5</option>
+                    </select>
+                    <textarea cols="50" rows="8"></textarea>
+                    <button>Ajouter un avis</button><br/>
+                </form>
 
             <?php } else {
                 ?>

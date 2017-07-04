@@ -7,7 +7,7 @@ class User {
     private $avatar;
     private $genre;
     private $age;
-    private $annonces;
+    private $dateinscription;
 
     function __construct($pseudo, $mdp, $avatar, $genre, $age) {
         $this->pseudo = $pseudo;
@@ -15,6 +15,7 @@ class User {
         $this->avatar = $avatar;
         $this->genre = $genre;
         $this->age = $age;
+        $this->dateinscription = new DateTime();
     }
 
     function getPseudo() {
@@ -35,6 +36,10 @@ class User {
 
     function getAge() {
         return $this->age;
+    }
+
+    function getDateinscription() {
+        return $this->dateinscription;
     }
 
     function setPseudo($pseudo) {
@@ -63,9 +68,10 @@ class User {
 
     public function asHtml() {
         return '<pre>Pseudo : ' . $this->getPseudo() . '</pre><pre><img src="' .
-        $this->getAvatar() . '"></pre><pre>' .
-        $this->getGenre() . '</pre><pre>' .
-        $this->getAge() . '</pre>';
+                $this->getAvatar() . '"></pre><pre>' .
+                $this->getGenre() . '</pre><pre>' .
+                $this->getAge() . '</pre><pre>'. 
+                $this->getDateinscription()->format('d/m/y') . '</pre>';
     }
 
 }
