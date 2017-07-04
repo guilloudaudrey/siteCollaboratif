@@ -25,6 +25,8 @@ and open the template in the editor.
             $file = htmlspecialchars($_POST['filename']);
             $post = $newdb->readPost($file);
             $author = $post->getAuthor();
+            $title = $post->getTitle();
+            
             echo '<p>' . $author . '<button>Voir le profil</button><p>';
             echo $post->asHtml()
             . '<pre><button>Envoyer un message</button></pre>'
@@ -39,9 +41,11 @@ and open the template in the editor.
             session_start();
             if (isset($_SESSION['nom'])) {
                 ?>
-                <form method="POST" action="create-comment.php" name="annonce">
+                <form method="POST" action="create-comment.php">
+                    <label for="title">Titre</label>
+                    <input type="text" name="title"/>
                     <label for="note">Note : </label>
-                    <select>
+                    <select name="note">
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -49,8 +53,13 @@ and open the template in the editor.
                         <option value="4">4</option
                         <option value="5">5</option>
                     </select>
-                    <textarea cols="50" rows="8"></textarea>
-                    <button>Ajouter un avis</button><br/>
+                    <textarea cols="50" rows="8" name="comm"></textarea>
+                    <button name="annonce">Ajouter un avis</button><br/>
+                    <?php
+                    
+                    echo'
+                    <input type="hidden" name="filename" value="'.$title .'">';
+                    ?>
                 </form>
 
             <?php } else {

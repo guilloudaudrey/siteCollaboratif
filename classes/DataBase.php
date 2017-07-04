@@ -32,7 +32,7 @@ class DataBase {
     //création d'un nouveau commentaire
 
     public function createComment(Comment $comment) {
-        if (!is_dir('commebts')) {
+        if (!is_dir('comments')) {
             mkdir('comments');
         }
 
