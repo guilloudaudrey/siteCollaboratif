@@ -17,12 +17,13 @@ and open the template in the editor.
         include_once 'classes/Post.php';
         include_once 'classes/User.php';
         $newdb = new DataBase();
+        $url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 
 
 //lien vers le profil de l'auteur de l'annonce + boutons contact
 
-        if (isset($_POST['filename'])) {
-            $file = htmlspecialchars($_POST['filename']);
+        if (isset($_GET['filename'])) {
+            $file = htmlspecialchars($_GET['filename']);
             $post = $newdb->readPost($file);
             $author = $post->getAuthor();
             $title = $post->getTitle();
@@ -41,7 +42,7 @@ and open the template in the editor.
             session_start();
             if (isset($_SESSION['nom'])) {
                 ?>
-                <form method="POST" action="create-comment.php">
+                <form method="GET" action="create-comment.php">
                     <label for="title">Titre</label>
                     <input type="text" name="title"/>
                     <label for="note">Note : </label>
@@ -55,6 +56,7 @@ and open the template in the editor.
                     </select>
                     <textarea cols="50" rows="8" name="comm"></textarea>
                     <button name="annonce">Ajouter un avis</button><br/>
+                    <input type="hidden" name="url" value="<?php echo $url; ?>"/>
                     <?php
                     
                     echo'
@@ -70,6 +72,7 @@ and open the template in the editor.
                     <label for="mdp">Mot de passe</label>
                     <input type="password" name="mdp"/>
                     <input type="submit" name="login"/>
+                    <input type="hidden" name="url" value="<?php echo $url; ?>"/>
                 </form>
 
                 <a href="register-form.php">S'inscrire</a>

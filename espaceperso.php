@@ -35,25 +35,23 @@
 
         if (isset($_SESSION['nom'])) {
             $user = $_SESSION ['nom'];
-
-
             $listeAnnonces = $instance->readPostsList();
             foreach ($listeAnnonces as $annonce) {
                 $author = $annonce->getAuthor();
 
-                if ($author === $user) {
+                if ($author == $user) {
                     echo $annonce->asHtml();
-                
+
                     echo'
 
             <div class="boutons">
             <form method="POST" action="delete.php">
-            <input type="hidden" name="filename" value="' . $annonce->getTitle(). '" class="text">
+            <input type="hidden" name="filename" value="' . $annonce->getTitle() . '" class="text">
             <input type="submit" value="supprimer">
             </form>
     
             <form method="POST" action="edit_form.php">
-            <input type="hidden" name="filename" value="' . $annonce->getTitle().  '">
+            <input type="hidden" name="filename" value="' . $annonce->getTitle() . '">
                 <input type="submit" value="modifier">
             </form>
             </div>';
@@ -62,5 +60,21 @@
         }
         ?>
 
+        <h2>Evaluations émises</h2>
+        <?php
+        if (isset($_SESSION['nom'])) {
+            $user = $_SESSION ['nom'];
+            $listecomm = $instance->readCommentsList();
+         
+           foreach ($listecomm as $comm) {
+               $authorcomm = $comm->getAuthor();
+               var_dump($authorcomm);
+
+               // if ($author == $user) {
+                 //   var_dump($author);
+                //}
+            }
+        }
+        ?>
     </body>
 </html>

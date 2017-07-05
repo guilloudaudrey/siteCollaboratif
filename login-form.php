@@ -24,6 +24,7 @@
             <label for="mdp">Mot de passe</label>
             <input type="password" name="mdp"/>
             <input type="submit" name="login"/>
+            <input type="hidden" name="url" value="<?php echo $url; ?>"/>
         </form>
         
         <a href="register-form.php">S'inscrire</a>

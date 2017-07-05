@@ -22,6 +22,7 @@
         <?php
         
         session_start();
+       $url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
         if (!isset($_SESSION['nom'])) {
             ?>
 
@@ -31,6 +32,7 @@
                 <label for="mdp">Mot de passe</label>
                 <input type="password" name="mdp"/>
                 <input type="submit" name="login"/>
+                <input type="hidden" name="url" value="<?php echo $url; ?>"/>
             </form>
 
 
@@ -78,12 +80,12 @@
 
                 if ($categorie == $inputcat) {
                     echo $annonce->asHtml();
-                    echo '<form action="annonce.php" method="POST">'
+                    echo '<form action="annonce.php" method="GET">'
                     . '<input type="submit" value="en savoir plus"><br/>'
                     . '<input type="hidden" name="filename" value="' . $annonce->getTitle() . '"></form>';
                 } else if ($inputcat == "toutescategories") {
                     echo $annonce->asHtml();
-                    echo '<form action="annonce.php" method="POST">'
+                    echo '<form action="annonce.php" method="GET">'
                     . '<input type="submit" value="en savoir plus"><br/>'
                     . '<input type="hidden" name="filename" value="' . $annonce->getTitle() . '"></form>';
                 }
@@ -93,7 +95,7 @@
             foreach ($listeAnnonces as $annonce) {
                 $categorie = $annonce->getCategorie();
                 echo $annonce->asHtml();
-                echo '<form action="annonce.php" method="POST">'
+                echo '<form action="annonce.php" method="GET">'
                 . '<input type="submit" value="en savoir plus"><br/>'
                 . '<input type="hidden" name="filename" value="' . $annonce->getTitle() . '"></form>';
             }
