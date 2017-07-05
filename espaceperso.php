@@ -11,7 +11,7 @@
         include_once 'classes/DataBase.php';
         include_once 'classes/Post.php';
         include_once 'classes/Comment.php';
-        
+
         $instance = new DataBase;
         session_start();
 
@@ -36,16 +36,14 @@
         include_once 'classes/DataBase.php';
         include_once 'classes/User.php';
 
-        if (isset($_SESSION['nom'])) {
-            $user = $_SESSION ['nom'];
-            $listeAnnonces = $instance->readPostsList();
-            foreach ($listeAnnonces as $annonce) {
-                $author = $annonce->getAuthor();
+        $listeAnnonces = $instance->readPostsList();
+        foreach ($listeAnnonces as $annonce) {
+            $author = $annonce->getAuthor();
 
-                if ($author == $user) {
-                    echo $annonce->asHtml();
+            if ($author == $user) {
+                echo $annonce->asHtml();
 
-                    echo'
+                echo'
 
             <div class="boutons">
             <form method="POST" action="delete.php">
@@ -58,25 +56,19 @@
                 <input type="submit" value="modifier">
             </form>
             </div>';
-                }
             }
         }
         ?>
 
         <h2>Evaluations émises</h2>
         <?php
-        if (isset($_SESSION['nom'])) {
-            $user = $_SESSION ['nom'];
-            $listecomm = $instance->readCommentsList();
-         
-           foreach ($listecomm as $comm) {
-               $authorcomm = $comm->getAuthor();
-             
+        $listecomm = $instance->readCommentsList();
 
-               if ($author == $user) {
-                   echo $comm->asHtml();
-               }
-   
+        foreach ($listecomm as $comm) {
+            $authorcomm = $comm->getAuthor();
+
+            if ($authorcomm == $user) {
+                echo $comm->asHtml();
             }
         }
         ?>

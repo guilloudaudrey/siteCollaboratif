@@ -57,7 +57,8 @@ class Comment {
     }
 
    public function asHtml() {
-        return '<br/><pre><h3>' . $this->getTitle() . '</h3></pre><pre>'.
+        return '<br/><pre><h3>titre : ' . $this->getTitle() . '</h3></pre><pre> note : '.
                 $this->getNote() . '</pre><pre>' .
-                $this->getTexte() . '</pre><pre>';
+                $this->getTexte() . '</pre><pre>auteur : '.
+                $this->getAuthor();
 }}
