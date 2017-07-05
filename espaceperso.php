@@ -9,6 +9,9 @@
         <?php
         include_once 'classes/User.php';
         include_once 'classes/DataBase.php';
+        include_once 'classes/Post.php';
+        include_once 'classes/Comment.php';
+        
         $instance = new DataBase;
         session_start();
 
@@ -68,11 +71,12 @@
          
            foreach ($listecomm as $comm) {
                $authorcomm = $comm->getAuthor();
-               var_dump($authorcomm);
+             
 
-               // if ($author == $user) {
-                 //   var_dump($author);
-                //}
+               if ($author == $user) {
+                   echo $comm->asHtml();
+               }
+   
             }
         }
         ?>
