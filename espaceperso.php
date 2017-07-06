@@ -75,7 +75,7 @@
         <?php
         foreach ($listecomm as $com) {
             $destinataire = $comm->getDestinataire();
-            echo $destinataire;
+         
             if ($destinataire == $user) {
                 echo $comm->asHtml();
             }

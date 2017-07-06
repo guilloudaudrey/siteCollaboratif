@@ -5,7 +5,6 @@ include_once 'classes/DataBase.php';
 include_once 'classes/User.php';
 
 if (isset($_POST['newpost'])) {
-
     session_start();
     if (isset($_SESSION['nom'])) {
         $user = $_SESSION['nom'];

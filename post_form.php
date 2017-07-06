@@ -18,11 +18,11 @@ and open the template in the editor.
 
             <form action="create-post.php" method="POST">
                 <label for="title">Titre</label>
-                <input type="text" name="title"/>
+                <input type="text" name="title" required="required"/>
                 <label for="description">Description</label>
-                <textarea cols="30" rows="10" name="description"></textarea>
+                <textarea cols="30" rows="10" name="description" required="required"></textarea>
                 <label for="categories">Catégories</label>
-                <select name ="categories">
+                <select name ="categories" required="required">
                     <option value="toutescategories" selected="selected">Toutes les catégories</option>
                     <option value="animaux">Animaux</option>
                     <option value="artisanat">Artisanat</option>
@@ -31,11 +31,11 @@ and open the template in the editor.
                     <option value="informatique">Informatique</option>
                 </select>
                 <label for="localisation">Localisation</label>
-                <input type="text" name="localisation" placeholder="ville"/>
+                <input type="text" name="localisation" placeholder="ville" required="required"/>
                 <label for="price">Prix</label>
-                <input type="number" name="price"/> €
+                <input type="number" name="price" required="required"/> €
                 <label for="photo">Photo</label>
-                <input type="file"name="photo"/>
+                <input type="file"name="photo" required="required"/>
                 <input type="submit" value="Envoyer" name="newpost"/>
             </form>
 

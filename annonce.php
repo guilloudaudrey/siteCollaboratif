@@ -30,8 +30,12 @@ and open the template in the editor.
             $title = $post->getTitle();
             $listecomm = $newdb->readCommentsList();
 
-            echo '<p>' . $author . '<button>Voir le profil</button><p>';
-            echo $post->asHtml()
+            echo $post->asHtml();
+            echo '<p>' . $author . '<p>';
+            echo '<form action="espacepublic.php" method="GET" >'
+            . '<input type="hidden" name="profilpub" value="'.$author.'">'
+            . '<button >voir profil</button>'
+            . '</form>'
             . '<pre><button>Envoyer un message</button></pre>'
             . '<pre><button>Afficher le numéro</button></pre><br/>';
             ?>
