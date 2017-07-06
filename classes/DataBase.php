@@ -37,7 +37,7 @@ class DataBase {
         }
 
         $commentdata = serialize($comment);
-        $file = fopen('comments/' . $comment->getTitle() . '.txt', 'w');
+        $file = fopen('comments/' . $comment->getDate() . '.txt', 'w');
         fwrite($file, $commentdata);
         fclose($file);
     }
