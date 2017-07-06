@@ -59,7 +59,6 @@
             }
         }
         ?>
-
         <h2>Evaluations émises</h2>
         <?php
         $listecomm = $instance->readCommentsList();
@@ -68,6 +67,16 @@
             $authorcomm = $comm->getAuthor();
 
             if ($authorcomm == $user) {
+                echo $comm->asHtml();
+            }
+        }
+        ?>
+        <h2>Evaluations reçues</h2>
+        <?php
+        foreach ($listecomm as $com) {
+            $destinataire = $comm->getDestinataire();
+            echo $destinataire;
+            if ($destinataire == $user) {
                 echo $comm->asHtml();
             }
         }

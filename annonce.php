@@ -16,8 +16,9 @@ and open the template in the editor.
         include_once 'classes/DataBase.php';
         include_once 'classes/Post.php';
         include_once 'classes/User.php';
+        include_once 'classes/Comment.php';
         $newdb = new DataBase();
-        $url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+        $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
 
 //lien vers le profil de l'auteur de l'annonce + boutons contact
@@ -27,7 +28,8 @@ and open the template in the editor.
             $post = $newdb->readPost($file);
             $author = $post->getAuthor();
             $title = $post->getTitle();
-            
+            $listecomm = $newdb->readCommentsList();
+
             echo '<p>' . $author . '<button>Voir le profil</button><p>';
             echo $post->asHtml()
             . '<pre><button>Envoyer un message</button></pre>'
@@ -41,6 +43,7 @@ and open the template in the editor.
 
             session_start();
             if (isset($_SESSION['nom'])) {
+                $user = $_SESSION['nom'];
                 ?>
                 <form method="GET" action="create-comment.php">
                     <label for="title">Titre</label>
@@ -58,11 +61,24 @@ and open the template in the editor.
                     <button name="annonce">Ajouter un avis</button><br/>
                     <input type="hidden" name="url" value="<?php echo $url; ?>"/>
                     <?php
-                    
                     echo'
-                    <input type="hidden" name="filename" value="'.$title .'">';
+                    <input type="hidden" name="filename" value="' . $title . '">';
                     ?>
                 </form>
+
+                <h2>Liste commentaires</h2>
+                <?php
+                $commentlist = $newdb->readCommentsList();
+                foreach ($commentlist as $comm) {
+                    $destinataire = $comm->getDestinataire();
+                    $article = $comm->getArticle();
+
+
+                    if (($article == $title) && ($author == $destinataire)) {
+                        echo $comm->asHtml();
+                    }
+                }
+                ?>
 
             <?php } else {
                 ?>
