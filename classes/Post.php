@@ -10,8 +10,8 @@ class Post {
     protected $localisation;
     protected $price;
     protected $author;
-
-    function __construct($title, $photo, $description, $price, User $author, $categorie, $localisation) {
+    protected $typeannonce;
+                function __construct($title, $photo, $description, $price, User $author, $categorie, $localisation, $typeannonce) {
         $this->title = $title;
         $this->photo = $photo;
         $this->date = new DateTime();
@@ -20,6 +20,7 @@ class Post {
         $this->author = $author->getPseudo();
         $this->categorie = $categorie;
         $this->localisation = $localisation;
+        $this->typeannonce = $typeannonce;
     }
 
     function getTitle() {
@@ -45,7 +46,12 @@ class Post {
     function getLocalisation() {
         return $this->localisation;
     }
+    
+    function getTypeannonce() {
+        return $this->typeannonce;
+    }
 
+    
     function getPrice() {
         return $this->price;
     }
@@ -87,7 +93,8 @@ class Post {
     }
 
     public function asHtml() {
-        return '<br/><pre><h3>' . $this->getTitle() . '</h3></pre><pre><img src="' .
+        return '<br/><pre>'.$this->getTypeannonce().'</pre>'. 
+                '<pre><h3>' . $this->getTitle() . '</h3></pre><pre><img src="' .
                 $this->getPhoto() . '"></pre><pre>' .
                 $this->getDescription() . '</pre><pre>' .
                 $this->getPrice() . ' €</pre><pre>' .

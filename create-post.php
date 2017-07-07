@@ -13,7 +13,7 @@ if (isset($_POST['newpost'])) {
         if (is_file('utilisateur/' . $user . '.txt')) {
             $contenu = $instance->readUser($user);
             $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-            $instance->createPost(new Post($post['title'], $post['photo'], $post['description'], $post['price'], $contenu, $post['categories'], $post['localisation']));
+            $instance->createPost(new Post($post['title'], $post['photo'], $post['description'], $post['price'], $contenu, $post['categories'], $post['localisation'], $post['type']));
             header("location:index.php");
         }
     }

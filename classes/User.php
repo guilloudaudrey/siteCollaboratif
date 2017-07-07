@@ -8,14 +8,26 @@ class User {
     private $genre;
     private $age;
     private $dateinscription;
+    private $nom;  
+    private $prenom; 
+    private $CP;
+    private $ville;
+    private $mail;
+    private $telephone;
 
-    function __construct($pseudo, $mdp, $avatar, $genre, $age) {
+    function __construct($pseudo, $mdp, $avatar, $genre, $age, $nom, $prenom, $mail, $telephone, $CP, $ville) {
         $this->pseudo = $pseudo;
         $this->mdp = $mdp;
         $this->avatar = $avatar;
         $this->genre = $genre;
         $this->age = $age;
         $this->dateinscription = new DateTime();
+        $this->nom = $nom;
+        $this->prenom = $prenom;
+        $this->mail = $mail;
+        $this->telephone = $telephone;
+        $this->CP = $CP;
+        $this->ville = $ville;
     }
 
     function getPseudo() {
@@ -67,11 +79,17 @@ class User {
     }
 
     public function asHtml() {
-        return '<pre>Pseudo : ' . $this->getPseudo() . '</pre><pre><img src="' .
+        return '<pre>' . $this->getPseudo() . '</pre><pre><img src="' .
                 $this->getAvatar() . '"></pre><pre>' .
-                $this->getGenre() . '</pre><pre>' .
-                $this->getAge() . '</pre><pre>'. 
-                $this->getDateinscription()->format('d/m/y') . '</pre>';
+                $this->getDateinscription()->format('d/m/y') . '</pre><pre>Sexe : '.
+                $this->getGenre() . '</pre><pre>Age : ' . 
+                $this->getAge() . '</pre><pre>Prénom : '.
+                $this->prenom . '</pre><pre>Nom : '.
+                $this->nom . '</pre><pre>Mail : '.
+                $this->mail . '</pre><pre>Téléphone : ' .
+                $this->telephone . '</pre><pre>CP : ' .
+                $this->CP . '</pre><pre>Ville : ' .
+                $this->ville . '</pre>';
     }
 
 }

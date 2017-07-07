@@ -12,7 +12,7 @@ include_once 'classes/DataBase.php';
 if (isset($_POST['inscription'])) {
     $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
     $user = new DataBase();
-    $user->createUser(new User($post['pseudo'], md5($post['mdp']), $post['avatar'], $post['genre'], $post['age']));
+    $user->createUser(new User($post['pseudo'], md5($post['mdp']), $post['avatar'], $post['genre'], $post['age'], $post['nom'], $post['prenom'], $post['mail'], $post['telephone'], $post['CP'], $post['ville']));
     header("location:index.php");
 
     session_start();

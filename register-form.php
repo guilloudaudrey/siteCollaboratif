@@ -31,7 +31,18 @@
                 <input type="radio" name="genre" value="masculin" required="required"/>Masculin</div>
             <label for="age">Age</label>
             <input type="number" name="age"/>
-            <label for="evaluation">Evaluation</label>
+            <label for="nom">Nom</label>
+            <input type="text" name="nom"/>
+            <label for="prenom">Prénom</label>
+            <input type="text" name="prenom"/>
+            <label for="CP">CP</label>
+            <input type ="number" name="CP"/>
+            <label for="ville">Ville</label>
+            <input type="text" name="ville"/>
+            <label for="mail">Mail</label>
+            <input type="email" name="mail"/>
+            <label for="telephone">Téléphone</label>
+            <input type="text" name="telephone"/>
             <input type="submit" name="inscription" value="Valider" />
 
 

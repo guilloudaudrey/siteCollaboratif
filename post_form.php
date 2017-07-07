@@ -23,12 +23,17 @@ and open the template in the editor.
                 <textarea cols="30" rows="10" name="description" required="required"></textarea>
                 <label for="categories">Catégories</label>
                 <select name ="categories" required="required">
-                    <option value="toutescategories" selected="selected">Toutes les catégories</option>
+                    <option value="toutes categories" selected="selected">Toutes les catégories</option>
                     <option value="animaux">Animaux</option>
-                    <option value="artisanat">Artisanat</option>
+                    <option value="petits travaux">Petits travaux</option>
                     <option value="cours" >Cours</option>
                     <option value="enfants">Garde d'enfants</option>
-                    <option value="informatique">Informatique</option>
+                    <option value="déménagement">Déménagement</option>
+                </select>
+                <label for="Type">Type</label>
+                <select name ="type" required="required">
+                    <option value="Offre" selected="selected">Offre</option>
+                    <option value="Demande">Demande</option>
                 </select>
                 <label for="localisation">Localisation</label>
                 <input type="text" name="localisation" placeholder="ville" required="required"/>

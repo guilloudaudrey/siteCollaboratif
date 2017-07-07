@@ -20,9 +20,8 @@
     <body>
 
         <?php
-        
         session_start();
-       $url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+        $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         if (!isset($_SESSION['nom'])) {
             ?>
 
@@ -39,7 +38,7 @@
             <a href="register-form.php">S'inscrire</a>
             <a href="post_form.php">Poster une annonce</a>
 
-            <?php 
+            <?php
         } else {
             echo 'Bonjour ' . $_SESSION['nom'];
             echo '<form action="logout.php" method="POST"><button>Se déconnecter</button></form>';
@@ -51,12 +50,16 @@
         <h1>Accueil</h1>
         <form class="recherche" method="POST" action="index.php">
             <select name ="categories">
-                <option value="toutescategories" selected="selected">Toutes les catégories</option>
+                <option value="toutes categories" selected="selected">Toutes les catégories</option>
                 <option value="animaux">Animaux</option>
-                <option value="artisanat">Artisanat</option>
+                <option value="petits travaux">Petits travaux</option>
                 <option value="cours" >Cours</option>
                 <option value="enfants">Garde d'enfants</option>
-                <option value="informatique">Informatique</option>
+                <option value="déménagement">Déménagement</option>
+            </select>
+            <select name ="type" required="required">
+                <option value="Offre" selected="selected">Offre</option>
+                <option value="Demande">Demande</option>
             </select>
             <input type="text" placeholder="mot-clé"/>
             <input type="text" placeholder="Localisation"/>

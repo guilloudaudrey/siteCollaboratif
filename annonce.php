@@ -33,43 +33,42 @@ and open the template in the editor.
             echo $post->asHtml();
             echo '<p>' . $author . '<p>';
             echo '<form action="espacepublic.php" method="GET" >'
-            . '<input type="hidden" name="profilpub" value="'.$author.'">'
+            . '<input type="hidden" name="profilpub" value="' . $author . '">'
             . '<button >voir profil</button>'
             . '</form>'
             . '<pre><button>Envoyer un message</button></pre>'
             . '<pre><button>Afficher le numéro</button></pre><br/>';
-            ?>
-
-            <h2>Avis</h2>
-            <p>Laissez un avis sur cette annonce.</p>
-            <?php
-//formulaire commentaires
-
             session_start();
             if (isset($_SESSION['nom'])) {
                 $user = $_SESSION['nom'];
-                ?>
-                <form method="GET" action="create-comment.php">
-                    <label for="title">Titre</label>
-                    <input type="text" name="title"/>
-                    <label for="note">Note : </label>
-                    <select name="note">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option
-                        <option value="5">5</option>
-                    </select>
-                    <textarea cols="50" rows="8" name="comm"></textarea>
-                    <button name="annonce">Ajouter un avis</button><br/>
-                    <input type="hidden" name="url" value="<?php echo $url; ?>"/>
-                    <?php
-                    echo'
-                    <input type="hidden" name="filename" value="' . $title . '">';
+                if ($user !== $author) {
                     ?>
-                </form>
 
+                    <h2>Avis</h2>
+                    <p>Laissez un avis sur cette annonce.</p>
+
+
+                    <form method="GET" action="create-comment.php">
+                        <label for="title">Titre</label>
+                        <input type="text" name="title"/>
+                        <label for="note">Note : </label>
+                        <select name="note">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option
+                            <option value="5">5</option>
+                        </select>
+                        <textarea cols="50" rows="8" name="comm"></textarea>
+                        <button name="annonce">Ajouter un avis</button><br/>
+                        <input type="hidden" name="url" value="<?php echo $url; ?>"/>
+                        <?php
+                        echo'
+                    <input type="hidden" name="filename" value="' . $title . '">';
+                        ?>
+                    </form>
+                <?php } ?>
                 <h2>Liste commentaires</h2>
                 <?php
                 $commentlist = $newdb->readCommentsList();
