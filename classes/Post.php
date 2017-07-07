@@ -11,7 +11,9 @@ class Post {
     protected $price;
     protected $author;
     protected $typeannonce;
-                function __construct($title, $photo, $description, $price, User $author, $categorie, $localisation, $typeannonce) {
+    protected $datetitre;
+
+    function __construct($title, $photo, $description, $price, User $author, $categorie, $localisation, $typeannonce) {
         $this->title = $title;
         $this->photo = $photo;
         $this->date = new DateTime();
@@ -21,6 +23,11 @@ class Post {
         $this->categorie = $categorie;
         $this->localisation = $localisation;
         $this->typeannonce = $typeannonce;
+        $this->datetitre = new DateTime();
+    }
+
+    function getDatetitre() {
+        return $this->datetitre->format('dmyhis');
     }
 
     function getTitle() {
@@ -46,12 +53,11 @@ class Post {
     function getLocalisation() {
         return $this->localisation;
     }
-    
+
     function getTypeannonce() {
         return $this->typeannonce;
     }
 
-    
     function getPrice() {
         return $this->price;
     }
@@ -93,7 +99,7 @@ class Post {
     }
 
     public function asHtml() {
-        return '<br/><pre>'.$this->getTypeannonce().'</pre>'. 
+        return '<br/><pre>' . $this->getTypeannonce() . '</pre>' .
                 '<pre><h3>' . $this->getTitle() . '</h3></pre><pre><img src="' .
                 $this->getPhoto() . '"></pre><pre>' .
                 $this->getDescription() . '</pre><pre>' .

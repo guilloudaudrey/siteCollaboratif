@@ -24,7 +24,7 @@ class DataBase {
         }
 
         $postdata = serialize($post);
-        $file = fopen('posts/' . $post->getTitle() . '.txt', 'w');
+        $file = fopen('posts/' . $post->getDatetitre() . '.txt', 'w');
         fwrite($file, $postdata);
         fclose($file);
     }

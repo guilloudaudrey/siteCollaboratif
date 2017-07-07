@@ -19,6 +19,7 @@
             $post = $instance->readPost($file);
 
             $title = $post->getTitle();
+            $date = $post->getDatetitre();
             $description = $post->getDescription();
             $price = $post->getPrice();
             $photo = $post->getPhoto();
@@ -27,7 +28,7 @@
                 <form action="edit.php" method="POST">
                     <label for="title">Titre</label>
                     <input type="text" name="title" value="' . $title . '"/>
-                    <input type="hidden" name="previoustitle" value="' . $title . '"/>
+                    <input type="hidden" name="previoustitle" value="' . $date . '"/>
                     <label for="description">Description</label>
                     <textarea cols="30" rows="10" name="description" >' . $description . '</textarea>
                     <label for="price">Prix</label>

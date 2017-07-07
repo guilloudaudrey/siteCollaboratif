@@ -47,12 +47,12 @@
 
             <div class="boutons">
             <form method="POST" action="delete.php">
-            <input type="hidden" name="filename" value="' . $annonce->getTitle() . '" class="text">
+            <input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '" class="text">
             <input type="submit" value="supprimer">
             </form>
     
             <form method="POST" action="edit_form.php">
-            <input type="hidden" name="filename" value="' . $annonce->getTitle() . '">
+            <input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '">
                 <input type="submit" value="modifier">
             </form>
             </div>';
@@ -65,6 +65,7 @@
 
         foreach ($listecomm as $comm) {
             $authorcomm = $comm->getAuthor();
+            
 
             if ($authorcomm == $user) {
                 echo $comm->asHtml();
@@ -73,12 +74,12 @@
         ?>
         <h2>Evaluations reçues</h2>
         <?php
-        foreach ($listecomm as $com) {
+        foreach ($listecomm as $comm) {
             $destinataire = $comm->getDestinataire();
-         
-            if ($destinataire == $user) {
-                echo $comm->asHtml();
-            }
+        if ($destinataire == $user) {
+            
+            echo $comm->asHtml();
+        }
         }
         ?>
     </body>

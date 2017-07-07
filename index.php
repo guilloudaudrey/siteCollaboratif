@@ -85,12 +85,12 @@
                     echo $annonce->asHtml();
                     echo '<form action="annonce.php" method="GET">'
                     . '<input type="submit" value="en savoir plus"><br/>'
-                    . '<input type="hidden" name="filename" value="' . $annonce->getTitle() . '"></form>';
+                    . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form>';
                 } else if ($inputcat == "toutescategories") {
                     echo $annonce->asHtml();
                     echo '<form action="annonce.php" method="GET">'
                     . '<input type="submit" value="en savoir plus"><br/>'
-                    . '<input type="hidden" name="filename" value="' . $annonce->getTitle() . '"></form>';
+                    . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form>';
                 }
             }
         } else {
@@ -100,7 +100,7 @@
                 echo $annonce->asHtml();
                 echo '<form action="annonce.php" method="GET">'
                 . '<input type="submit" value="en savoir plus"><br/>'
-                . '<input type="hidden" name="filename" value="' . $annonce->getTitle() . '"></form>';
+                . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form>';
             }
         }
         ?>

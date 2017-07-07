@@ -21,7 +21,7 @@ class Comment {
     }
 
     function getDate() {
-        return $this->date->format('dmyhis');
+        return $this->date->format('dmyhis');;
     }
 
     function getAuthor() {

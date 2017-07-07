@@ -28,6 +28,7 @@ and open the template in the editor.
             $post = $newdb->readPost($file);
             $author = $post->getAuthor();
             $title = $post->getTitle();
+            $date = $post->getDatetitre();
             $listecomm = $newdb->readCommentsList();
 
             echo $post->asHtml();
@@ -47,7 +48,6 @@ and open the template in the editor.
                     <h2>Avis</h2>
                     <p>Laissez un avis sur cette annonce.</p>
 
-
                     <form method="GET" action="create-comment.php">
                         <label for="title">Titre</label>
                         <input type="text" name="title"/>
@@ -65,7 +65,7 @@ and open the template in the editor.
                         <input type="hidden" name="url" value="<?php echo $url; ?>"/>
                         <?php
                         echo'
-                    <input type="hidden" name="filename" value="' . $title . '">';
+                    <input type="hidden" name="filename" value="' . $date . '">';
                         ?>
                     </form>
                 <?php } ?>
@@ -75,7 +75,6 @@ and open the template in the editor.
                 foreach ($commentlist as $comm) {
                     $destinataire = $comm->getDestinataire();
                     $article = $comm->getArticle();
-
 
                     if (($article == $title) && ($author == $destinataire)) {
                         echo $comm->asHtml();
