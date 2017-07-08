@@ -39,15 +39,14 @@ and open the template in the editor.
             . '</form>'
             . '<pre><button>Envoyer un message</button></pre>'
             . '<pre><button>Afficher le numéro</button></pre><br/>';
+            echo '<h2>Avis</h2>
+                <p>Laissez un avis sur cette annonce.</p>';
             session_start();
             if (isset($_SESSION['nom'])) {
                 $user = $_SESSION['nom'];
+
                 if ($user !== $author) {
                     ?>
-
-                    <h2>Avis</h2>
-                    <p>Laissez un avis sur cette annonce.</p>
-
                     <form method="GET" action="create-comment.php">
                         <label for="title">Titre</label>
                         <input type="text" name="title"/>
@@ -68,21 +67,9 @@ and open the template in the editor.
                     <input type="hidden" name="filename" value="' . $date . '">';
                         ?>
                     </form>
-                <?php } ?>
-                <h2>Liste commentaires</h2>
-                <?php
-                $commentlist = $newdb->readCommentsList();
-                foreach ($commentlist as $comm) {
-                    $destinataire = $comm->getDestinataire();
-                    $article = $comm->getArticle();
-
-                    if (($article == $title) && ($author == $destinataire)) {
-                        echo $comm->asHtml();
-                    }
+                    <?php
                 }
-                ?>
-
-            <?php } else {
+            } else {
                 ?>
                 <form method="POST" action="login.php">
                     <label for="pseudo">Pseudo</label>
@@ -95,6 +82,18 @@ and open the template in the editor.
 
                 <a href="register-form.php">S'inscrire</a>
                 <?php
+            }
+            ?>
+            <h2>Liste commentaires</h2>
+            <?php
+            $commentlist = $newdb->readCommentsList();
+            foreach ($commentlist as $comm) {
+                $destinataire = $comm->getDestinataire();
+                $article = $comm->getArticle();
+
+                if (($article == $title) && ($author == $destinataire)) {
+                    echo $comm->asHtml();
+                }
             }
         }
         ?>
