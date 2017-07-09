@@ -1,0 +1,57 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 9 juil. 2017, 15:34:40
+    Author     : guilloud
+*/
+.intro-header {
+    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url(../images/cover.jpg) no-repeat center center;
+    background-size: cover;
+    height:500px;
+}
+
+#fade { /*--Masque opaque noir de fond--*/
+    display: none; /*--masqué par défaut--*/
+    background: #000;
+    position: fixed; left: 0; top: 0;
+    width: 100%; height: 100%;
+    opacity: .80;
+    z-index: 9999;
+}
+.popup_block{
+    display: none; /*--masqué par défaut--*/
+    background: #fff;
+    padding: 20px;
+    border: 20px solid #ddd;
+    float: left;
+    font-size: 1.2em;
+    position: fixed;
+    top: 50%; left: 50%;
+    z-index: 99999;
+    /*--Les différentes définitions de Box Shadow en CSS3--*/
+    -webkit-box-shadow: 0px 0px 20px #000;
+    -moz-box-shadow: 0px 0px 20px #000;
+    box-shadow: 0px 0px 20px #000;
+    /*--Coins arrondis en CSS3--*/
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+img.btn_close {
+    float: right;
+    margin: -55px -55px 0 0;
+}
+/*--Gérer la position fixed pour IE6--*/
+*html #fade {
+    position: absolute;
+}
+*html .popup_block {
+    position: absolute;
+}
