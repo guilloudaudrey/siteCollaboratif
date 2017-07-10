@@ -12,7 +12,8 @@ and open the template in the editor.
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url(../images/cover.jpg) no-repeat center center;
+    background: url(../images/cover1.jpg) no-repeat center center;
+    background-position: 0px 0px;
     background-size: cover;
     height:500px;
 }

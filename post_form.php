@@ -14,8 +14,7 @@ and open the template in the editor.
         session_start();
         if (isset($_SESSION['nom'])) {
             ?>
-
-
+        
             <form action="create-post.php" method="POST">
                 <label for="title">Titre</label>
                 <input type="text" name="title" required="required"/>
@@ -48,6 +47,7 @@ and open the template in the editor.
         } else {
             echo 'connectez-vous !';
             ?>
+        
             <form method="POST" action="login.php">
                 <label for="pseudo">Pseudo</label>
                 <input type="text" name="pseudo"/>
@@ -56,6 +56,7 @@ and open the template in the editor.
                 <input type="submit" name="login"/>
             </form>
             <a href="register-form.php">S'inscrire</a>
+
             <?php
         }
         ?>

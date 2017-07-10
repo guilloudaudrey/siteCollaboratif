@@ -24,41 +24,79 @@
     </head>
     <body>
 
-        <?php
-        session_start();
-        $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-        if (!isset($_SESSION['nom'])) {
-            ?>
+
+        <div class="container">
             <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
                 <div class="container topnav ">
                     <div class="navbar-header col-md-9">
                         <a class="navbar-brand " href="#">WebSiteName</a>
                     </div>
-                    <ul class="nav navbar-nav">
-                        <li><a href="register-form.php">S'inscrire</a></li>
-                        <li><a href="#?w=500" rel="popup_name" class="poplight">Se connecter</a></li>
-                    </ul>
-
+                    <?php
+                    session_start();
+                    $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+                    if (!isset($_SESSION['nom'])) {
+                    ?>
+                        <ul class="nav navbar-nav">
+                            <li><a href="register-form.php">S'inscrire</a></li>
+                            <li><a href="#?w=500" rel="popup_name" class="poplight">Se connecter</a></li>
+                        </ul>
+                        <?php
+                    } else {
+                        echo '<div class="row"><div class="col-md-1"> Bonjour ' . $_SESSION['nom'];
+                        echo '</div><div class="col-md-1"><form action="logout.php" method="POST"><button>Se déconnecter</button></form></div>';
+                        echo '<div class="col-md-1"><a href="espaceperso.php">Espace personnel</a></div>';
+                        echo ' </div> ';
+                    }
+                    ?>
                 </div>
             </nav>
-            <div class="intro-header">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="intro-message">
-                                <h2 style="color:grey" >Besoin d'un service près de chez vous ?</h2>
-                                <form action="post_form.php" method="POST">
-                                    <button type="button" class="btn btn-danger navbar-btn" >Poster une annonce</button>
+        </div>
+
+        <div class="intro-header ">
+            <div class="container">
+                <div class="row col-lg-6 col-lg-offset-1">
+                    <div class="col-lg-12 col-lg-offset-7" style="margin-top: 60px">
+                        <div class="intro-message col-lg-12">
+                            <h3 style="margin-bottom : 20px">Besoin d'un service près de chez vous ?</h3>
+                            <div class="container col-md-10 col-xs-6">
+                                <form class="recherche col-md-12" method="POST" action="index.php">
+                                    <div class="form-group">
+                                        <select class="form-control" id="sel1" name ="categories">
+                                            <option value="toutes categories" selected="selected">Toutes les catégories</option>
+                                            <option value="animaux">Animaux</option>
+                                            <option value="petits travaux">Petits travaux</option>
+                                            <option value="cours" >Cours</option>
+                                            <option value="enfants">Garde d'enfants</option>
+                                            <option value="déménagement">Déménagement</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <select class="form-control" id="sel2" name ="type" required="required">
+                                            <option value="Offre" selected="selected">Offre</option>
+                                            <option value="Demande">Demande</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group ">
+                                        <input type="text" placeholder="mot-clé" class="form-control" id="sel3"/>
+                                    </div>
+
+                                    <div class="form-group ">
+                                        <input type="text" placeholder="Localisation" class="form-control" id="sel4" />
+                                    </div>
+                                    <input type="submit" value="Rechercher" name="search" class="btn btn-primary"/>
                                 </form>
+
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
-
+            <form action="post_form.php" method="POST" class="col-md-3" style="margin-top: 30px">
+                <input type="submit" class="btn btn-danger navbar-btn" value="Poster une annonce">
+            </form>
         </div>
-
-        <a href="#?w=500" rel="popup_name" class="poplight">En savoir plus</a>
 
         <div id="popup_name" class="popup_block">
             <div class="container-fluid">
@@ -73,84 +111,55 @@
             </div>
         </div>
 
-    
 
-    
+
 
 
 
         <?php
-    } else {
-        echo 'Bonjour ' . $_SESSION['nom'];
-        echo '<form action="logout.php" method="POST"><button>Se déconnecter</button></form>';
-        echo '<a href="espaceperso.php">Espace personnel</a><br/>';
-        echo '<a href="post_form.php">Poster une annonce</a>';
-    }
-    ?>
+        include_once 'classes/Post.php';
+        include_once 'classes/DataBase.php';
+        $instance = new DataBase();
+        $listeAnnonces = $instance->readPostsList();
+        ?>
+        <div class="container">
+            <?php
+            if (isset($_POST['search'])) {
+                $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+                $inputcat = $post['categories'];
 
-    <h1>Accueil</h1>
-    <form class="recherche" method="POST" action="index.php">
-        <select name ="categories">
-            <option value="toutes categories" selected="selected">Toutes les catégories</option>
-            <option value="animaux">Animaux</option>
-            <option value="petits travaux">Petits travaux</option>
-            <option value="cours" >Cours</option>
-            <option value="enfants">Garde d'enfants</option>
-            <option value="déménagement">Déménagement</option>
-        </select>
-        <select name ="type" required="required">
-            <option value="Offre" selected="selected">Offre</option>
-            <option value="Demande">Demande</option>
-        </select>
-        <input type="text" placeholder="mot-clé"/>
-        <input type="text" placeholder="Localisation"/>
-        <input type="submit" value="Rechercher" name="search"/>
-    </form>
+                foreach ($listeAnnonces as $annonce) {
+                    $categorie = $annonce->getCategorie();
 
-    <?php
-    include_once 'classes/Post.php';
-    include_once 'classes/DataBase.php';
-    $instance = new DataBase();
-    $listeAnnonces = $instance->readPostsList();
-    ?>
-    <div class="container">
-        <?php
-        if (isset($_POST['search'])) {
-            $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-            $inputcat = $post['categories'];
+                    if ($categorie == $inputcat) {
+                        echo $annonce->asHtml();
+                        echo '<form action="annonce.php" method="GET">'
+                        . '<input type="submit" value="en savoir plus">'
+                        . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form>';
+                    } else if ($inputcat == "toutescategories") {
+                        echo $annonce->asHtml();
+                        echo '<form action="annonce.php" method="GET">'
+                        . '<input type="submit" value="en savoir plus">'
+                        . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form>';
+                    }
+                }
+            } else {
 
-            foreach ($listeAnnonces as $annonce) {
-                $categorie = $annonce->getCategorie();
-
-                if ($categorie == $inputcat) {
-                    echo $annonce->asHtml();
-                    echo '<form action="annonce.php" method="GET">'
-                    . '<input type="submit" value="en savoir plus">'
-                    . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form>';
-                } else if ($inputcat == "toutescategories") {
+                foreach ($listeAnnonces as $annonce) {
+                    $categorie = $annonce->getCategorie();
                     echo $annonce->asHtml();
                     echo '<form action="annonce.php" method="GET">'
                     . '<input type="submit" value="en savoir plus">'
                     . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form>';
                 }
             }
-        } else {
-
-            foreach ($listeAnnonces as $annonce) {
-                $categorie = $annonce->getCategorie();
-                echo $annonce->asHtml();
-                echo '<form action="annonce.php" method="GET">'
-                . '<input type="submit" value="en savoir plus">'
-                . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form>';
-            }
-        }
-        ?>
-    </div>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
-    <script src="js/script.js"
-            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/bootstrap.min.js"></script>F
-    </body>
-</html>
+            ?>
+        </div>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+        <script src="js/script.js"
+                <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <!-- Include all compiled plugins (below), or include individual files as needed -->
+            <script src="js/bootstrap.min.js"></script>
+        </body>
+    </html>
