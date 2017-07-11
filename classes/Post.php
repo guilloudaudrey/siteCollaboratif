@@ -99,15 +99,18 @@ class Post {
     }
 
     public function asHtml() {
-        return '<br/><pre>' . $this->getTypeannonce() . '</pre>' .
-                '<pre><h3>' . $this->getTitle() . '</h3></pre><pre><img src="' .
-                $this->getPhoto() . '"></pre><pre>' .
-                $this->getDescription() . '</pre><pre>' .
-                $this->getPrice() . ' €</pre><pre>' .
-                $this->getDate()->format('d/m/y H:i') . '</pre><pre>Auteur : ' .
-                $this->getAuthor() . '</pre><pre>Catégorie : ' .
-                $this->getCategorie() . '</pre><pre>Localisation : ' .
-                $this->localisation . '</pre>';
+        return
+        '<figure class="pull-left col-sm-5 col-md-5"><img src="images/travaux.png"></figure>'
+
+        . '<span class="badge badge-info">' . $this->getTypeannonce() . '</span>'
+        . '<h3>' . $this->getTitle() . '</h3>'
+        . '<p>'.$this->getDescription().'</p>'
+        . '<p>'.$this->getPrice() .' €</p>'.
+        '<p>' .$this->getDate()->format('d/m/y H:i').'</p>'
+        . '<p>Auteur : ' . $this->getAuthor().'</p>'
+        . '<p>Catégorie : ' .
+        $this->getCategorie() . 'Localisation : ' .
+        $this->localisation;
     }
 
 }

@@ -28,24 +28,24 @@
         <div class="container">
             <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
                 <div class="container topnav ">
-                    <div class="navbar-header col-md-9">
-                        <a class="navbar-brand " href="#">WebSiteName</a>
+                    <div class="navbar-header col-md-7">
+                        <a class="navbar-brand " href="index.php">WebSiteName</a>
                     </div>
                     <?php
                     session_start();
                     $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                     if (!isset($_SESSION['nom'])) {
-                    ?>
-                        <ul class="nav navbar-nav">
+                        ?>
+                        <ul class="nav navbar-nav col-md-3">
                             <li><a href="register-form.php">S'inscrire</a></li>
                             <li><a href="#?w=500" rel="popup_name" class="poplight">Se connecter</a></li>
                         </ul>
                         <?php
                     } else {
-                        echo '<div class="row"><div class="col-md-1"> Bonjour ' . $_SESSION['nom'];
-                        echo '</div><div class="col-md-1"><form action="logout.php" method="POST"><button>Se déconnecter</button></form></div>';
-                        echo '<div class="col-md-1"><a href="espaceperso.php">Espace personnel</a></div>';
-                        echo ' </div> ';
+                        echo '<div class="col-md-1"> Bonjour ' . $_SESSION['nom'];
+                        echo '</div><div class="col-md-2" style="margin-top: 8px" ><form action="logout.php" method="POST"><button class="btn btn-danger ">Se déconnecter</button></form></div>';
+                        echo '<div class="col-md-2" style="margin-top: 8px"><a class = "btn btn-link" href="espaceperso.php">Espace personnel</a></div>';
+                        ;
                     }
                     ?>
                 </div>
@@ -132,25 +132,67 @@
                     $categorie = $annonce->getCategorie();
 
                     if ($categorie == $inputcat) {
-                        echo $annonce->asHtml();
-                        echo '<form action="annonce.php" method="GET">'
-                        . '<input type="submit" value="en savoir plus">'
-                        . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form>';
+                        ?>
+                        <div class="container">
+                            <div class="row">
+                                <div class="well-lg">
+                                    <div class="col-sm-10 col-md-9">
+                                        <div class="card" style="margin-top: 20px">
+                                            <?php
+                                            echo $annonce->asHtml();
+                                            echo '<form action="annonce.php" method="GET">'
+                                            . '<input type="submit" value="en savoir plus" class="btn btn-outline-info">'
+                                            . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form>';
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <?php
                     } else if ($inputcat == "toutescategories") {
-                        echo $annonce->asHtml();
-                        echo '<form action="annonce.php" method="GET">'
-                        . '<input type="submit" value="en savoir plus">'
-                        . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form>';
+                        ?>
+                        <div class="container">
+                            <div class="row">
+                                <div class="well-lg">
+                                    <div class="col-sm-10 col-md-9">
+                                        <div class="card" style="margin-top: 20px">
+                                            <?php
+                                            echo $annonce->asHtml();
+                                            echo '<form action="annonce.php" method="GET">'
+                                            . '<input type="submit" value="en savoir plus" class="btn btn-outline-info">'
+                                            . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form>';
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <?php
                     }
                 }
             } else {
 
                 foreach ($listeAnnonces as $annonce) {
-                    $categorie = $annonce->getCategorie();
-                    echo $annonce->asHtml();
-                    echo '<form action="annonce.php" method="GET">'
-                    . '<input type="submit" value="en savoir plus">'
-                    . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form>';
+                    $categorie = $annonce->getCategorie();?>
+                           <div class="container">
+                            <div class="row">
+                                <div class="well-lg">
+                                    <div class="col-sm-10 col-md-10">
+                                        <div class="card " style="margin-top: 20px">
+                                            <?php
+                                            echo $annonce->asHtml();
+                                            echo '<form action="annonce.php" method="GET">'
+                                            . '<input type="submit" value="en savoir plus" class="btn btn-outline-info">'
+                                            . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form>';
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            <?php
                 }
             }
             ?>

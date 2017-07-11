@@ -49,10 +49,17 @@ img.btn_close {
     float: right;
     margin: -55px -55px 0 0;
 }
+
+.card {
+  margin-top: 50px;
+  background: #eee;
+  padding: 3em;
+  line-height: 1.5em; }
 /*--Gérer la position fixed pour IE6--*/
-*html #fade {
-    position: absolute;
+//*html #fade {
+  //  position: absolute;
+//}
+//*html .popup_block {
+ //   position: absolute;
 }
-*html .popup_block {
-    position: absolute;
-}
+
