@@ -12,20 +12,12 @@
         <script src="js/modernizr.custom.js"></script>
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <title>Index</title>
-        <style>
-
-            h1{
-                text-align: center;
-            }
-            .recherche{
-                text-align: center;
-            }
-        </style>
     </head>
     <body>
 
+<!-------------------------------------header----------------------------------->
 
-        <div class="container">
+        <div class="container col-md">
             <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
                 <div class="container topnav ">
                     <div class="navbar-header col-md-7">
@@ -51,6 +43,8 @@
                 </div>
             </nav>
         </div>
+
+<!-------------------------------------bannière----------------------------------->
 
         <div class="intro-header ">
             <div class="container">
@@ -93,6 +87,12 @@
                     </div>
                 </div>
             </div>
+
+        </div>
+
+<!-------------------------------------poster une annonce----------------------------------->
+
+        <div class="container">
             <form action="post_form.php" method="POST" class="col-md-3" style="margin-top: 30px">
                 <input type="submit" class="btn btn-danger navbar-btn" value="Poster une annonce">
             </form>
@@ -111,11 +111,7 @@
             </div>
         </div>
 
-
-
-
-
-
+<!-------------------------------------affichage des annonces----------------------------------->
         <?php
         include_once 'classes/Post.php';
         include_once 'classes/DataBase.php';
@@ -141,7 +137,8 @@
                                             <?php
                                             echo $annonce->asHtml();
                                             echo '<form action="annonce.php" method="GET">'
-                                            . '<input type="submit" value="en savoir plus" class="btn btn-outline-info">'
+                                            . '<input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">'
+                                            . '<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>'
                                             . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form>';
                                             ?>
                                         </div>
@@ -161,7 +158,8 @@
                                             <?php
                                             echo $annonce->asHtml();
                                             echo '<form action="annonce.php" method="GET">'
-                                            . '<input type="submit" value="en savoir plus" class="btn btn-outline-info">'
+                                            . '<input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">'
+                                            . '<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>'
                                             . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form>';
                                             ?>
                                         </div>
@@ -175,33 +173,99 @@
             } else {
 
                 foreach ($listeAnnonces as $annonce) {
-                    $categorie = $annonce->getCategorie();?>
-                           <div class="container">
-                            <div class="row">
-                                <div class="well-lg">
-                                    <div class="col-sm-10 col-md-10">
-                                        <div class="card " style="margin-top: 20px">
-                                            <?php
-                                            echo $annonce->asHtml();
-                                            echo '<form action="annonce.php" method="GET">'
-                                            . '<input type="submit" value="en savoir plus" class="btn btn-outline-info">'
-                                            . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form>';
-                                            ?>
-                                        </div>
+                    $categorie = $annonce->getCategorie();
+                    ?>
+                    <div class="container">
+                        <div class="row">
+                            <div class="well-lg">
+                                <div class="col-sm-10 col-md-10">
+                                    <div class="card " style="margin-top: 20px">
+                                        <?php
+                                        echo $annonce->asHtml();
+                                        echo '<form action="annonce.php" method="GET">'
+                                        . '<input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">'
+                                        . '<button class="like btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span></button>'
+                                        . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form>';
+                                        ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
-            <?php
+                    </div>
+                    <?php
                 }
             }
             ?>
         </div>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
-        <script src="js/script.js"
-                <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-            <!-- Include all compiled plugins (below), or include individual files as needed -->
-            <script src="js/bootstrap.min.js"></script>
-        </body>
-    </html>
+
+<!-------------------------------------footer----------------------------------->
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 footerleft ">
+                        <div class="logofooter"> Logo</div>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.</p>
+                        <p><i class="fa fa-map-pin"></i> 210, Aggarwal Tower, Rohini sec 9, New Delhi -        110085, INDIA</p>
+                        <p><i class="fa fa-phone"></i> Phone (India) : +91 9999 878 398</p>
+                        <p><i class="fa fa-envelope"></i> E-mail : info@webenlance.com</p>
+
+                    </div>
+                    <div class="col-md-2 col-sm-6 paddingtop-bottom">
+                        <h6 class="heading7">GENERAL LINKS</h6>
+                        <ul class="footer-ul">
+                            <li><a href="#"> Career</a></li>
+                            <li><a href="#"> Privacy Policy</a></li>
+                            <li><a href="#"> Terms & Conditions</a></li>
+                            <li><a href="#"> Client Gateway</a></li>
+                            <li><a href="#"> Ranking</a></li>
+                            <li><a href="#"> Case Studies</a></li>
+                            <li><a href="#"> Frequently Ask Questions</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-6 paddingtop-bottom">
+                        <h6 class="heading7">TOP CATEGORIES</h6>
+                        <div class="post">
+                            <p>Aide aux devoirs </p>
+                            <p>Baby-sitting</p>
+                            <p>Bricolage</p>
+                            <p>Bricolage</p>
+                            <p>Bricolage</p>
+                            <p>Bricolage</p>
+                            <p>Bricolage</p>
+                          
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 paddingtop-bottom">
+                        <div class="fb-page" data-href="https://www.facebook.com/facebook" data-tabs="timeline" data-height="300" data-small-header="false" style="margin-bottom:15px;" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                            <div class="fb-xfbml-parse-ignore">
+                                <blockquote cite="https://www.facebook.com/facebook"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <div class="copyright">
+            <div class="container">
+                <div class="col-md-6">
+                    <p>© 2017 - All Rights with Site</p>
+                </div>
+                <div class="col-md-6">
+                    <ul class="bottom_ul">
+                        <li><a href="#">site.com</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Faq's</a></li>
+                        <li><a href="#">Contact us</a></li>
+                        <li><a href="#">Site Map</a></li>
+                    </ul>
+                </div>
+                <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+                <script src="js/script.js"
+                        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+                    <!-- Include all compiled plugins (below), or include individual files as needed -->
+                    <script src="js/bootstrap.min.js"></script>
+                    </body>
+                    </html>
