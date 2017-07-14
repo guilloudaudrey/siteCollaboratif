@@ -5,6 +5,16 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 
+
+<?php
+include_once 'classes/DataBase.php';
+include_once 'classes/Post.php';
+include_once 'classes/User.php';
+include_once 'classes/Comment.php';
+$newdb = new DataBase();
+$url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+?>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -16,32 +26,14 @@ and open the template in the editor.
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     </head>
     <body>
-        <div class="container">
-            <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
-                <div class="container topnav ">
-                    <div class="navbar-header col-md-7">
-                        <a class="navbar-brand " href="index.php">WebSiteName</a>
-                    </div>
-                    <?php
-                    session_start();
-                    $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-                    if (!isset($_SESSION['nom'])) {
-                        ?>
-                        <ul class="nav navbar-nav col-md-3">
-                            <li><a href="register-form.php">S'inscrire</a></li>
-                            <li><a href="#?w=500" rel="popup_name" class="poplight">Se connecter</a></li>
-                        </ul>
-                        <?php
-                    } else {
-                        echo '<div class="col-md-1"> Bonjour ' . $_SESSION['nom'];
-                        echo '</div><div class="col-md-2" style="margin-top: 8px" ><form action="logout.php" method="POST"><button class="btn btn-danger ">Se déconnecter</button></form></div>';
-                        echo '<div class="col-md-2" style="margin-top: 8px"><a class = "btn btn-link" href="espaceperso.php">Espace personnel</a></div>';
-                        ;
-                    }
-                    ?>
-                </div>
-            </nav>
-        </div>
+
+        <!-------------------------------------header----------------------------------->
+
+        <?php
+        include_once 'header.php';
+        ?>
+
+        <!-------------------------------------fenêtre pop up connexion----------------------------------->
 
         <div id="popup_name" class="popup_block">
             <div class="container-fluid">
@@ -56,18 +48,7 @@ and open the template in the editor.
             </div>
         </div>
 
-
         <?php
-        include_once 'classes/DataBase.php';
-        include_once 'classes/Post.php';
-        include_once 'classes/User.php';
-        include_once 'classes/Comment.php';
-        $newdb = new DataBase();
-        $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-
-
-//lien vers le profil de l'auteur de l'annonce + boutons contact
-
         if (isset($_GET['filename'])) {
             $file = htmlspecialchars($_GET['filename']);
             $post = $newdb->readPost($file);
@@ -76,18 +57,25 @@ and open the template in the editor.
             $date = $post->getDatetitre();
             $listecomm = $newdb->readCommentsList();
 
-            echo $post->asHtml();
+            /* ------------------------affichage de l'annonce----------------- */
+
+            echo '<div class="container col-lg-12"><div class="col lg-9">' . $post->asHtml();
+            echo'<button class="btn btn-primary" style="margin-right: 10px"><span class="glyphicon glyphicon-envelope" style="margin-right : 5px"></span>Envoyer un message</button>'
+            . '<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-earphone" style="margin-right : 5px"></span>Afficher le numéro</button></div>';
 
 
-            echo '<p>' . $author . '<p>';
-            echo '<form action="espacepublic.php" method="GET" >'
-            . '<input type="hidden" name="profilpub" value="' . $author . '">'
-            . '<button >voir profil</button>'
-            . '</form>'
-            . '<pre><button>Envoyer un message</button></pre>'
-            . '<pre><button>Afficher le numéro</button></pre><br/>';
+            /* ---------------lien vers l'espace public de l'auteur de l'annonce------------------ */
+
+            echo '<div class= col-lg-3"><div class="row"><div class="col-lg-12"><form action="espacepublic.php" method="GET" >';
+            echo '<p class="col-lg-1">' . $author . '<p>';
+            echo '<input type="hidden" name="profilpub" value="' . $author . '">'
+            . '<button class="btn btn-primary col-lg-2">voir profil</button>'
+            . '</form></div></div></div>';
+
+            /* -------------------------Formulaire pour laisser un avis-------------------------- */
+
             echo '<h2>Avis</h2>
-                <p>Laissez un avis sur cette annonce.</p>';
+            <p>Laissez un avis sur cette annonce.</p>';
 
             if (isset($_SESSION['nom'])) {
                 $user = $_SESSION['nom'];
@@ -131,6 +119,9 @@ and open the template in the editor.
                 <?php
             }
             ?>
+
+            <!--------------------affichage des commentaires/avis---------------------------------->
+
             <h2>Liste commentaires</h2>
             <?php
             $commentlist = $newdb->readCommentsList();
@@ -143,7 +134,13 @@ and open the template in the editor.
                 }
             }
         }
+        /* --------------------footer---------------------------------- */
+
+        include_once 'footer.php';
         ?>
+
+
+
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
         <script src="js/script.js"
                 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

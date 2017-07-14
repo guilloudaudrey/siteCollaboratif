@@ -79,8 +79,7 @@ class User {
     }
 
     public function asHtml() {
-        return '<pre>' . $this->getPseudo() . '</pre><pre><img src="' .
-                $this->getAvatar() . '"></pre><pre>' .
+        return '<pre>' . $this->getPseudo() . '</pre><pre><img src="images/profil.png" width= 120px></pre><pre>' .
                 $this->getDateinscription()->format('d/m/y') . '</pre><pre>Sexe : '.
                 $this->getGenre() . '</pre><pre>Age : ' . 
                 $this->getAge() . '</pre><pre>Prénom : '.

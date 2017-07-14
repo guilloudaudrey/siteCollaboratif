@@ -8,6 +8,9 @@ and open the template in the editor.
     Author     : guilloud
 */
 
+nav{
+    position: fixed;
+}
 
 h1{
     text-align: center;
