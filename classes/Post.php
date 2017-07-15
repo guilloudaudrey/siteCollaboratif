@@ -100,13 +100,14 @@ class Post {
 
     public function asHtml() {
         return
-                '<figure class="pull-left col-sm-5 col-md-5"><img src="images/travaux.png" class="img-responsive"></figure>'
+                '<figure class="pull-left col-sm-5 col-md-5">'
+                . '<div><img src="images/travaux.png" class="img-fluid" alt="Responsive image" style="width: 100%;height: auto"></div></figure>'
                 . '<span class="badge" style="margin-right : 5px">' . $this->getTypeannonce() . '</span><span class="badge badge-info" style="margin-right : 5px">' . $this->getCategorie() . '</span><span class="badge badge-info">' . $this->getLocalisation() . '</span>'
                 . '<h3>' . $this->getTitle() . '</h3>'
                 . '<p>' . $this->getDescription() . '</p>'
                 . '<p>' . $this->getPrice() . ' €</p>'
-                . '<p>Posté le : ' . $this->getDate()->format('d/m/y H:i') . '</p>'
-                . '<p>Par ' . $this->getAuthor() . '</p>';
+                . '<p>Posté le ' . $this->getDate()->format('d/m/y à H:i') . ' par ' . $this->getAuthor() .'</p>'
+                ;
     }
 
 }

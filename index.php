@@ -72,11 +72,13 @@ session_start();
 
     <!-------------------------------------poster une annonce----------------------------------->
 
+
     <div class="container">
         <form action="post_form.php" method="POST" class="col-md-3" style="margin-top: 30px">
             <input type="submit" class="btn btn-danger navbar-btn" value="Poster une annonce">
         </form>
     </div>
+
 
     <!----------------------------------fenêtre pop up connexion ------------------------------>
 
@@ -101,85 +103,84 @@ session_start();
     $instance = new DataBase();
     $listeAnnonces = $instance->readPostsList();
     ?>
-    <div class="container">
-        <?php
-        if (isset($_POST['search'])) {
-            $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-            $inputcat = $post['categories'];
 
-            foreach ($listeAnnonces as $annonce) {
-                $categorie = $annonce->getCategorie();
+    <?php
+    if (isset($_POST['search'])) {
+        $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        $inputcat = $post['categories'];
 
-                if ($categorie == $inputcat) {
-                    ?>
-                    <div class="container">
-                        <div class="row">
-                            <div class="well-lg">
-                                <div class="col-sm-10 col-md-9 col-lg-8">
-                                    <div class="card" style="margin-top: 20px">
-                                        <?php
-                                        echo $annonce->asHtml();
-                                        echo '<form action="annonce.php" method="GET">'
-                                        . '<input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">'
-                                        . '<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>'
-                                        . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form>';
-                                        ?>
-                                    </div>
-                                </div>
+        foreach ($listeAnnonces as $annonce) {
+            $categorie = $annonce->getCategorie();
+
+            if ($categorie == $inputcat) {
+                ?>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-10 col-lg-8">
+                            <div class="card" >
+                                <?php
+                                echo $annonce->asHtml();
+                                echo '<form action="annonce.php" method="GET">'
+                                . '<input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">'
+                                . '<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>'
+                                . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form>';
+                                ?>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <?php
-                } else if ($inputcat == "toutescategories") {
-                    ?>
-                    <div class="container">
-                        <div class="row">
-                            <div class="well-lg">
-                                <div class="col-sm-10 col-md-9">
-                                    <div class="card" style="margin-top: 20px">
-                                        <?php
-                                        echo $annonce->asHtml();
-                                        echo '<form action="annonce.php" method="GET">'
-                                        . '<input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">'
-                                        . '<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>'
-                                        . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form>';
-                                        ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <?php
-                }
-            }
-        } else {
-
-            foreach ($listeAnnonces as $annonce) {
-                $categorie = $annonce->getCategorie();
+                <?php
+            } else if ($inputcat == "toutescategories") {
                 ?>
                 <div class="container">
                     <div class="row">
                         <div class="well-lg">
-                            <div class="col-sm-10 col-md-10">
-                                <div class="card " style="margin-top: 20px">
+                            <div class="col-sm-12 col-md-10 col-lg-8">
+                                <div class="card" style="margin-top: 20px">
                                     <?php
                                     echo $annonce->asHtml();
                                     echo '<form action="annonce.php" method="GET">'
                                     . '<input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">'
-                                    . '<button class="like btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span></button>'
+                                    . '<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>'
                                     . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form>';
                                     ?>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> 
                 <?php
             }
         }
-        ?>
-    </div>
+    } else {
+
+        foreach ($listeAnnonces as $annonce) {
+            $categorie = $annonce->getCategorie();
+            ?>
+            <div class="container">
+                <div class="row">
+                    <div class="well-lg">
+                        <div class="col-sm-12 col-md-10 col-lg-8">
+                            <div class="card " style="margin-top: 10px">
+                                <?php
+                                echo $annonce->asHtml();
+                                echo '<div class="row"><form action="annonce.php" method="GET">'
+                                . '<input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">'
+                                . '<button class="like btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span></button>'
+                                . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form></div>';
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <?php
+        }
+    }
+    ?>
+
 
     <!-------------------------------------footer----------------------------------->
     <?php
