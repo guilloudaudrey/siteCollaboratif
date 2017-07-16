@@ -26,7 +26,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One" rel="stylesheet">
 
     </head>
-    <body>
+    <body style="background: #c0c0c0">
 
         <!-------------------------------------header----------------------------------->
 
@@ -73,8 +73,8 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
             /* ------------------------affichage de l'annonce----------------- */
 
-            echo '<div class="container" style="margin-top: 20px">'
-            . '<div class="row col-lg-12">'
+            echo '<div class="container" style="background: white">div class="row">'
+            . '<div class="container" style="margin-top: 20px">'
             . '<div class="card col-lg-9">' . $post->asHtml()
             . '<button class="btn btn-primary" style="margin-right: 10px">'
             . '<span class="glyphicon glyphicon-envelope" style="margin-right : 5px">'
@@ -99,83 +99,84 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
             /* -------------------------Formulaire pour laisser un avis-------------------------- */
 
-            echo '<div class="row">
-                <h2>Avis</h2></div>
-                <hr class="my-4">
-                <p>Laissez un avis sur cette annonce.</p>';
+            echo '<div class="row"><div class="container" >
+                <h2>Avis</h2>
+                <hr class="my-4"></div></div>
+                <div class="row"><div class="container" ><p>Laissez un avis sur cette annonce.</p></div></div>';
 
             if (isset($_SESSION['nom'])) {
                 $user = $_SESSION['nom'];
 
                 if ($user !== $author) {
                     ?>
-                    <form method="GET" action="create-comment.php">
-                        <label for="title">Titre</label>
-                        <input type="text" name="title"/>
-                        <label for="note">Note : </label>
-                        <select name="note">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option
-                            <option value="5">5</option>
-                        </select>
-                        <textarea cols="50" rows="8" name="comm"></textarea>
-                        <button name="annonce">Ajouter un avis</button><br/>
-                        <input type="hidden" name="url" value="<?php echo $url; ?>"/>
-                        <?php
-                        echo'
-                    <input type="hidden" name="filename" value="' . $date . '">';
-                        ?>
-                    </form></div></div>
-            <?php
-        }
-    } else {
-        ?>
-        <form method="POST" action="login.php">
-            <label for="pseudo">Pseudo</label>
-            <input type="text" name="pseudo"/>
-            <label for="mdp">Mot de passe</label>
-            <input type="password" name="mdp"/>
-            <input type="submit" name="login"/>
-            <input type="hidden" name="url" value="<?php echo $url; ?>"/>
-        </form>
+                    <div class="row"><div class="container"><form method="GET" action="create-comment.php">
 
-        <a href="register-form.php">S'inscrire</a></div></div>
-        <?php
-    }
+                                <label for="note">Note : </label>
+                                <select name="note">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option
+                                    <option value="5">5</option>
+                                </select></div>
+                        <div class="row"><div class="container"><textarea cols="50" rows="8" name="comm"></textarea></div></div>
+                        <div class="row"><div class="container"><button name="annonce" class="btn btn-danger">Ajouter un avis</button><br/>
+                                <input type="hidden" name="url" value="<?php echo $url; ?>"/>
+                                <?php
+                                echo'
+                    <input type="hidden" name="filename" value="' . $date . '">';
+                                ?>
+                                </form></div></div>
+                        <?php
+                    }
+                } else {
+                    ?>
+                    <div class="row"><div class="container">
+                            <form method="POST" action="login.php">
+                                <label for="pseudo">Pseudo</label>
+                                <input type="text" name="pseudo"/>
+                                <label for="mdp">Mot de passe</label>
+                                <input type="password" name="mdp"/>
+                                <input type="submit" name="login"/>
+                                <input type="hidden" name="url" value="<?php echo $url; ?>"/>
+                            </form>
+
+                            <a href="register-form.php">S'inscrire</a></div>
+                        <?php
+                    }
+                    ?>
+
+                    <!--------------------affichage des commentaires/avis---------------------------------->
+
+
+                    <div class="row"><div class="container"><h2>Liste commentaires</h2></div></div>
+                    <div class="row"><div class="container">
+                            <?php
+                            $commentlist = $newdb->readCommentsList();
+                            foreach ($commentlist as $comm) {
+                                $destinataire = $comm->getDestinataire();
+                                $article = $comm->getArticle();
+
+                                if (($article == $title) && ($author == $destinataire)) {
+                                    echo $comm->asHtml();
+                                }
+                            }
+                        }
+                        ?>
+                    </div></div></div></div></div>
+    <?php
+    /* --------------------footer---------------------------------- */
+
+    include_once 'html/footer.php';
     ?>
 
-    <!--------------------affichage des commentaires/avis---------------------------------->
 
 
-    </div><h2>Liste commentaires</h2>
-    <?php
-    $commentlist = $newdb->readCommentsList();
-    foreach ($commentlist as $comm) {
-        $destinataire = $comm->getDestinataire();
-        $article = $comm->getArticle();
-
-        if (($article == $title) && ($author == $destinataire)) {
-            echo $comm->asHtml();
-        }
-    }
-}
-?>
-
-<?php
-/* --------------------footer---------------------------------- */
-
-include_once 'html/footer.php';
-?>
-
-
-
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

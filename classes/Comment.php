@@ -6,16 +6,14 @@ class Comment {
     private $article;
     private $texte;
     private $note;
-    private $title;
     private $destinataire;
     private $date;
 
-    function __construct($title, $texte, $note, User $author, Post $article, $destinataire) {
+    function __construct($texte, $note, User $author, Post $article, $destinataire) {
         $this->author = $author->getPseudo();
         $this->article = $article->getTitle();
         $this->texte = $texte;
         $this->note = $note;
-        $this->title = $title;
         $this->destinataire = $destinataire;
         $this->date = new DateTime();
     }
@@ -40,9 +38,6 @@ class Comment {
         return $this->note;
     }
 
-    function getTitle() {
-        return $this->title;
-    }
 
     function getDestinataire() {
         return $this->destinataire;
@@ -64,20 +59,17 @@ class Comment {
         $this->note = $note;
     }
 
-    function setTitle($title) {
-        $this->title = $title;
-    }
 
     function setDestinataire($destinataire) {
         $this->destinataire = $destinataire;
     }
 
     public function asHtml() {
-        return '<br/><pre><h3>titre : ' . $this->getTitle() . '</h3></pre><pre> note : ' .
-                $this->getNote() . '</pre><pre>' .
-                $this->getTexte() . '</pre><pre>auteur : ' .
-                $this->getAuthor() . '</pre><pre>destinataire : ' .
-                $this->getDestinataire() . '</pre>';
+        return '<div style="background-color :green"><p>' .
+                $this->getTexte() . '</p><p note : ' .
+                $this->getNote() . '</p><p>auteur : ' .
+                $this->getAuthor() . '</p><p>destinataire : ' .
+                $this->getDestinataire() . '</p></div>';
     }
 
 }

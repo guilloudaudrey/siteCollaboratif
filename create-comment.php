@@ -22,7 +22,7 @@ if (isset($_GET['annonce'])) {
         if (is_file('utilisateur/' . $user . '.txt')) {
             $userdata = $instance->readUser($user);
             $post = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
-            $instance->createComment(new Comment($post['title'], $post['comm'], $post['note'], $userdata, $postdata, $destinataire));
+            $instance->createComment(new Comment($post['comm'], $post['note'], $userdata, $postdata, $destinataire));
             header("location: $url");
         }
     }
