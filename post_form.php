@@ -39,7 +39,7 @@ and open the template in the editor.
                         <select name ="categories" required="required" class="form-control">
                             <option value="toutes categories" selected="selected">Toutes les catégories</option>
                             <option value="animaux">Animaux</option>
-                            <option value="petits travaux">Petits travaux</option>
+                            <option value="petitstravaux">Petits travaux</option>
                             <option value="cours" >Cours</option>
                             <option value="enfants">Garde d'enfants</option>
                             <option value="déménagement">Déménagement</option>

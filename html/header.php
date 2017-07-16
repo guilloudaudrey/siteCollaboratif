@@ -10,7 +10,7 @@
                         ?>
                         <ul class="nav navbar-nav col-lg-6" >
                             <li class="pull-right"><a href="register-form.php">S'inscrire</a></li>
-                            <li class="pull-right"><a href="#?w=500" rel="popup_name" class="poplight">Se connecter</a></li>
+                            <li class="pull-right"><a href="#?w=500" rel="popup_name" data-toggle="modal" data-target="#myModal">Se connecter</a></li>
                         </ul>
                         <?php
                     } else {
@@ -22,5 +22,7 @@
                     ?>
                 </div>
             </nav>
+
+
  
 
