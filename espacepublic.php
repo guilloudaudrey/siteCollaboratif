@@ -7,6 +7,7 @@
     </head>
     <body>
         <?php
+        session_start();
         include_once 'classes/User.php';
         include_once 'classes/DataBase.php';
         include_once 'classes/Post.php';
@@ -16,13 +17,11 @@
         if (isset($_GET['profilpub'])) {
 
             $profil = htmlspecialchars($_GET['profilpub']);
-            echo $profil;
-
-
 
             if (is_file('utilisateur/' . $profil . '.txt')) {
                 $user = $newdb->readUser($profil);
-                echo '</br>Membre inscrit depuis le : ' . $user->getDateinscription()->format('d/m/y');
+        
+               echo'</br>Membre inscrit depuis le : ' . $user->getDateinscription()->format('d/m/y');
             }
         }
         ?>
@@ -31,11 +30,13 @@
         <?php
         $listeAnnonces = $newdb->readPostsList();
         $pseudo = $user->getPseudo();
+        echo $pseudo;
         
         foreach ($listeAnnonces as $annonce){
             $auteur = $annonce->getAuthor();
             if ($pseudo == $auteur){
                 echo $annonce->asHtml();
+           
             }
         }
         ?>

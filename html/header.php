@@ -2,7 +2,7 @@
             <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
                 <div class="container topnav ">
                     <div class="navbar-header col-md-9 col-lg-6" >
-                        <a class="navbar-brand " href="index.php">WebSiteName</a>
+                        <a class="navbar-brand " href="index.php">HLP</a>
                     </div>
                     <?php
                     $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];

@@ -73,7 +73,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             ?>
             /* ------------------------affichage de l'annonce----------------- */
 
-            <div class="row"><div class="container" style="background: white; margin-top: 90px"><div class="row">
+            <div class="row"><div class="container" style="background: white; margin-top: 60px"><div class="row">
                         <div class="container">
 
                             <?php
@@ -85,30 +85,33 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
                             <div class= "col-lg-3 " style="margin-top: 15px; background: grey; height: 200px">
                                 <form action="espacepublic.php" method="GET" >
-                                    <p class="col-lg-6 col-lg-offset-3" style="text-align: center"><?php $author ?><p>
+                                    <p class="col-lg-6 col-lg-offset-3" style="text-align: center"><?php echo $author ?><p>
                                     <div class="col-lg-6 col-lg-offset-3"><img src="images/profil.png" class="img-fluid" alt="Responsive image" style="width: 100%;height: auto"></div>
-                                    <input type="hidden" name="profilpub" value="<?php $author ?>">
-                                    <button class="btn btn-primary col-lg-6 col-lg-offset-3">voir profil</button>
+                                    <input type="hidden" name="profilpub" value="<?php echo $author ?>">
+                                    <button class="btn btn-primary col-lg-6 col-lg-offset-3" style="margin-top: 10px">voir profil</button>
                                 </form>
                             </div>
-
-                            <button class="btn btn-primary" style="margin-right: 10px">
-                                <span class="glyphicon glyphicon-envelope" style="margin-right : 5px">
-                                </span>Envoyer un message
-                            </button>
-                            <button type="button" class="btn btn-primary">
-                                <span class="glyphicon glyphicon-earphone" style="margin-right : 5px"></span>Afficher le numéro
-                            </button>
+                            <div class="col-lg-3">
+                                <button class="btn btn-primary col-lg-10 col-lg-offset-1" style="margin-top: 10px">
+                                    <span class="glyphicon glyphicon-envelope" style="margin-right : 5px">
+                                    </span>Envoyer un message
+                                </button>
+                                <button type="button" class="btn btn-primary col-lg-10 col-lg-offset-1" style="margin-top: 10px">
+                                    <span class="glyphicon glyphicon-earphone" style="margin-right : 5px"></span>Afficher le numéro
+                                </button>
+                            </div>
                         </div>
                     </div>
 
-                    <!-------------------------Formulaire pour laisser un avis-------------------------->
-                    <?php
-                    echo '<div class="row"><div class="container" >
-                <h2>Avis</h2>
-                <hr class="my-4"></div></div>
-                <div class="row"><div class="container" ><p>Laissez un avis sur cette annonce.</p></div></div>';
 
+                    <!-------------------------Formulaire pour laisser un avis-------------------------->
+
+                    <div class="row"><div class="container" >
+                            <h2>Avis</h2>
+                            <hr class="my-4"></div></div>
+                    <div class="row"><div class="container" ><p>Laissez un avis sur cette annonce.</p></div></div>
+
+                    <?php
                     if (isset($_SESSION['nom'])) {
                         $user = $_SESSION['nom'];
 
@@ -128,10 +131,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                                 <div class="row"><div class="container"><textarea cols="50" rows="8" name="comm"></textarea></div></div>
                                 <div class="row"><div class="container"><button name="annonce" class="btn btn-danger">Ajouter un avis</button><br/>
                                         <input type="hidden" name="url" value="<?php echo $url; ?>"/>
-                                        <?php
-                                        echo'
-                    <input type="hidden" name="filename" value="' . $date . '">';
-                                        ?>
+                                        <input type="hidden" name="filename" value="<?php $date ?>">
                                         </form></div></div>
                                 <?php
                             }
@@ -169,7 +169,11 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                                     }
                                 }
                                 ?>
-                            </div></div></div></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <?php
             /* --------------------footer---------------------------------- */
 
@@ -180,7 +184,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
             <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
             <script src="js/jquery.js"></script>
             <script src="bootstrap/js/bootstrap.min.js"></script>
     </body>

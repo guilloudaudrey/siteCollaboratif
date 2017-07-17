@@ -110,7 +110,7 @@ class Post {
         ;
     }
 
-    public function asHtmlAnnonce() {
+    public function asHtmlAnnonce() { 
         return '<div class="row" style="background: yellow"><h3>' . $this->getTitle() . '</h3></div>' 
                 . '<div class="card col-lg-9" style="margin-top: 15px"><figure class="pull-left col-sm-5 col-md-5">'
                 . '<div><img src="images/travaux.png" class="img-fluid" alt="Responsive image" style="width: 100%;height: auto"></div></figure>'

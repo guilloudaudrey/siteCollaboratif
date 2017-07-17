@@ -12,6 +12,7 @@ session_start();
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
         <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Chango" rel="stylesheet">
         <script src="js/modernizr.custom.js"></script>
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <title>Index</title>
@@ -28,59 +29,53 @@ session_start();
 
         <div class="intro-header ">
             <div class="container">
-
+                <div class="row">
+                    <h3  class="pull-left col-lg-5 col-lg-offset-5" style="margin-top: 50px; margin-bottom: -20px">800 000 personnes se rendent service !</h3></div>
                 <div class="col-lg-5 col-lg-offset-5 col-md-7 col-md-offset-3 col-xs-10 col-xs-offset-1 rechercheinputs" >
+                    <div class="row">
+                        <form class="recherche col-md-10 col-lg-offset-1" style ="margin-top: 40px" method="POST" action="index.php">
+                            <div class="form-group">
+                                <select class="form-control" id="sel1" name ="categories">
+                                    <option value="toutes categories" selected="selected">Toutes les catégories</option>
+                                    <option value="animaux">Animaux</option>
+                                    <option value="petits travaux">Petits travaux</option>
+                                    <option value="cours" >Cours</option>
+                                    <option value="enfants">Garde d'enfants</option>
+                                    <option value="déménagement">Déménagement</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" id="sel2" name ="type" required="required">
+                                    <option value="Offre" selected="selected">Offre</option>
+                                    <option value="Demande">Demande</option>
+                                </select>
+                            </div>
 
-                    <h3 style="margin-bottom : 20px" class="pull-left">Besoin d'un service près de chez vous ?</h3>
+                            <div class="form-group ">
+                                <input type="text" placeholder="mot-clé" class="form-control" id="sel3"/>
+                            </div>
 
-
-                    <form class="recherche col-md-12" method="POST" action="index.php">
-                        <div class="form-group">
-                            <select class="form-control" id="sel1" name ="categories">
-                                <option value="toutes categories" selected="selected">Toutes les catégories</option>
-                                <option value="animaux">Animaux</option>
-                                <option value="petits travaux">Petits travaux</option>
-                                <option value="cours" >Cours</option>
-                                <option value="enfants">Garde d'enfants</option>
-                                <option value="déménagement">Déménagement</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <select class="form-control" id="sel2" name ="type" required="required">
-                                <option value="Offre" selected="selected">Offre</option>
-                                <option value="Demande">Demande</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group ">
-                            <input type="text" placeholder="mot-clé" class="form-control" id="sel3"/>
-                        </div>
-
-                        <div class="form-group ">
-                            <input type="text" placeholder="Localisation" class="form-control" id="sel4" />
-                        </div>
-                        <input type="submit" value="Rechercher" name="search" class="btn btn-primary" style="margin-bottom: 20px"/>
-                    </form>
-
+                            <div class="form-group ">
+                                <input type="text" placeholder="Localisation" class="form-control" id="sel4" />
+                            </div>
+                            <input type="submit" value="Rechercher" name="search" class="btn btn-primary" style="margin-bottom: 20px"/>
+                        </form>
+                    </div>
                 </div>
 
 
 
             </div>
+            <div class="container">
+                <form action="post_form.php" method="POST" class="col-lg-12" style="margin-top: 50px">
+                    <input type="submit" class="btn btn-danger navbar-btn  btn-lg col-lg-offset-3" value="Poster une annonce">
+                </form>
+            </div>
         </div>
-
     </div>
 
     <!-------------------------------------poster une annonce----------------------------------->
 
-
-    <div class="container">
-        <form action="post_form.php" method="POST" class="col-md-3" style="margin-top: 30px">
-            <input type="submit" class="btn btn-danger navbar-btn" value="Poster une annonce">
-        </form>
-    </div>
-    
-  
 
 
     <!-------------------------------------fenêtre pop up connexion----------------------------------->
@@ -136,11 +131,12 @@ session_start();
                             <div class="card" >
                                 <?php
                                 echo $annonce->asHtml();
-                                echo '<form action="annonce.php" method="GET">'
-                                . '<input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">'
-                                . '<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>'
-                                . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form>';
                                 ?>
+                                <form action="annonce.php" method="GET">
+                                    <input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">
+                                    <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+                                    <input type="hidden" name="filename" value="<?php $annonce->getDatetitre() ?>">
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -156,11 +152,12 @@ session_start();
                                 <div class="card" style="margin-top: 20px">
                                     <?php
                                     echo $annonce->asHtml();
-                                    echo '<form action="annonce.php" method="GET">'
-                                    . '<input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">'
-                                    . '<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>'
-                                    . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form>';
                                     ?>
+                                    <form action="annonce.php" method="GET">
+                                        <input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">
+                                        <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+                                        <input type="hidden" name="filename" value="<?php $annonce->getDatetitre() ?>"></form>
+
                                 </div>
                             </div>
                         </div>
@@ -195,6 +192,7 @@ session_start();
             <?php
         }
     }
+    
     ?>
 
 
