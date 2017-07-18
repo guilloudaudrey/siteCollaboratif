@@ -4,6 +4,12 @@
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Chango" rel="stylesheet">
+        <script src="js/modernizr.custom.js"></script>
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     </head>
     <body>
         <?php
@@ -20,36 +26,45 @@
 
             if (is_file('utilisateur/' . $profil . '.txt')) {
                 $user = $newdb->readUser($profil);
-        
-               echo'</br>Membre inscrit depuis le : ' . $user->getDateinscription()->format('d/m/y');
+                ?>
+                <div class="container" style="margin-top: 100px">
+                    <p>Membre inscrit depuis le : <?php echo $user->getDateinscription()->format('d/m/y') ?></p>
+                    <?php
+                }
             }
-        }
-        ?>
-        
-        <h2>Ses annonces</h2>
-        <?php
-        $listeAnnonces = $newdb->readPostsList();
-        $pseudo = $user->getPseudo();
-        echo $pseudo;
-        
-        foreach ($listeAnnonces as $annonce){
-            $auteur = $annonce->getAuthor();
-            if ($pseudo == $auteur){
-                echo $annonce->asHtml();
-           
+
+            include_once 'html/header.php';
+            ?>
+
+            <h2>Ses annonces</h2>
+            <?php
+            $listeAnnonces = $newdb->readPostsList();
+            $pseudo = $user->getPseudo();
+
+
+            foreach ($listeAnnonces as $annonce) {
+                $auteur = $annonce->getAuthor();
+                if ($pseudo == $auteur) {
+                    echo $annonce->asHtml();
+                }
             }
-        }
-        ?>
-        
-        <h2>Evaluations reçues</h2>
-        <?php
-        $listecomm = $newdb->readCommentsList();
-        foreach ($listecomm as $comm){
-            $destinataire = $comm->getDestinataire();
-            if ($pseudo == $destinataire){
-                echo $comm->asHtml();
+            ?>
+
+            <h2>Evaluations reçues</h2>
+            <?php
+            $listecomm = $newdb->readCommentsList();
+            foreach ($listecomm as $comm) {
+                $destinataire = $comm->getDestinataire();
+                if ($pseudo == $destinataire) {
+                    echo $comm->asHtml();
+                }
             }
-        }
-        ?>
+            ?>
+        </div>
+
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+     <script src="js/jquery.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>

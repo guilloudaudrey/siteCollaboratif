@@ -78,33 +78,6 @@ session_start();
 
 
 
-    <!-------------------------------------fenêtre pop up connexion----------------------------------->
-
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Connexion</h4>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="login.php">
-                        <label for="pseudo">Pseudo</label>
-                        <input type="text" name="pseudo"/>
-                        <label for="mdp">Mot de passe</label>
-                        <input type="password" name="mdp"/>
-                        <input type="submit" name="login"/>
-                        <input type="hidden" name="url" value="<?php echo $url; ?>"/>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-------------------------------------affichage des annonces----------------------------------->
 
@@ -149,7 +122,7 @@ session_start();
                     <div class="row">
                         <div class="well-lg">
                             <div class="col-sm-12 col-md-10 col-lg-8">
-                                <div class="card" style="margin-top: 20px">
+                                <div class="card" style="margin-top: 21px">
                                     <?php
                                     echo $annonce->asHtml();
                                     ?>
@@ -203,7 +176,6 @@ session_start();
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-
      <script src="js/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
 </body>

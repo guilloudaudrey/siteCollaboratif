@@ -65,7 +65,7 @@ class Comment {
     }
 
     public function asHtml() {
-        return '<div style="background-color :green"><p>' .
+        return '<div style="background-color :grey"><p>' .
                 $this->getTexte() . '</p><p note : ' .
                 $this->getNote() . '</p><p>auteur : ' .
                 $this->getAuthor() . '</p><p>destinataire : ' .
