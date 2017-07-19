@@ -79,16 +79,16 @@ class User {
     }
 
     public function asHtml() {
-        return '<pre>' . $this->getPseudo() . '</pre><pre><img src="images/profil.png" width= 120px></pre><pre>' .
-                $this->getDateinscription()->format('d/m/y') . '</pre><pre>Sexe : '.
-                $this->getGenre() . '</pre><pre>Age : ' . 
-                $this->getAge() . '</pre><pre>Prénom : '.
-                $this->prenom . '</pre><pre>Nom : '.
-                $this->nom . '</pre><pre>Mail : '.
-                $this->mail . '</pre><pre>Téléphone : ' .
-                $this->telephone . '</pre><pre>CP : ' .
-                $this->CP . '</pre><pre>Ville : ' .
-                $this->ville . '</pre>';
+        return '<div><p>' . $this->getPseudo() . '<img src="images/profil.png" width= 120px></p><p>Inscription : ' .
+                $this->getDateinscription()->format('d/m/y') . '</p><p>Sexe : '.
+                $this->getGenre() . '</p><p>Age : ' . 
+                $this->getAge() . '</p><p>Prénom : '.
+                $this->prenom . '</p><p>Nom : '.
+                $this->nom . '</p><p>Mail : '.
+                $this->mail . '</p><p>Téléphone : ' .
+                $this->telephone . '</p><p>CP : ' .
+                $this->CP . '</p><p>Ville : ' .
+                $this->ville . '</p></div>';
     }
 
 }

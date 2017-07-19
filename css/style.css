@@ -3,8 +3,12 @@
 
 /*header*/
 
+/* Full Screen slider
+======================================================== */
+
+
 .navbar-brand{
-    font-family: 'Chango', cursive;
+    font-family: 'Oswald', sans-serif;
     color: grey;
     font-size: 3em;
     margin-bottom: 10px;

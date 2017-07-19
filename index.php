@@ -12,9 +12,11 @@ session_start();
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
         <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Chango" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
         <script src="js/modernizr.custom.js"></script>
-        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+     
+            <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
         <title>Index</title>
     </head>
     <body>
@@ -73,38 +75,14 @@ session_start();
             </div>
         </div>
     </div>
+    
+    
 
     <!-------------------------------------poster une annonce----------------------------------->
 
 
 
-    <!-------------------------------------fenêtre pop up connexion----------------------------------->
 
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Connexion</h4>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="login.php">
-                        <label for="pseudo">Pseudo</label>
-                        <input type="text" name="pseudo"/>
-                        <label for="mdp">Mot de passe</label>
-                        <input type="password" name="mdp"/>
-                        <input type="submit" name="login"/>
-                        <input type="hidden" name="url" value="<?php echo $url; ?>"/>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-------------------------------------affichage des annonces----------------------------------->
 
@@ -178,11 +156,16 @@ session_start();
                             <div class="card " style="margin-top: 10px">
                                 <?php
                                 echo $annonce->asHtml();
-                                echo '<div class="row"><form action="annonce.php" method="GET">'
-                                . '<input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">'
-                                . '<button class="like btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span></button>'
-                                . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form></div>';
                                 ?>
+
+                                <div class="row">
+                                    <form action="annonce.php" method="GET">
+                                        <input type="submit" value="en savoir plus" class="btn btn-inverse" style="margin-right: 5px">
+                                        <button class="like btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span></button>
+                                        <input type="hidden" name="filename" value="<?php echo $annonce->getDatetitre() ?>">
+                                    </form>
+                                </div>';
+
                             </div>
                         </div>
                     </div>
@@ -192,7 +175,6 @@ session_start();
             <?php
         }
     }
-    
     ?>
 
 
@@ -203,7 +185,6 @@ session_start();
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-
      <script src="js/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
 </body>

@@ -108,7 +108,7 @@ class DataBase {
 
         unlink('posts/' . $previoustitle . '.txt');
         $postdata = serialize($post);
-        $fichier = fopen('posts/' . $post->getTitle() . '.txt', 'w');
+        $fichier = fopen('posts/' . $post->getDatetitre() . '.txt', 'w');
         fwrite($fichier, $postdata);
         fclose($fichier);
     }
