@@ -28,76 +28,97 @@
             if (is_file('utilisateur/' . $user . '.txt')) {
                 $contenu = $instance->readUser($user);
                 ?>
-        <div class="container" style="margin-top: 70px">
+                <div class="container" style="margin-top: 70px">
 
                     <?php
                     echo $contenu->asHtml();
                     ?>
 
-                </div>
+                    <div id="exTab2" class="container">	
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a  href="#1" data-toggle="tab">Overview</a>
+                            </li>
+                            <li><a href="#2" data-toggle="tab">Without clearfix</a>
+                            </li>
+                            <li><a href="#3" data-toggle="tab">Solution</a>
+                            </li>
+                        </ul>
 
-                <div class="container">
-                    <h2>Mes annonces</h2>
+                        <div class="tab-content ">
+                            <div class="tab-pane active" id="1">
+                                <h2>Mes annonces</h2>
+                                <?php
+                                $listeAnnonces = $instance->readPostsList();
+                                foreach ($listeAnnonces as $annonce) {
+                                    $author = $annonce->getAuthor();
+
+                                    if ($author == $user) {
+                                        ?>
+
+
+                                        <?php
+                                        echo $annonce->asHtml();
+                                        ?>
+
+
+                                        <div class="boutons">
+                                            <form method="POST" action="delete.php">
+                                                <input type="hidden" name="filename" value="<?php echo $annonce->getDatetitre() ?>" class="text">
+                                                <input type="submit" value="supprimer">
+                                            </form>
+
+                                            <form method="POST" action="edit_form.php">
+                                                <input type="hidden" name="filename" value="<?php echo $annonce->getDatetitre() ?>">
+                                                <input type="submit" value="modifier">
+                                            </form>
+                                        </div>
+
+
+                                        <?php
+                                    }
+                                }
+                                ?>
+                            </div>
+                            <div class="tab-pane" id="2">
+                                <h2>Evaluations émises</h2>
+                                <?php
+                                $listecomm = $instance->readCommentsList();
+
+                                foreach ($listecomm as $comm) {
+                                    $authorcomm = $comm->getAuthor();
+
+
+                                    if ($authorcomm == $user) {
+                                        echo $comm->asHtml();
+                                    }
+                                }
+                                ?>
+                            </div>
+                            <div class="tab-pane" id="3">
+                                <h2>Evaluations reçues</h2>
+                                <?php
+                                foreach ($listecomm as $comm) {
+                                    $destinataire = $comm->getDestinataire();
+                                    if ($destinataire == $user) {
+
+                                        echo $comm->asHtml();
+                                    }
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+
+
+
 
                     <?php
-                    include_once 'classes/Post.php';
-                    include_once 'classes/DataBase.php';
-                    include_once 'classes/User.php';
-
-                    $listeAnnonces = $instance->readPostsList();
-                    foreach ($listeAnnonces as $annonce) {
-                        $author = $annonce->getAuthor();
-
-                        if ($author == $user) {
-                            ?>
-                            <div class="row">
-                                <div class="col-lg-4"
-                                <?php
-                                echo $annonce->asHtml();
-
-                                echo'
-
-            <div class="boutons">
-            <form method="POST" action="delete.php">
-            <input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '" class="text">
-            <input type="submit" value="supprimer">
-            </form>
-    
-            <form method="POST" action="edit_form.php">
-            <input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '">
-                <input type="submit" value="modifier">
-            </form>
-            </div></div></div>';
-                            }
-                        }
-                        ?>
-                        <h2>Evaluations émises</h2>
-                        <?php
-                        $listecomm = $instance->readCommentsList();
-
-                        foreach ($listecomm as $comm) {
-                            $authorcomm = $comm->getAuthor();
-
-
-                            if ($authorcomm == $user) {
-                                echo $comm->asHtml();
-                            }
-                        }
-                        ?>
-                        <h2>Evaluations reçues</h2>
-                        <?php
-                        foreach ($listecomm as $comm) {
-                            $destinataire = $comm->getDestinataire();
-                            if ($destinataire == $user) {
-
-                                echo $comm->asHtml();
-                            }
-                        }
-                    }
                 }
-                ?>
+            }
+            ?>
 
-            </div>
+
 
 
             <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>

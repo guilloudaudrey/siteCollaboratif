@@ -138,7 +138,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                                     <div class="row"><div class="container"><textarea cols="50" rows="8" name="comm"></textarea></div></div>
                                     <div class="row"><div class="container"><button name="annonce" class="btn btn-danger">Ajouter un avis</button><br/>
                                             <input type="hidden" name="url" value="<?php echo $url; ?>"/>
-                                            <input type="hidden" name="filename" value="<?php $date ?>">
+                                            <input type="hidden" name="filename" value="<?php echo $date ?>">
                                             </form></div></div>
                                     <?php
                                 }
