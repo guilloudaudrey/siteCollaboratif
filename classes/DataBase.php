@@ -1,38 +1,39 @@
 <?php
 
 class DataBase {
-/*
+
     private $pdo;
 
     function __construct() {
         try {
             $this->pdo = new PDO('mysql:host=localhost;dbname=site_services', 'admin1', 'simplon');
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (Exception $e) {
             echo 'fail to connect DB: ' . $e->getMessage();
             exit(1);
         }
     }
-*/
+
 /////////////////// CREATE //////////////////// 
 //
 //création d'un nouvel utilisateur
 
-    public function createUser(User $user) {/*
+    public function createUser(User $user) {
         $mdp = $user->getMdp();
-        $avatar = $user->getAvatar();
         $genre = $user->getGenre();
         $age = $user->getAge();
-        $inscription = $user->getDateinscription();
+        $inscription = $user->getDateinscription()->format('d/m/y');
         $nom = $user->getNom();
         $prenom = $user->getPrenom();
         $cp = $user->getCP();
         $ville = $user->getVille();
-        
+        $mail = $user->getMail();
+        $telephone = $user->getTelephone();
+        $pseudo = $user->getPseudo();
 
-        $stmt = $this->pdo->prepare('INSERT_INTO user(mdp, avatar, genre, age, inscription, nom, prenom, cp, ville, mail, telephone, pseudo) VALUES(:mdp, :avatar, :genre, :age, :inscription, :nom, :prenom, :cp, :ville, :mail, :telephone, :pseudo');
+
+        $stmt = $this->pdo->prepare('INSERT INTO user(mdp, genre, age, inscription, nom, prenom, cp, ville, mail, telephone, pseudo) VALUES(:mdp, :genre, :age, :inscription, :nom, :prenom, :cp, :ville, :mail, :telephone, :pseudo);');
         $stmt->bindValue('mdp', $mdp);
-        $stmt->bindValue('avatar', $avatar);
         $stmt->bindValue('genre', $genre);
         $stmt->bindValue('age', $age);
         $stmt->bindValue('inscription', $inscription);
@@ -44,15 +45,16 @@ class DataBase {
         $stmt->bindValue('telephone', $telephone);
         $stmt->bindValue('pseudo', $pseudo);
 
+        //$stmt->execute(['mdp' => $mdp, 'genre' => $genre, 'age' => $age, 'inscription' => $inscription, 'nom' => $nom, 'prenom' => $prenom, 'cp' => $cp, 'ville' => $ville, 'mail' => $mail, 'telephone' => $telephone, 'pseudo' => $pseudo]);
         $stmt->execute();
-*/
-        if (!is_dir('utilisateur')) {
+        /*
+          if (!is_dir('utilisateur')) {
           mkdir('utilisateur');
           }
           $userdata = serialize($user);
           $file = fopen('utilisateur/' . $user->getPseudo() . '.txt', 'w');
           fwrite($file, $userdata);
-          fclose($file); 
+          fclose($file); */
     }
 
 //création d'une nouvelle annonce

@@ -4,21 +4,19 @@ class User {
 
     private $pseudo;
     private $mdp;
-    private $avatar;
     private $genre;
     private $age;
     private $dateinscription;
-    private $nom;  
-    private $prenom; 
+    private $nom;
+    private $prenom;
     private $CP;
     private $ville;
     private $mail;
     private $telephone;
 
-    function __construct($pseudo, $mdp, $avatar, $genre, $age, $nom, $prenom, $mail, $telephone, $CP, $ville) {
+    function __construct($pseudo, $mdp, $genre, $age, $nom, $prenom, $mail, $telephone, $CP, $ville) {
         $this->pseudo = $pseudo;
         $this->mdp = $mdp;
-        $this->avatar = $avatar;
         $this->genre = $genre;
         $this->age = $age;
         $this->dateinscription = new DateTime();
@@ -36,10 +34,6 @@ class User {
 
     function getMdp() {
         return $this->mdp;
-    }
-
-    function getAvatar() {
-        return $this->avatar;
     }
 
     function getGenre() {
@@ -78,13 +72,61 @@ class User {
         return $this->mdp;
     }
 
+    function getNom() {
+        return $this->nom;
+    }
+
+    function getPrenom() {
+        return $this->prenom;
+    }
+
+    function getCP() {
+        return $this->CP;
+    }
+
+    function getVille() {
+        return $this->ville;
+    }
+
+    function getMail() {
+        return $this->mail;
+    }
+
+    function getTelephone() {
+        return $this->telephone;
+    }
+
+    function setNom($nom) {
+        $this->nom = $nom;
+    }
+
+    function setPrenom($prenom) {
+        $this->prenom = $prenom;
+    }
+
+    function setCP($CP) {
+        $this->CP = $CP;
+    }
+
+    function setVille($ville) {
+        $this->ville = $ville;
+    }
+
+    function setMail($mail) {
+        $this->mail = $mail;
+    }
+
+    function setTelephone($telephone) {
+        $this->telephone = $telephone;
+    }
+
     public function asHtml() {
         return '<pre>' . $this->getPseudo() . '</pre><pre><img src="images/profil.png" width= 120px></pre><pre>' .
-                $this->getDateinscription()->format('d/m/y') . '</pre><pre>Sexe : '.
-                $this->getGenre() . '</pre><pre>Age : ' . 
-                $this->getAge() . '</pre><pre>Prénom : '.
-                $this->prenom . '</pre><pre>Nom : '.
-                $this->nom . '</pre><pre>Mail : '.
+                $this->getDateinscription()->format('d/m/y') . '</pre><pre>Sexe : ' .
+                $this->getGenre() . '</pre><pre>Age : ' .
+                $this->getAge() . '</pre><pre>Prénom : ' .
+                $this->prenom . '</pre><pre>Nom : ' .
+                $this->nom . '</pre><pre>Mail : ' .
                 $this->mail . '</pre><pre>Téléphone : ' .
                 $this->telephone . '</pre><pre>CP : ' .
                 $this->CP . '</pre><pre>Ville : ' .
