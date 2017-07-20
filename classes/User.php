@@ -1,5 +1,7 @@
 <?php
 
+
+
 class User {
 
     private $pseudo;
@@ -77,7 +79,56 @@ class User {
     public function getData() {
         return $this->mdp;
     }
+    
+    function getNom() {
+        return $this->nom;
+    }
 
+    function getPrenom() {
+        return $this->prenom;
+    }
+
+    function getCP() {
+        return $this->CP;
+    }
+
+    function getVille() {
+        return $this->ville;
+    }
+
+    function getMail() {
+        return $this->mail;
+    }
+
+    function getTelephone() {
+        return $this->telephone;
+    }
+
+    function setNom($nom) {
+        $this->nom = $nom;
+    }
+
+    function setPrenom($prenom) {
+        $this->prenom = $prenom;
+    }
+
+    function setCP($CP) {
+        $this->CP = $CP;
+    }
+
+    function setVille($ville) {
+        $this->ville = $ville;
+    }
+
+    function setMail($mail) {
+        $this->mail = $mail;
+    }
+
+    function setTelephone($telephone) {
+        $this->telephone = $telephone;
+    }
+
+    
     public function asHtml() {
         return '<div><p>' . $this->getPseudo() . '<img src="images/profil.png" width= 120px></p><p>Inscription : ' .
                 $this->getDateinscription()->format('d/m/y') . '</p><p>Sexe : '.

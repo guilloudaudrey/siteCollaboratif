@@ -54,10 +54,6 @@
                                     $author = $annonce->getAuthor();
 
                                     if ($author == $user) {
-                                        ?>
-
-
-                                        <?php
                                         echo $annonce->asHtml();
                                         ?>
 

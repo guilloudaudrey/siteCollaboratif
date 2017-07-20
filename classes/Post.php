@@ -1,5 +1,6 @@
 <?php
 
+
 class Post {
 
     protected $title;
