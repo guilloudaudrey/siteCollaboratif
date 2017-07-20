@@ -60,14 +60,17 @@ class DataBase {
 //création d'une nouvelle annonce
 
     public function createPost(Post $post) {
-        if (!is_dir('posts')) {
+        
+        
+        
+        /*if (!is_dir('posts')) {
             mkdir('posts');
         }
 
         $postdata = serialize($post);
         $file = fopen('posts/' . $post->getDatetitre() . '.txt', 'w');
         fwrite($file, $postdata);
-        fclose($file);
+        fclose($file);*/
     }
 
     //création d'un nouveau commentaire
