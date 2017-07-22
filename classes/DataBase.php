@@ -112,11 +112,11 @@ class DataBase {
             //Pseudo inexistant
         } else {
             $login_process = $this->pdo->query("SELECT mdp FROM user WHERE pseudo ='" . $user . "' LIMIT 1;");       
-            $login_data = $login_process->fetch();
-            $login_comp = password_verify($mdp, $login_data['mdp']);
-            if ($login_comp == TRUE) {
-                return TRUE;
-            }
+            return $login_data = $login_process->fetch();
+            //$login_comp = password_verify($mdp, $login_data['mdp']);
+            //if ($login_comp == TRUE) {
+              //  return TRUE;
+            //}
         }
     }
     
