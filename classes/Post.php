@@ -4,7 +4,6 @@ class Post {
 
     protected $title;
     protected $categorie;
-    protected $photo;
     protected $date;
     protected $description;
     protected $localisation;
@@ -13,9 +12,8 @@ class Post {
     protected $typeannonce;
     protected $datetitre;
 
-    function __construct($title, $photo, $description, $price, User $author, $categorie, $localisation, $typeannonce) {
+    function __construct($title, $description, $price, User $author, $categorie, $localisation, $typeannonce) {
         $this->title = $title;
-        $this->photo = $photo;
         $this->date = new DateTime();
         $this->description = $description;
         $this->price = $price;

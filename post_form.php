@@ -17,7 +17,7 @@ and open the template in the editor.
         $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         if (isset($_SESSION['nom'])) {
             ?>
-        <div class="container col-lg-6 col-md-offset-3 col-md-6 col-md-offset-3 col-xs-8 col-xs-offset-2" id="formulaire">
+            <div class="container col-lg-6 col-md-offset-3 col-md-6 col-md-offset-3 col-xs-8 col-xs-offset-2" id="formulaire">
                 <form action="create-post.php" method="POST">
                     <div class="form-group">
                         <label for="Type">Type</label>
@@ -54,10 +54,7 @@ and open the template in the editor.
                         <label for="price">Prix</label>
                         <input type="number" name="price" required="required" class="form-control"/> €
                     </div>
-                    <div class="form-group">
-                        <label for="photo">Photo</label>
-                        <input type="file"name="photo" required="required" class="form-control"/>
-                    </div>
+
                     <input type="submit" value="Envoyer" name="newpost"/>
                 </form>
             </div>

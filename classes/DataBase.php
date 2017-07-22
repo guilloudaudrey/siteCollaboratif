@@ -60,9 +60,27 @@ class DataBase {
 //création d'une nouvelle annonce
 
     public function createPost(Post $post) {
+        $title = $post->getTitle();
+        $categorie = $post->getCategorie();
+        $date = $post->getDate()->format('d/m/y');
+        $description = $post->getDescription();
+        $localisation = $post->getLocalisation();
+        $price = $post->getPrice();
+        $author = $post->getAuthor();
+        $typeannonce = $post->getTypeannonce();
         
+        $stmt = $this->pdo->prepare('INSERT INTO post(title, categorie, date, description, localisation, price, typeannonce, author) VALUES(:title, :categorie, :date, :description, :localisation, :price, :typeannonce, :author);');
+        $stmt->bindValue('title', $title);
+        $stmt->bindValue('categorie', $categorie);
+        $stmt->bindValue('date', $date);
+        $stmt->bindValue('description', $description);
+        $stmt->bindValue('localisation', $localisation);
+        $stmt->bindValue('price', $price);
+        $stmt->bindValue('author', $author);
+        $stmt->bindValue('typeannonce', $typeannonce);
         
-        
+        $stmt->execute();
+
         /*if (!is_dir('posts')) {
             mkdir('posts');
         }
@@ -85,14 +103,33 @@ class DataBase {
         fwrite($file, $commentdata);
         fclose($file);
     }
+    
+    //////////////////////// LOGIN /////////////////////////////
+    
+        function login($user, $mdp) {
+        $login = $this->pdo->query("SELECT COUNT(*) FROM user WHERE pseudo = '" . $user . "';");
+        if ($login->fetchColumn() == 0) {
+            //Pseudo inexistant
+        } else {
+            $login_process = $this->pdo->query("SELECT mdp FROM user WHERE pseudo ='" . $user . "' LIMIT 1;");       
+            $login_data = $login_process->fetch();
+            $login_comp = password_verify($mdp, $login_data['mdp']);
+            if ($login_comp == TRUE) {
+                return TRUE;
+            }
+        }
+    }
+    
 
 ////////////////////////// READ ///////////////////////////////
 //
 //unserialize user
-
-    public function readUser($user): User {
-        return unserialize(file_get_contents('utilisateur/' . $user . '.txt'));
+    public function readUser($user) {
+               $stmt = $this->pdo->query('SELECT * FROM user WHERE pseudo="'.$user.'";');
+               $stmt->fetchAll();
+        //return unserialize(file_get_contents('utilisateur/' . $user . '.txt'));
     }
+   
 
 //unserialize annonce
     public function readPost($title): Post {
