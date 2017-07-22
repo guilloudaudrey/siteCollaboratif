@@ -68,7 +68,7 @@ class DataBase {
         $price = $post->getPrice();
         $author = $post->getAuthor();
         $typeannonce = $post->getTypeannonce();
-        
+
         $stmt = $this->pdo->prepare('INSERT INTO post(title, categorie, date, description, localisation, price, typeannonce, author) VALUES(:title, :categorie, :date, :description, :localisation, :price, :typeannonce, :author);');
         $stmt->bindValue('title', $title);
         $stmt->bindValue('categorie', $categorie);
@@ -78,17 +78,17 @@ class DataBase {
         $stmt->bindValue('price', $price);
         $stmt->bindValue('author', $author);
         $stmt->bindValue('typeannonce', $typeannonce);
-        
+
         $stmt->execute();
 
-        /*if (!is_dir('posts')) {
-            mkdir('posts');
-        }
+        /* if (!is_dir('posts')) {
+          mkdir('posts');
+          }
 
-        $postdata = serialize($post);
-        $file = fopen('posts/' . $post->getDatetitre() . '.txt', 'w');
-        fwrite($file, $postdata);
-        fclose($file);*/
+          $postdata = serialize($post);
+          $file = fopen('posts/' . $post->getDatetitre() . '.txt', 'w');
+          fwrite($file, $postdata);
+          fclose($file); */
     }
 
     //création d'un nouveau commentaire
@@ -103,33 +103,30 @@ class DataBase {
         fwrite($file, $commentdata);
         fclose($file);
     }
-    
+
     //////////////////////// LOGIN /////////////////////////////
-    
-        function login($user, $mdp) {
+
+    function login($user, $mdp) {
         $login = $this->pdo->query("SELECT COUNT(*) FROM user WHERE pseudo = '" . $user . "';");
         if ($login->fetchColumn() == 0) {
             //Pseudo inexistant
         } else {
-            $login_process = $this->pdo->query("SELECT mdp FROM user WHERE pseudo ='" . $user . "' LIMIT 1;");       
-            return $login_data = $login_process->fetch();
-            //$login_comp = password_verify($mdp, $login_data['mdp']);
-            //if ($login_comp == TRUE) {
-              //  return TRUE;
-            //}
+            $login_process = $this->pdo->query("SELECT mdp FROM user WHERE pseudo ='" . $user . "' LIMIT 1;");
+            $login_data = $login_process->fetch();
+            if ($mdp == $login_data['mdp']) {
+                return TRUE;
+            }
         }
     }
-    
 
 ////////////////////////// READ ///////////////////////////////
 //
 //unserialize user
     public function readUser($user) {
-               $stmt = $this->pdo->query('SELECT * FROM user WHERE pseudo="'.$user.'";');
-               $stmt->fetchAll();
+        $stmt = $this->pdo->query('SELECT * FROM user WHERE pseudo="' . $user . '";');
+        $stmt->fetchAll();
         //return unserialize(file_get_contents('utilisateur/' . $user . '.txt'));
     }
-   
 
 //unserialize annonce
     public function readPost($title): Post {
