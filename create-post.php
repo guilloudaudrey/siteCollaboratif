@@ -14,7 +14,8 @@ if (isset($_POST['newpost'])) {
         var_dump($contenu = $instance->readUser($user));
         
             $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-            $instance->createPost(new Post($post['title'], $post['description'], $post['price'], $contenu['pseudo'], $post['categories'], $post['localisation'], $post['type']));
+            $newpost = new Post($post['title'], $post['description'], $post['price'], $contenu['id'], $post['categories'], $post['localisation'], $post['type']);
+            $instance->createPost($newpost);
             header("location:index.php");
         }
     //}
