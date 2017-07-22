@@ -124,7 +124,7 @@ class DataBase {
 //unserialize user
     public function readUser($user) {
         $stmt = $this->pdo->query('SELECT * FROM user WHERE pseudo="' . $user . '";');
-        $stmt->fetchAll();
+        return $stmt->fetch();
         //return unserialize(file_get_contents('utilisateur/' . $user . '.txt'));
     }
 

@@ -10,13 +10,14 @@ if (isset($_POST['newpost'])) {
         $user = $_SESSION['nom'];
         $instance = new DataBase();
 
-        if (is_file('utilisateur/' . $user . '.txt')) {
-            $contenu = $instance->readUser($user);
+        //if (is_file('utilisateur/' . $user . '.txt')) {
+        var_dump($contenu = $instance->readUser($user));
+        
             $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-            $instance->createPost(new Post($post['title'], $post['description'], $post['price'], $contenu, $post['categories'], $post['localisation'], $post['type']));
+            $instance->createPost(new Post($post['title'], $post['description'], $post['price'], $contenu['pseudo'], $post['categories'], $post['localisation'], $post['type']));
             header("location:index.php");
         }
-    }
+    //}
 } else {
     echo 'pas d\'article';
 }

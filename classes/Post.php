@@ -12,12 +12,12 @@ class Post {
     protected $typeannonce;
     protected $datetitre;
 
-    function __construct($title, $description, $price, User $author, $categorie, $localisation, $typeannonce) {
+    function __construct($title, $description, $price, $author, $categorie, $localisation, $typeannonce) {
         $this->title = $title;
         $this->date = new DateTime();
         $this->description = $description;
         $this->price = $price;
-        $this->author = $author->getPseudo();
+        $this->author = $author;
         $this->categorie = $categorie;
         $this->localisation = $localisation;
         $this->typeannonce = $typeannonce;
