@@ -45,16 +45,7 @@ class DataBase {
         $stmt->bindValue('telephone', $telephone);
         $stmt->bindValue('pseudo', $pseudo);
 
-        //$stmt->execute(['mdp' => $mdp, 'genre' => $genre, 'age' => $age, 'inscription' => $inscription, 'nom' => $nom, 'prenom' => $prenom, 'cp' => $cp, 'ville' => $ville, 'mail' => $mail, 'telephone' => $telephone, 'pseudo' => $pseudo]);
         $stmt->execute();
-        /*
-          if (!is_dir('utilisateur')) {
-          mkdir('utilisateur');
-          }
-          $userdata = serialize($user);
-          $file = fopen('utilisateur/' . $user->getPseudo() . '.txt', 'w');
-          fwrite($file, $userdata);
-          fclose($file); */
     }
 
 //création d'une nouvelle annonce
@@ -80,15 +71,6 @@ class DataBase {
         $stmt->bindValue('typeannonce', $typeannonce);
 
         $stmt->execute();
-
-        /* if (!is_dir('posts')) {
-          mkdir('posts');
-          }
-
-          $postdata = serialize($post);
-          $file = fopen('posts/' . $post->getDatetitre() . '.txt', 'w');
-          fwrite($file, $postdata);
-          fclose($file); */
     }
 
     //création d'un nouveau commentaire
@@ -138,13 +120,13 @@ class DataBase {
         $ville = $user['ville'];
 
         $newuser = new User($pseudo, $mdp, $genre, $age, $nom, $prenom, $mail, $telephone, $CP, $ville);
-        return $newusers;
+        return $newuser;
         //return unserialize(file_get_contents('utilisateur/' . $user . '.txt'));
     }
 
 //unserialize annonce
     public function readPost($title): Post {
-        $stmt = $this->pdo->query('SELECT * FROM post WHERE pseudo="' . $title . '";');
+        $stmt = $this->pdo->query('SELECT * FROM post WHERE title="' . $title . '";');
         $post = $stmt->fetch();
         $title = $post['title'];
         $categorie = $post['categorie'];
@@ -170,7 +152,7 @@ class DataBase {
 //parcourir les posts
     public function readPostsList(): Array {
 
-        $stmt = $this->pdo->query('SELECT * FROM `post`');
+        $stmt = $this->pdo->query('SELECT * FROM post INNER JOIN user ON post.author = user.id');
         $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $postslist = [];
         foreach ($posts as $post) {
@@ -181,7 +163,7 @@ class DataBase {
             $localisation = $post['localisation'];
             $price = $post['price'];
             $typeannonce = $post['typeannonce'];
-            $author = $post['author'];
+            $author = $post['pseudo'];
             $id = $post['id'];
 
             $newpost = new Post($title, $description, $price, $author, $categorie, $localisation, $typeannonce);
@@ -200,16 +182,37 @@ class DataBase {
     }
 
 //parcourir les utilisateurs 
+
     public function readUsersList(): Array {
-        $dossier = './utilisateur/';
-        $files = scandir($dossier);
-        $listeUsers = [];
-        foreach ($files as $user) {
-            if (!is_dir($user)) {
-                $listeUsers[] = unserialize(file_get_contents($dossier . $user));
-            }
+
+        $stmt = $this->pdo->query('SELECT * FROM user');
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $userslist = [];
+        foreach ($users as $user) {
+            $pseudo = $user['pseudo'];
+            $mdp = $user['mdp'];
+            $genre = $user['genre'];
+            $age = $user['age'];
+            $nom = $user['nom'];
+            $prenom = $user['prenom'];
+            $mail = $user['mail'];
+            $telephone = $user['telephone'];
+            $CP = $user['cp'];
+            $ville = $user['ville'];
+
+            $newuser = new User($pseudo, $mdp, $genre, $age, $nom, $prenom, $mail, $telephone, $CP, $ville);
+            $userslist[] = $newuser;
         }
-        return $listeUsers;
+        return $newuser;
+        /*    $dossier = './utilisateur/';
+          $files = scandir($dossier);
+          $listeUsers = [];
+          foreach ($files as $user) {
+          if (!is_dir($user)) {
+          $listeUsers[] = unserialize(file_get_contents($dossier . $user));
+          }
+          }
+          return $listeUsers; */
     }
 
 //parcourir les commentaires 
@@ -228,13 +231,19 @@ class DataBase {
 ///////////////////////////// UPDATE /////////////////////////
 //
 //mofication d'un article
-    public function updatePost(Post $post, $previoustitle) {
+    public function updatePost($new, $old, $edit/*Post $post, $previoustitle*/) {
+        $edit = $this->pdo->prepare('UPDATE FROM user SET :edit = :new WHERE :modif = :old ');
+        $edit->execute(array(
+            'edit' => $edit,
+            'old' => $old,
+            'new' => $new
+        ));
 
-        unlink('posts/' . $previoustitle . '.txt');
-        $postdata = serialize($post);
-        $fichier = fopen('posts/' . $post->getDatetitre() . '.txt', 'w');
-        fwrite($fichier, $postdata);
-        fclose($fichier);
+        /* unlink('posts/' . $previoustitle . '.txt');
+          $postdata = serialize($post);
+          $fichier = fopen('posts/' . $post->getTitle() . '.txt', 'w');
+          fwrite($fichier, $postdata);
+          fclose($fichier); */
     }
 
 /////////////////////////////// DELETE ////////////////////////

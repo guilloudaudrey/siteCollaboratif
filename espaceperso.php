@@ -14,18 +14,17 @@
         include_once 'classes/Comment.php';
 
         $instance = new DataBase;
-        
+
 
         if (isset($_SESSION['nom'])) {
             $user = $_SESSION ['nom'];
-          
-                $contenu = $instance->readUser($user);
-                var_dump($contenu);
-                echo $contenu->asHtml();
-                echo '<form action="logout.php" method="POST"><button>Se déconnecter</button></form>';
-                echo '<a href="post_form.php">Créer une nouvelle annonce</a><br/>';
-                echo '<a href="index.php">Index</a>';
-            
+
+            $contenu = $instance->readUser($user);
+
+            echo $contenu->asHtml();
+            echo '<form action="logout.php" method="POST"><button>Se déconnecter</button></form>';
+            echo '<a href="post_form.php">Créer une nouvelle annonce</a><br/>';
+            echo '<a href="index.php">Index</a>';
         } else {
             include_once 'html/connexion-html.php';
         }
@@ -49,12 +48,12 @@
 
             <div class="boutons">
             <form method="POST" action="delete.php">
-            <input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '" class="text">
+            <input type="hidden" name="filename" value="' . $annonce->getTitle() . '" class="text">
             <input type="submit" value="supprimer">
             </form>
     
             <form method="POST" action="edit_form.php">
-            <input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '">
+            <input type="hidden" name="filename" value="' . $annonce->getTitle() . '">
                 <input type="submit" value="modifier">
             </form>
             </div>';
@@ -67,7 +66,7 @@
 
         foreach ($listecomm as $comm) {
             $authorcomm = $comm->getAuthor();
-            
+
 
             if ($authorcomm == $user) {
                 echo $comm->asHtml();
@@ -78,10 +77,10 @@
         <?php
         foreach ($listecomm as $comm) {
             $destinataire = $comm->getDestinataire();
-        if ($destinataire == $user) {
-            
-            echo $comm->asHtml();
-        }
+            if ($destinataire == $user) {
+
+                echo $comm->asHtml();
+            }
         }
         ?>
     </body>

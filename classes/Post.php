@@ -23,9 +23,7 @@ class Post {
         $this->typeannonce = $typeannonce;
     }
 
-    function getDatetitre() {
-        return $this->datetitre->format('dmyhis');
-    }
+   
 
     function getTitle() {
         return $this->title;
@@ -35,9 +33,6 @@ class Post {
         return $this->categorie;
     }
 
-    function getPhoto() {
-        return $this->photo;
-    }
 
     function getDate() {
         return $this->date;
