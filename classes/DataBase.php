@@ -1,6 +1,5 @@
 <?php
 
-
 class DataBase {
 
     private $pdo;
@@ -125,14 +124,42 @@ class DataBase {
 //unserialize user
     public function readUser($user) {
         $stmt = $this->pdo->query('SELECT * FROM user WHERE pseudo="' . $user . '";');
-        return $stmt->fetch();
+        $user = $stmt->fetch();
+
+        $pseudo = $user['pseudo'];
+        $mdp = $user['mdp'];
+        $genre = $user['genre'];
+        $age = $user['age'];
+        $nom = $user['nom'];
+        $prenom = $user['prenom'];
+        $mail = $user['mail'];
+        $telephone = $user['telephone'];
+        $CP = $user['cp'];
+        $ville = $user['ville'];
+
+        $newuser = new User($pseudo, $mdp, $genre, $age, $nom, $prenom, $mail, $telephone, $CP, $ville);
+        return $newusers;
         //return unserialize(file_get_contents('utilisateur/' . $user . '.txt'));
     }
 
 //unserialize annonce
     public function readPost($title): Post {
-        $post = unserialize(file_get_contents('posts/' . $title . '.txt'));
-        return $post;
+        $stmt = $this->pdo->query('SELECT * FROM post WHERE pseudo="' . $title . '";');
+        $post = $stmt->fetch();
+        $title = $post['title'];
+        $categorie = $post['categorie'];
+        $date = $post['date'];
+        $description = $post['description'];
+        $localisation = $post['localisation'];
+        $price = $post['price'];
+        $typeannonce = $post['typeannonce'];
+        $author = $post['author'];
+        $id = $post['id'];
+
+        $newpost = new Post($title, $description, $price, $author, $categorie, $localisation, $typeannonce);
+        return $newpost;
+        //$post = unserialize(file_get_contents('posts/' . $title . '.txt'));
+        //return $post;
     }
 
 //unserialize comment
@@ -159,9 +186,8 @@ class DataBase {
 
             $newpost = new Post($title, $description, $price, $author, $categorie, $localisation, $typeannonce);
             $postslist[] = $newpost;
-           
         }
-         return $postslist;
+        return $postslist;
         /* $dossier = './posts/';
           $files = scandir($dossier);
           $listeAnnonces = [];

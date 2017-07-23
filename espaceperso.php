@@ -7,23 +7,25 @@
     </head>
     <body>
         <?php
+        session_start();
         include_once 'classes/User.php';
         include_once 'classes/DataBase.php';
         include_once 'classes/Post.php';
         include_once 'classes/Comment.php';
 
         $instance = new DataBase;
-        session_start();
+        
 
         if (isset($_SESSION['nom'])) {
             $user = $_SESSION ['nom'];
-            if (is_file('utilisateur/' . $user . '.txt')) {
+          
                 $contenu = $instance->readUser($user);
+                var_dump($contenu);
                 echo $contenu->asHtml();
                 echo '<form action="logout.php" method="POST"><button>Se déconnecter</button></form>';
                 echo '<a href="post_form.php">Créer une nouvelle annonce</a><br/>';
                 echo '<a href="index.php">Index</a>';
-            }
+            
         } else {
             include_once 'html/connexion-html.php';
         }
