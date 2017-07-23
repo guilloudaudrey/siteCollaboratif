@@ -121,7 +121,6 @@ class DataBase {
 
         $newuser = new User($pseudo, $mdp, $genre, $age, $nom, $prenom, $mail, $telephone, $CP, $ville);
         return $newuser;
-        //return unserialize(file_get_contents('utilisateur/' . $user . '.txt'));
     }
 
 //unserialize annonce
@@ -140,8 +139,6 @@ class DataBase {
 
         $newpost = new Post($title, $description, $price, $author, $categorie, $localisation, $typeannonce);
         return $newpost;
-        //$post = unserialize(file_get_contents('posts/' . $title . '.txt'));
-        //return $post;
     }
 
 //unserialize comment
@@ -170,15 +167,6 @@ class DataBase {
             $postslist[] = $newpost;
         }
         return $postslist;
-        /* $dossier = './posts/';
-          $files = scandir($dossier);
-          $listeAnnonces = [];
-          foreach ($files as $content) {
-          if (!is_dir($content)) {
-          $listeAnnonces[] = unserialize(file_get_contents($dossier . $content));
-          }
-          }
-          return $listeAnnonces; */
     }
 
 //parcourir les utilisateurs 
@@ -204,15 +192,6 @@ class DataBase {
             $userslist[] = $newuser;
         }
         return $newuser;
-        /*    $dossier = './utilisateur/';
-          $files = scandir($dossier);
-          $listeUsers = [];
-          foreach ($files as $user) {
-          if (!is_dir($user)) {
-          $listeUsers[] = unserialize(file_get_contents($dossier . $user));
-          }
-          }
-          return $listeUsers; */
     }
 
 //parcourir les commentaires 
@@ -231,7 +210,7 @@ class DataBase {
 ///////////////////////////// UPDATE /////////////////////////
 //
 //mofication d'un article
-    public function updatePost($title, $typeannonce, $description, $localisation, $price, $categories, $previoustitle ) {
+    public function updatePost($title, $typeannonce, $description, $localisation, $price, $categories, $previoustitle) {
         $edit = $this->pdo->prepare('UPDATE post SET title = :title, '
                 . 'typeannonce = :typeannonce,'
                 . 'description = :description,'
@@ -244,23 +223,20 @@ class DataBase {
             'description' => $description,
             'localisation' => $localisation,
             'price' => $price,
-            'categorie' => $categories, 
+            'categorie' => $categories,
             'previoustitle' => $previoustitle
         ));
-
-        /* unlink('posts/' . $previoustitle . '.txt');
-          $postdata = serialize($post);
-          $fichier = fopen('posts/' . $post->getTitle() . '.txt', 'w');
-          fwrite($fichier, $postdata);
-          fclose($fichier); */
     }
 
 /////////////////////////////// DELETE ////////////////////////
 //
 //suppression d'une annonce
 
-    public function deletePost($post) {
-        unlink('posts/' . $post . '.txt');
+    public function deletePost($title) {
+        //unlink('posts/' . $post . '.txt');
+        $stmt = $this->pdo->prepare('DELETE FROM post WHERE title = :title');
+        $stmt->bindValue('title', $title);
+        $stmt->execute();
     }
 
 }
