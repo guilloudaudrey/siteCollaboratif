@@ -1,5 +1,6 @@
 <?php
 
+
 class DataBase {
 
     private $pdo;
@@ -141,15 +142,35 @@ class DataBase {
 
 //parcourir les posts
     public function readPostsList(): Array {
-        $dossier = './posts/';
-        $files = scandir($dossier);
-        $listeAnnonces = [];
-        foreach ($files as $content) {
-            if (!is_dir($content)) {
-                $listeAnnonces[] = unserialize(file_get_contents($dossier . $content));
-            }
+
+        $stmt = $this->pdo->query('SELECT * FROM `post`');
+        $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $postslist = [];
+        foreach ($posts as $post) {
+            $title = $post['title'];
+            $categorie = $post['categorie'];
+            $date = $post['date'];
+            $description = $post['description'];
+            $localisation = $post['localisation'];
+            $price = $post['price'];
+            $typeannonce = $post['typeannonce'];
+            $author = $post['author'];
+            $id = $post['id'];
+
+            $newpost = new Post($title, $description, $price, $author, $categorie, $localisation, $typeannonce);
+            $postslist[] = $newpost;
+           
         }
-        return $listeAnnonces;
+         return $postslist;
+        /* $dossier = './posts/';
+          $files = scandir($dossier);
+          $listeAnnonces = [];
+          foreach ($files as $content) {
+          if (!is_dir($content)) {
+          $listeAnnonces[] = unserialize(file_get_contents($dossier . $content));
+          }
+          }
+          return $listeAnnonces; */
     }
 
 //parcourir les utilisateurs 

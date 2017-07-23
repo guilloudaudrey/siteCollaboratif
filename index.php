@@ -81,10 +81,11 @@ session_start();
     include_once 'classes/DataBase.php';
     $instance = new DataBase();
     $listeAnnonces = $instance->readPostsList();
+
     ?>
 
     <?php
-    if (isset($_POST['search'])) {
+/*  if (isset($_POST['search'])) {
         $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         $inputcat = $post['categories'];
 
@@ -134,10 +135,11 @@ session_start();
                 <?php
             }
         }
-    } else {
+    } else {*/
 
-        foreach ($listeAnnonces as $annonce) {
-            $categorie = $annonce->getCategorie();
+        foreach ($listeAnnonces as $annonce) {       
+        //    $categorie = $annonce->getCategorie();
+
             ?>
             <div class="container">
                 <div class="row">
@@ -145,11 +147,13 @@ session_start();
                         <div class="col-sm-12 col-md-10 col-lg-8">
                             <div class="card " style="margin-top: 10px">
                                 <?php
+                                     
                                 echo $annonce->asHtml();
+                        
                                 echo '<div class="row"><form action="annonce.php" method="GET">'
                                 . '<input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">'
                                 . '<button class="like btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span></button>'
-                                . '<input type="hidden" name="filename" value="' . $annonce->getDatetitre() . '"></form></div>';
+                                . '<input type="hidden" name="filename" value="' . $annonce->getTitle() . '"></form></div>';
                                 ?>
                             </div>
                         </div>
@@ -159,7 +163,7 @@ session_start();
 
             <?php
         }
-    }
+   // }
     ?>
 
 

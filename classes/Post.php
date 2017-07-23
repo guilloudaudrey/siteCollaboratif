@@ -21,7 +21,6 @@ class Post {
         $this->categorie = $categorie;
         $this->localisation = $localisation;
         $this->typeannonce = $typeannonce;
-        $this->datetitre = new DateTime();
     }
 
     function getDatetitre() {
