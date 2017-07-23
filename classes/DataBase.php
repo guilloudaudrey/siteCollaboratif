@@ -68,7 +68,7 @@ class DataBase {
         fclose($file);
     }
 
-    //création d'un nouveau commentaire
+    //création d'un nouveau commentaire //
 
     public function createComment(Comment $comment) {
         if (!is_dir('comments')) {
