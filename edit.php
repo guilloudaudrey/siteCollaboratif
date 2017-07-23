@@ -6,7 +6,7 @@ session_start();
 include_once 'classes/DataBase.php';
 include_once 'classes/Post.php';
 include_once 'classes/User.php';
-$newpost = new DataBase();
+$db = new DataBase();
 
 if (isset($_POST['editpost'])) {
     $previoustitle = htmlspecialchars($_POST['previoustitle']);
@@ -14,14 +14,12 @@ if (isset($_POST['editpost'])) {
     if (isset($_SESSION['nom'])) {
         $user = $_SESSION['nom'];
 
-        //   if (is_file('utilisateur/' . $user . '.txt')) {
 
-        $author = $newpost->readUser($user);
+        $newpost = $db->readPost($previoustitle);
+        var_dump($newpost);
 
         $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-        $newpost->updatePost(new Post($post['title'], $post['photo'], $post['description'], $post['price'], $author), $previoustitle);
-
-
+        $db->updatePost($post['title'], $post['typeannonce'], $post['description'], $post['localisation'], $post['price'], $post['categories'], $previoustitle);
 
         header("location: espaceperso.php");
     }

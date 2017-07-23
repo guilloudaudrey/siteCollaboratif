@@ -231,12 +231,21 @@ class DataBase {
 ///////////////////////////// UPDATE /////////////////////////
 //
 //mofication d'un article
-    public function updatePost($new, $old, $edit/*Post $post, $previoustitle*/) {
-        $edit = $this->pdo->prepare('UPDATE FROM user SET :edit = :new WHERE :modif = :old ');
+    public function updatePost($title, $typeannonce, $description, $localisation, $price, $categories, $previoustitle ) {
+        $edit = $this->pdo->prepare('UPDATE post SET title = :title, '
+                . 'typeannonce = :typeannonce,'
+                . 'description = :description,'
+                . 'localisation = :localisation,'
+                . 'price = :price,'
+                . 'categorie = :categorie WHERE title = :previoustitle ');
         $edit->execute(array(
-            'edit' => $edit,
-            'old' => $old,
-            'new' => $new
+            'title' => $title,
+            'typeannonce' => $typeannonce,
+            'description' => $description,
+            'localisation' => $localisation,
+            'price' => $price,
+            'categorie' => $categories, 
+            'previoustitle' => $previoustitle
         ));
 
         /* unlink('posts/' . $previoustitle . '.txt');
