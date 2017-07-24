@@ -9,17 +9,17 @@ class Comment {
     private $destinataire;
     private $date;
     private $id;
-    
-                function __construct($texte, $note, User $author, Post $article, $destinataire) {
-        $this->author = $author->getPseudo();
-        $this->article = $article->getTitle();
+
+    function __construct($texte, $note, $author, $article, $destinataire, $id = NULL) {
+        $this->author = $author;
+        $this->article = $article;
         $this->texte = $texte;
         $this->note = $note;
         $this->destinataire = $destinataire;
         $this->date = new DateTime();
         $this->id = $id;
     }
-    
+
     function getId() {
         return $this->id;
     }
@@ -28,9 +28,8 @@ class Comment {
         $this->id = $id;
     }
 
-    
     function getDate() {
-        return $this->date->format('dmyhis');;
+        return $this->date;
     }
 
     function getAuthor() {
@@ -48,7 +47,6 @@ class Comment {
     function getNote() {
         return $this->note;
     }
-
 
     function getDestinataire() {
         return $this->destinataire;
@@ -69,7 +67,6 @@ class Comment {
     function setNote($note) {
         $this->note = $note;
     }
-
 
     function setDestinataire($destinataire) {
         $this->destinataire = $destinataire;

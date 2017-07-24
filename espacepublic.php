@@ -24,13 +24,11 @@
 
             $profil = htmlspecialchars($_GET['profilpub']);
 
-            if (is_file('utilisateur/' . $profil . '.txt')) {
                 $user = $newdb->readUser($profil);
                 ?>
                 <div class="container" style="margin-top: 100px">
                     <p>Membre inscrit depuis le : <?php echo $user->getDateinscription()->format('d/m/y') ?></p>
                     <?php
-                }
             }
 
             include_once 'html/header.php';

@@ -98,7 +98,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
                             if ($user !== $author) {
                                 ?>
-                         
+
                                 <div class="row"><div class="container"><form method="GET" action="create-comment.php">
 
                                             <label for="note">Note : </label>
@@ -141,19 +141,15 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
                                 <?php
                                 $commentlist = $newdb->readCommentsList();
-                                foreach ($commentlist as $comm) {
-                                    $destinataire = $comm->getDestinataire();
-                                    $article = $comm->getArticle();
 
-                                    if (($article == $title) && ($author == $destinataire)) {
-                                        ?>
-                                        <div class="container">
-                                            <?php
-                                            echo $comm->asHtml();
-                                            ?>
-                                        </div>
+                                foreach ($commentlist as $comm) {
+                                    ?>
+                                    <div class="container">
                                         <?php
-                                    }
+                                        echo $comm->asHtml();
+                                        ?>
+                                    </div>
+                                    <?php
                                 }
                             }
                             ?>
@@ -162,11 +158,11 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                 </div>
             </div>
         </div>
-        <?php
-        /* --------------------footer---------------------------------- */
+<?php
+/* --------------------footer---------------------------------- */
 
-        include_once 'html/footer.php';
-        ?>
+include_once 'html/footer.php';
+?>
 
 
 

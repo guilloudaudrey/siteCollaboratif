@@ -55,7 +55,7 @@ class DataBase {
 
 //création d'une nouvelle annonce
 
-    public function createPost(Post $post) {
+    public function createPost(Post $post): bool {
         $title = $post->getTitle();
         $categorie = $post->getCategorie();
         $date = $post->getDate()->format('d/m/y');
@@ -85,17 +85,17 @@ class DataBase {
 
 //création d'un nouveau commentaire
 
-    public function createComment(Comment $comment) {
+    public function createComment(Comment $comment): bool {
 
         $texte = $comment->getTexte();
         $note = $comment->getNote();
         $date = $comment->getDate()->format('d/m/y');
         $author = $comment->getAuthor();
-        $article = $post->getArticle();
+        $article = $comment->getArticle();
 
-        $stmt = $this->pdo->prepare('INSERT INTO post(texte, note, date, author, article) VALUES(:texte, :note, :date, :author, :article)');
+        $stmt = $this->pdo->prepare('INSERT INTO comment(texte, note, date, author, article) VALUES(:texte, :note, :date, :author, :article);');
         $stmt->bindValue('texte', $texte);
-        $stmt->bindValue('note', $categorie);
+        $stmt->bindValue('note', $note);
         $stmt->bindValue('date', $date);
         $stmt->bindValue('author', $author);
         $stmt->bindValue('article', $article);
@@ -126,7 +126,7 @@ class DataBase {
 ////////////////////////// READ ///////////////////////////////
 //
 //unserialize user
-    public function readUser($user) : User {
+    public function readUser($user): User {
         $stmt = $this->pdo->query('SELECT * FROM user WHERE pseudo="' . $user . '";');
         $user = $stmt->fetch();
 
@@ -166,9 +166,21 @@ class DataBase {
 
 //unserialize comment
     public function readComment($comment): Comment {
-        return unserialize(file_get_contents('comments/' . $comment . '.txt'));
+        $stmt = $this->pdo->query('SELECT * FROM comment INNER JOIN user ON comment.author = user.id INNER JOIN post ON comment.article = user.id WHERE id="' . $id . '";');
+        $post = $stmt->fetch();
+
+        $texte = $post['texte'];
+        $note = $post['note'];
+        $date = $post['date'];
+        $author = $post['pseudo'];
+        $article = $post['article'];
+
+
+        $newpost = new Post($texte, $note, $date, $author, $article);
+        return $newpost;
     }
 
+    //    return unserialize(file_get_contents('comments/' . $comment . '.txt'));
 //parcourir les posts
     public function readPostsList(): Array {
 
@@ -214,20 +226,38 @@ class DataBase {
             $newuser = new User($pseudo, $mdp, $genre, $age, $nom, $prenom, $mail, $telephone, $CP, $ville);
             $userslist[] = $newuser;
         }
-        return $newuser;
+        return $userslist;
     }
 
 //parcourir les commentaires 
     public function readCommentsList(): Array {
-        $dossier = './comments/';
-        $files = scandir($dossier);
-        $listeComments = [];
-        foreach ($files as $comment) {
-            if (!is_dir($comment)) {
-                $listeComments[] = unserialize(file_get_contents($dossier . $comment));
-            }
+        
+        
+        $stmt = $this->pdo->query('SELECT * FROM comment');
+        $comms = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $commslist = [];
+        foreach ($comms as $comm) {
+            $texte = $comm['texte'];
+            $note = $comm['note'];
+            $date = $comm['date'];
+            $author = $comm['author'];
+            $article = $comm['article'];
+            $id = $comm['id'];
+ 
+            $newcomm = new Comment($texte, $note, $date, $author, $article, $id);
+            $commslist[] = $newcomm;
         }
-        return $listeComments;
+        return $commslist;
+        
+        //$dossier = './comments/';
+        //$files = scandir($dossier);
+        //$listeComments = [];
+        //foreach ($files as $comment) {
+          //  if (!is_dir($comment)) {
+            //    $listeComments[] = unserialize(file_get_contents($dossier . $comment));
+            //}
+        //}
+        //return $listeComments;
     }
 
 ///////////////////////////// UPDATE /////////////////////////
