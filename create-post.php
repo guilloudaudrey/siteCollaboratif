@@ -15,7 +15,7 @@ if (isset($_POST['newpost'])) {
 
         
             $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-            $db->createPost(new Post($post['title'], $post['description'], $post['price'], $contenu, $post['categories'], $post['localisation'], $post['type']));
+            $db->createPost(new Post($post['title'], $post['description'], $post['price'], $contenu->getId(), $post['categories'], $post['localisation'], $post['type']));
            header("location:index.php");
         }
     //}
