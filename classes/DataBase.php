@@ -6,7 +6,7 @@ class DataBase {
 
     function __construct() {
         try {
-            $this->pdo = new PDO('mysql:host=localhost;dbname=site_services', 'admin1', 'simplon');
+            $this->pdo = new PDO('mysql:host=localhost;dbname=site_services', '.', '.');
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (Exception $e) {
             echo 'fail to connect DB: ' . $e->getMessage();
@@ -76,14 +76,29 @@ class DataBase {
     //création d'un nouveau commentaire
 
     public function createComment(Comment $comment) {
-        if (!is_dir('comments')) {
-            mkdir('comments');
-        }
 
-        $commentdata = serialize($comment);
-        $file = fopen('comments/' . $comment->getDate() . '.txt', 'w');
-        fwrite($file, $commentdata);
-        fclose($file);
+        $texte = $comment->getTexte();
+        $note = $comment->getNote();
+        $date = $comment->getDate()->format('d/m/y');
+        $author = $comment->getAuthor();
+        $article = $post->getArticle();
+
+        $stmt = $this->pdo->prepare('INSERT INTO post(texte, note, date, author, article) VALUES(:texte, :note, :date, :author, :article)');
+        $stmt->bindValue('texte', $texte);
+        $stmt->bindValue('note', $categorie);
+        $stmt->bindValue('date', $date);
+        $stmt->bindValue('author', $author);
+        $stmt->bindValue('article', $article);
+
+        $stmt->execute();
+        /*  if (!is_dir('comments')) {
+          mkdir('comments');
+          }
+
+          $commentdata = serialize($comment);
+          $file = fopen('comments/' . $comment->getDate() . '.txt', 'w');
+          fwrite($file, $commentdata);
+          fclose($file); */
     }
 
     //////////////////////// LOGIN /////////////////////////////
@@ -125,7 +140,7 @@ class DataBase {
 
 //unserialize annonce
     public function readPost($title): Post {
-        $stmt = $this->pdo->query('SELECT * FROM post WHERE title="' . $title . '";');
+        $stmt = $this->pdo->query('SELECT * FROM post INNER JOIN user ON post.author = user.id WHERE title="' . $title . '";');
         $post = $stmt->fetch();
         $title = $post['title'];
         $categorie = $post['categorie'];

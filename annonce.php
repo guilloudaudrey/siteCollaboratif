@@ -40,6 +40,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         if (isset($_GET['filename'])) {
             $file = htmlspecialchars($_GET['filename']);
             $post = $newdb->readPost($file);
+            //$author = $post['author'];
             $author = $post->getAuthor();
             $title = $post->getTitle();
             //$date = $post->getDatetitre();
@@ -52,6 +53,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                         <div class="container">
 
                             <?php
+               
                             echo $post->asHtml();
                             ?>
 
@@ -110,7 +112,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                                     <div class="row"><div class="container"><textarea cols="50" rows="8" name="comm"></textarea></div></div>
                                     <div class="row"><div class="container"><button name="annonce" class="btn btn-danger">Ajouter un avis</button><br/>
                                             <input type="hidden" name="url" value="<?php echo $url; ?>"/>
-                                            <input type="hidden" name="filename" value="<?php $date ?>">
+                                            <input type="hidden" name="filename" value="<?php $title ?>">
                                             </form></div></div>
                                     <?php
                                 }
