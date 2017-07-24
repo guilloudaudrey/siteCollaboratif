@@ -73,14 +73,17 @@ session_start();
             </div>
         </div>
     </div>
+    
+    
 
     <!-------------------------------------affichage des annonces----------------------------------->
 
     <?php
     include_once 'classes/Post.php';
     include_once 'classes/DataBase.php';
-    $instance = new DataBase();
-    $listeAnnonces = $instance->readPostsList();
+    $db = new DataBase();
+    $listeAnnonces = $db->readPostsList();
+    //var_dump($listeAnnonces);
 
     ?>
 

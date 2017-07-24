@@ -13,8 +13,9 @@ class User {
     private $ville;
     private $mail;
     private $telephone;
+    private $id;
 
-    function __construct($pseudo, $mdp, $genre, $age, $nom, $prenom, $mail, $telephone, $CP, $ville) {
+    function __construct($pseudo, $mdp, $genre, $age, $nom, $prenom, $mail, $telephone, $CP, $ville, int $id = NULL) {
         $this->pseudo = $pseudo;
         $this->mdp = $mdp;
         $this->genre = $genre;
@@ -26,6 +27,15 @@ class User {
         $this->telephone = $telephone;
         $this->CP = $CP;
         $this->ville = $ville;
+        $this->id = $id;
+    }
+
+    function getId() {
+        return $this->id;
+    }
+
+    function setId($id) {
+        $this->id = $id;
     }
 
     function getPseudo() {

@@ -8,15 +8,15 @@ if (isset($_POST['newpost'])) {
     session_start();
     if (isset($_SESSION['nom'])) {
         $user = $_SESSION['nom'];
-        $instance = new DataBase();
+        $db = new DataBase();
 
         //if (is_file('utilisateur/' . $user . '.txt')) {
-        var_dump($contenu = $instance->readUser($user));
+        $contenu = $db->readUser($user);
+
         
             $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-            $newpost = new Post($post['title'], $post['description'], $post['price'], $contenu['id'], $post['categories'], $post['localisation'], $post['type']);
-            $instance->createPost($newpost);
-            header("location:index.php");
+            $db->createPost(new Post($post['title'], $post['description'], $post['price'], $contenu, $post['categories'], $post['localisation'], $post['type']));
+           header("location:index.php");
         }
     //}
 } else {

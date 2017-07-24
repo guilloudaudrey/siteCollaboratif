@@ -53,8 +53,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                         <div class="container">
 
                             <?php
-               
-                            echo $post->asHtml();
+                            echo $post->asHtmlAnnonce();
                             ?>
 
 
@@ -96,8 +95,10 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                         if (isset($_SESSION['nom'])) {
                             $user = $_SESSION['nom'];
 
+
                             if ($user !== $author) {
                                 ?>
+                         
                                 <div class="row"><div class="container"><form method="GET" action="create-comment.php">
 
                                             <label for="note">Note : </label>
@@ -112,7 +113,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                                     <div class="row"><div class="container"><textarea cols="50" rows="8" name="comm"></textarea></div></div>
                                     <div class="row"><div class="container"><button name="annonce" class="btn btn-danger">Ajouter un avis</button><br/>
                                             <input type="hidden" name="url" value="<?php echo $url; ?>"/>
-                                            <input type="hidden" name="filename" value="<?php $title ?>">
+                                            <input type="hidden" name="filename" value="<?php echo $title ?>">
                                             </form></div></div>
                                     <?php
                                 }

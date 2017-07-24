@@ -6,7 +6,7 @@ class DataBase {
 
     function __construct() {
         try {
-            $this->pdo = new PDO('mysql:host=localhost;dbname=site_services', '.', '.');
+            $this->pdo = new PDO('mysql:host=localhost;dbname=site_services', 'admin1', 'simplon');
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (Exception $e) {
             echo 'fail to connect DB: ' . $e->getMessage();
@@ -18,7 +18,7 @@ class DataBase {
 //
 //création d'un nouvel utilisateur
 
-    public function createUser(User $user) {
+    public function createUser(User $user): bool {
         $mdp = $user->getMdp();
         $genre = $user->getGenre();
         $age = $user->getAge();
@@ -45,7 +45,12 @@ class DataBase {
         $stmt->bindValue('telephone', $telephone);
         $stmt->bindValue('pseudo', $pseudo);
 
-        $stmt->execute();
+        if ($stmt->execute()) {
+
+            $user->setId(intval($this->pdo->lastInsertId()));
+            return TRUE;
+        }
+        return FALSE;
     }
 
 //création d'une nouvelle annonce
@@ -70,10 +75,15 @@ class DataBase {
         $stmt->bindValue('author', $author);
         $stmt->bindValue('typeannonce', $typeannonce);
 
-        $stmt->execute();
+        if ($stmt->execute()) {
+
+            $post->setId(intval($this->pdo->lastInsertId()));
+            return TRUE;
+        }
+        return FALSE;
     }
 
-    //création d'un nouveau commentaire
+//création d'un nouveau commentaire
 
     public function createComment(Comment $comment) {
 
@@ -90,23 +100,20 @@ class DataBase {
         $stmt->bindValue('author', $author);
         $stmt->bindValue('article', $article);
 
-        $stmt->execute();
-        /*  if (!is_dir('comments')) {
-          mkdir('comments');
-          }
+        if ($stmt->execute()) {
 
-          $commentdata = serialize($comment);
-          $file = fopen('comments/' . $comment->getDate() . '.txt', 'w');
-          fwrite($file, $commentdata);
-          fclose($file); */
+            $comment->setId(intval($this->pdo->lastInsertId()));
+            return TRUE;
+        }
+        return FALSE;
     }
 
-    //////////////////////// LOGIN /////////////////////////////
+//////////////////////// LOGIN /////////////////////////////
 
     function login($user, $mdp) {
         $login = $this->pdo->query("SELECT COUNT(*) FROM user WHERE pseudo = '" . $user . "';");
         if ($login->fetchColumn() == 0) {
-            //Pseudo inexistant
+//Pseudo inexistant
         } else {
             $login_process = $this->pdo->query("SELECT mdp FROM user WHERE pseudo ='" . $user . "' LIMIT 1;");
             $login_data = $login_process->fetch();
@@ -119,7 +126,7 @@ class DataBase {
 ////////////////////////// READ ///////////////////////////////
 //
 //unserialize user
-    public function readUser($user) {
+    public function readUser($user) : User {
         $stmt = $this->pdo->query('SELECT * FROM user WHERE pseudo="' . $user . '";');
         $user = $stmt->fetch();
 
@@ -133,8 +140,9 @@ class DataBase {
         $telephone = $user['telephone'];
         $CP = $user['cp'];
         $ville = $user['ville'];
+        $id = $user['id'];
 
-        $newuser = new User($pseudo, $mdp, $genre, $age, $nom, $prenom, $mail, $telephone, $CP, $ville);
+        $newuser = new User($pseudo, $mdp, $genre, $age, $nom, $prenom, $mail, $telephone, $CP, $ville, $id);
         return $newuser;
     }
 
@@ -175,10 +183,10 @@ class DataBase {
             $localisation = $post['localisation'];
             $price = $post['price'];
             $typeannonce = $post['typeannonce'];
-            $author = $post['pseudo'];
+            $author = $post['id'];
             $id = $post['id'];
 
-            $newpost = new Post($title, $description, $price, $author, $categorie, $localisation, $typeannonce);
+            $newpost = new Post($title, $description, $price, $author, $categorie, $localisation, $typeannonce, $id);
             $postslist[] = $newpost;
         }
         return $postslist;
@@ -248,7 +256,7 @@ class DataBase {
 //suppression d'une annonce
 
     public function deletePost($title) {
-        //unlink('posts/' . $post . '.txt');
+//unlink('posts/' . $post . '.txt');
         $stmt = $this->pdo->prepare('DELETE FROM post WHERE title = :title');
         $stmt->bindValue('title', $title);
         $stmt->execute();

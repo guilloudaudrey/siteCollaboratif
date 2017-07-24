@@ -14,17 +14,16 @@ if (isset($_GET['annonce'])) {
     if (isset($_SESSION['nom'])) {
         $user = $_SESSION['nom'];
 
-        if (is_file('posts/' . $title . '.txt')) {
-            $postdata = $instance->readPost($title);
-            $destinataire = $postdata->getAuthor();
-        }
-
-        if (is_file('utilisateur/' . $user . '.txt')) {
-            $userdata = $instance->readUser($user);
-            $post = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
-            $instance->createComment(new Comment($post['comm'], $post['note'], $userdata, $postdata, $destinataire));
-            header("location: $url");
-        }
+        $postdata = $instance->readPost($title);
+        $destinataire = $postdata->getAuthor();
+        $userdata = $instance->readUser($user);
+        $post = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+        var_dump($userdata->getId());
+        $julien = new Comment($post['comm'], $post['note'], $userdata, $postdata, $destinataire);
+        var_dump($julien);
+        $instance->createComment($julien);
+        //header("location:$url");
+    
     }
 } else {
     echo 'pas d\'article';

@@ -10,9 +10,10 @@ class Post {
     protected $price;
     protected $author;
     protected $typeannonce;
-    protected $datetitre;
+    protected $id;
+            
 
-    function __construct($title, $description, $price, $author, $categorie, $localisation, $typeannonce) {
+    function __construct($title, $description, $price, $author, $categorie, $localisation, $typeannonce, $id=NULL) {
         $this->title = $title;
         $this->date = new DateTime();
         $this->description = $description;
@@ -21,10 +22,18 @@ class Post {
         $this->categorie = $categorie;
         $this->localisation = $localisation;
         $this->typeannonce = $typeannonce;
+        $this->id = $id;
     }
 
-   
+    function getId() {
+        return $this->id;
+    }
 
+    function setId($id) {
+        $this->id = $id;
+    }
+
+    
     function getTitle() {
         return $this->title;
     }
