@@ -157,7 +157,7 @@ class DataBase {
         $localisation = $post['localisation'];
         $price = $post['price'];
         $typeannonce = $post['typeannonce'];
-        $author = $post['author'];
+        $author = $post['pseudo'];
         $id = $post['id'];
 
         $newpost = new Post($title, $description, $price, $author, $categorie, $localisation, $typeannonce);
