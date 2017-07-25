@@ -15,11 +15,18 @@ if (isset($_GET['annonce'])) {
         $user = $_SESSION['nom'];
 
         $postdata = $instance->readPost($title);
-        $destinataire = $postdata->getAuthor();
         $userdata = $instance->readUser($user);
+        
+        echo $userdata->getId();
+        echo $postdata->getId();
+      
+        
+        
         $post = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
-        $comm = new Comment($post['comm'], $post['note'], $userdata->getId(), $postdata->getId(), $destinataire);
-        $instance->createComment($comm);
+          echo $post['comm'];
+          echo $post['note'];
+        $instance->createComment(new Comment($post['comm'], $post['note'], $userdata->getId(), $postdata->getId()));
+        
         header("location:$url");
     
     }

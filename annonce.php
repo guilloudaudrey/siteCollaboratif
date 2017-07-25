@@ -40,7 +40,6 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         if (isset($_GET['filename'])) {
             $file = htmlspecialchars($_GET['filename']);
             $post = $newdb->readPost($file);
-            //$author = $post['author'];
             $author = $post->getAuthor();
             $title = $post->getTitle();
             //$date = $post->getDatetitre();
@@ -143,14 +142,16 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                                 $commentlist = $newdb->readCommentsList();
 
                                 foreach ($commentlist as $comm) {
-                                    ?>
-                                    <div class="container">
-                                        <?php
-                                
-                                        echo $comm->asHtml();
+
+                                    if ($title == $comm->getArticle()) {
                                         ?>
-                                    </div>
-                                    <?php
+                                        <div class="container">
+                                            <?php
+                                            echo $comm->asHtml();
+                                            ?>
+                                        </div>
+                                        <?php
+                                    }
                                 }
                             }
                             ?>

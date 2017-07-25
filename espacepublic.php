@@ -52,11 +52,11 @@
             <?php
             $listecomm = $newdb->readCommentsList();
             foreach ($listecomm as $comm) {
-                $destinataire = $comm->getDestinataire();
-                if ($pseudo == $destinataire) {
-                    echo $comm->asHtml();
+               // $destinataire = $comm->getDestinataire();
+                //if ($pseudo == $destinataire) {
+                    echo '<div>'. $comm->asHtml() . '</div>';
                 }
-            }
+          //  }
             ?>
         </div>
 

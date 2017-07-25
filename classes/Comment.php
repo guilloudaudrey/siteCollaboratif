@@ -6,17 +6,15 @@ class Comment {
     private $article;
     private $texte;
     private $note;
-    private $destinataire;
     private $date;
     private $id;
 
-    function __construct($texte, $note, $author, $article, $destinataire, $id = NULL) {
+    function __construct($texte, $note, $author, $article, $id = NULL) {
         $this->author = $author;
         $this->article = $article;
         $this->texte = $texte;
         $this->note = $note;
-        $this->destinataire = $destinataire;
-        $this->date = new DateTime();
+        $this->date = date("Y-m-d à H:i");
         $this->id = $id;
     }
 
@@ -48,9 +46,7 @@ class Comment {
         return $this->note;
     }
 
-    function getDestinataire() {
-        return $this->destinataire;
-    }
+
 
     function setAuthor($author) {
         $this->author = $author;
@@ -68,16 +64,14 @@ class Comment {
         $this->note = $note;
     }
 
-    function setDestinataire($destinataire) {
-        $this->destinataire = $destinataire;
-    }
 
     public function asHtml() {
         return '<div style="background-color :grey"><p>' .
                 $this->getTexte() . '</p><p note : ' .
                 $this->getNote() . '</p><p>auteur : ' .
-                $this->getAuthor() . '</p><p>destinataire : ' .
-                $this->getDestinataire() . '</p></div>';
+               $this->getAuthor() . '</p><p>date :'.
+                $this->getDate().'</p></div>';
+                //$this->getDestinataire() . '</p></div>';
     }
 
 }

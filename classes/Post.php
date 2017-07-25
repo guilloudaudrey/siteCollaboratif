@@ -15,7 +15,7 @@ class Post {
 
     function __construct($title, $description, $price, $author, $categorie, $localisation, $typeannonce, $id=NULL) {
         $this->title = $title;
-        $this->date = new DateTime();
+        $this->date = date("Y-m-d à H:i");
         $this->description = $description;
         $this->price = $price;
         $this->author = $author;
@@ -107,7 +107,7 @@ class Post {
                 . '<h3>' . $this->getTitle() . '</h3>'
                 . '<p>' . $this->getDescription() . '</p>'
                 . '<p>' . $this->getPrice() . ' €</p>'
-                . '<p>Posté le ' . $this->getDate()->format('d/m/y à H:i') . ' par ' . $this->getAuthor() . '</p>'
+                . '<p>Posté le ' . $this->getDate(). ' par ' . $this->getAuthor() . '</p>'
         ;
     }
 
@@ -118,7 +118,7 @@ class Post {
                 . '<span class="badge" style="margin-right : 5px">' . $this->getTypeannonce() . '</span><span class="badge badge-info" style="margin-right : 5px">' . $this->getCategorie() . '</span><span class="badge badge-info">' . $this->getLocalisation() . '</span>'
                 . '<p>' . $this->getDescription() . '</p>'
                 . '<p>' . $this->getPrice() . ' €</p>'
-                . '<p>Posté le ' . $this->getDate()->format('d/m/y à H:i') . ' par ' . $this->getAuthor() . '</p></div>'
+                . '<p>Posté le ' . $this->getDate() . ' par ' . $this->getAuthor() . '</p></div>'
         ;
     }
 

@@ -20,7 +20,7 @@ class User {
         $this->mdp = $mdp;
         $this->genre = $genre;
         $this->age = $age;
-        $this->dateinscription = new DateTime();
+        $this->dateinscription = date("Y-m-d à H:i");;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->mail = $mail;
@@ -132,7 +132,7 @@ class User {
 
     public function asHtml() {
         return '<pre>' . $this->getPseudo() . '</pre><pre><img src="images/profil.png" width= 120px></pre><pre>' .
-                $this->getDateinscription()->format('d/m/y') . '</pre><pre>Sexe : ' .
+                $this->getDateinscription() . '</pre><pre>Sexe : ' .
                 $this->getGenre() . '</pre><pre>Age : ' .
                 $this->getAge() . '</pre><pre>Prénom : ' .
                 $this->prenom . '</pre><pre>Nom : ' .
