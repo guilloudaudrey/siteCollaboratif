@@ -27,7 +27,7 @@
                 $user = $newdb->readUser($profil);
                 ?>
                 <div class="container" style="margin-top: 100px">
-                    <p>Membre inscrit depuis le : <?php echo $user->getDateinscription()->format('d/m/y') ?></p>
+                    <p>Membre inscrit depuis le : <?php echo $user->getDateinscription() ?></p>
                     <?php
             }
 

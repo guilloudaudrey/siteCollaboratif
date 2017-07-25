@@ -8,8 +8,8 @@ class Comment {
     private $note;
     private $date;
     private $id;
-
-    function __construct($texte, $note, $author, $article, $id = NULL) {
+    private $destinataire;
+                function __construct($texte, $note, $author, $article, $id = NULL) {
         $this->author = $author;
         $this->article = $article;
         $this->texte = $texte;
@@ -18,7 +18,15 @@ class Comment {
         $this->id = $id;
     }
 
-    function getId() {
+    function getDestinataire() {
+        return $this->destinataire;
+    }
+
+    function setDestinataire($destinataire) {
+        $this->destinataire = $destinataire;
+    }
+
+        function getId() {
         return $this->id;
     }
 

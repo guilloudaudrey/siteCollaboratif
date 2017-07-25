@@ -63,19 +63,25 @@
         <h2>Evaluations émises</h2>
         <?php
         $listecomm = $instance->readCommentsList();
+        $listepost = $instance->readPostsList();
 
         foreach ($listecomm as $comm) {
+            if ($user == $comm->getAuthor()) {
 
-            echo $comm->asHtml();
+                echo $comm->asHtml();
+            }
         }
         ?>
         <h2>Evaluations reçues</h2>
         <?php
-        foreach ($listecomm as $comm) {
-
-
-            echo $comm->asHtml();
-        }
+            foreach ($listepost as $post) {
+           
+                if ($user == $post->getAuthor()) {
+             
+                    echo $comm->asHtml();
+                }
+            }
+        
         ?>
     </body>
 </html>
