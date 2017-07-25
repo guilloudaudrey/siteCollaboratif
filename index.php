@@ -30,7 +30,7 @@ session_start();
         <div class="intro-header ">
             <div class="container">
                 <div class="row">
-                    <h3  class="pull-left col-lg-5 col-lg-offset-5" style="margin-top: 50px; margin-bottom: -20px">800 000 personnes se rendent service !</h3></div>
+                    <h3  class="pull-left col-lg-5 col-lg-offset-5" style="margin-top: 50px; margin-bottom: -20px">Besoin d'un service ?</h3></div>
                 <div class="col-lg-5 col-lg-offset-5 col-md-7 col-md-offset-3 col-xs-10 col-xs-offset-1 rechercheinputs" >
                     <div class="row">
                         <form class="recherche col-md-10 col-lg-offset-1" style ="margin-top: 40px" method="POST" action="index.php">

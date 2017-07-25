@@ -65,22 +65,16 @@
         $listecomm = $instance->readCommentsList();
 
         foreach ($listecomm as $comm) {
-            $authorcomm = $comm->getAuthor();
 
-
-            if ($authorcomm == $user) {
-                echo $comm->asHtml();
-            }
+            echo $comm->asHtml();
         }
         ?>
         <h2>Evaluations reçues</h2>
         <?php
         foreach ($listecomm as $comm) {
-            $destinataire = $comm->getDestinataire();
-            if ($destinataire == $user) {
 
-                echo $comm->asHtml();
-            }
+
+            echo $comm->asHtml();
         }
         ?>
     </body>

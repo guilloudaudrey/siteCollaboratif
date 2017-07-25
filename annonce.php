@@ -146,6 +146,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                                     ?>
                                     <div class="container">
                                         <?php
+                                
                                         echo $comm->asHtml();
                                         ?>
                                     </div>
@@ -158,11 +159,11 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                 </div>
             </div>
         </div>
-<?php
-/* --------------------footer---------------------------------- */
+        <?php
+        /* --------------------footer---------------------------------- */
 
-include_once 'html/footer.php';
-?>
+        include_once 'html/footer.php';
+        ?>
 
 
 

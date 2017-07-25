@@ -233,7 +233,7 @@ class DataBase {
     public function readCommentsList(): Array {
         
         
-        $stmt = $this->pdo->query('SELECT * FROM comment');
+        $stmt = $this->pdo->query('SELECT * FROM comment INNER JOIN user ON comment.author = user.id');
         $comms = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $commslist = [];
         foreach ($comms as $comm) {
@@ -249,15 +249,6 @@ class DataBase {
         }
         return $commslist;
         
-        //$dossier = './comments/';
-        //$files = scandir($dossier);
-        //$listeComments = [];
-        //foreach ($files as $comment) {
-          //  if (!is_dir($comment)) {
-            //    $listeComments[] = unserialize(file_get_contents($dossier . $comment));
-            //}
-        //}
-        //return $listeComments;
     }
 
 ///////////////////////////// UPDATE /////////////////////////

@@ -18,11 +18,9 @@ if (isset($_GET['annonce'])) {
         $destinataire = $postdata->getAuthor();
         $userdata = $instance->readUser($user);
         $post = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
-        var_dump($userdata->getId());
-        $julien = new Comment($post['comm'], $post['note'], $userdata->getId(), $postdata->getId(), $destinataire);
-        var_dump($julien);
-        $instance->createComment($julien);
-        //header("location:$url");
+        $comm = new Comment($post['comm'], $post['note'], $userdata->getId(), $postdata->getId(), $destinataire);
+        $instance->createComment($comm);
+        header("location:$url");
     
     }
 } else {
