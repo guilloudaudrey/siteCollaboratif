@@ -74,9 +74,11 @@
         ?>
         <h2>Evaluations reçues</h2>
         <?php
-            foreach ($listepost as $post) {
+     
+            foreach ($listecomm as $comm) {
            
-                if ($user == $post->getAuthor()) {
+                if ($user == $author) {
+                 
              
                     echo $comm->asHtml();
                 }

@@ -168,7 +168,7 @@ class DataBase {
 
 //unserialize comment
     public function readComment($comment): Comment {
-        $stmt = $this->pdo->query('SELECT * FROM comment INNER JOIN user ON comment.author = user.id INNER JOIN post ON comment.article = post.id  WHERE id="' . $id . '";');
+        $stmt = $this->pdo->query('SELECT * FROM comment INNER JOIN user ON comment.author = user.id INNER JOIN post ON comment.article = post.id  WHERE id="' . $comment . '";');
         $post = $stmt->fetch();
 
         $texte = $post['texte'];
@@ -176,11 +176,10 @@ class DataBase {
         $date = $post['date'];
         $author = $post['pseudo'];
         $article = $post['article'];
-        $destinataire = $post['destinataire'];
         $id = $post['id'];
 
 
-        $newcomm = new Post($texte, $note, $date, $author, $article, $destinataire, $id);
+        $newcomm = new Post($texte, $note, $date, $author, $article, $id);
         return $newcomm;
     }
 

@@ -14,7 +14,16 @@ session_start();
         <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
         <script src="js/modernizr.custom.js"></script>
-        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
+        <script>
+            $(function () {
+                $('body').chocolate({
+                    images: ['images/cover2.jpg', 'images/cover3.jpg', 'images/cover4.jpg', 'images/cover5.jpg', 'images/cover6.jpg', 'images/cover7.jpg', 'images/cover8.jpg'],
+                    interval: 4000,
+                    speed: 2000,
+                });
+            });
+        </script>
         <title>Index</title>
     </head>
     <body>
@@ -73,8 +82,8 @@ session_start();
             </div>
         </div>
     </div>
-    
-    
+
+
 
     <!-------------------------------------affichage des annonces----------------------------------->
 
@@ -84,89 +93,86 @@ session_start();
     $db = new DataBase();
     $listeAnnonces = $db->readPostsList();
     //var_dump($listeAnnonces);
-
     ?>
 
     <?php
-/*  if (isset($_POST['search'])) {
-        $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-        $inputcat = $post['categories'];
+    /*  if (isset($_POST['search'])) {
+      $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+      $inputcat = $post['categories'];
 
-        foreach ($listeAnnonces as $annonce) {
-            $categorie = $annonce->getCategorie();
+      foreach ($listeAnnonces as $annonce) {
+      $categorie = $annonce->getCategorie();
 
-            if ($categorie == $inputcat) {
-                ?>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-10 col-lg-8">
-                            <div class="card" >
-                                <?php
-                                echo $annonce->asHtml();
-                                ?>
-                                <form action="annonce.php" method="GET">
-                                    <input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">
-                                    <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
-                                    <input type="hidden" name="filename" value="<?php $annonce->getDatetitre() ?>">
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      if ($categorie == $inputcat) {
+      ?>
+      <div class="container">
+      <div class="row">
+      <div class="col-sm-12 col-md-10 col-lg-8">
+      <div class="card" >
+      <?php
+      echo $annonce->asHtml();
+      ?>
+      <form action="annonce.php" method="GET">
+      <input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">
+      <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+      <input type="hidden" name="filename" value="<?php $annonce->getDatetitre() ?>">
+      </form>
+      </div>
+      </div>
+      </div>
+      </div>
 
-                <?php
-            } else if ($inputcat == "toutescategories") {
-                ?>
-                <div class="container">
-                    <div class="row">
-                        <div class="well-lg">
-                            <div class="col-sm-12 col-md-10 col-lg-8">
-                                <div class="card" style="margin-top: 21px">
-                                    <?php
-                                    echo $annonce->asHtml();
-                                    ?>
-                                    <form action="annonce.php" method="GET">
-                                        <input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">
-                                        <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
-                                        <input type="hidden" name="filename" value="<?php $annonce->getDatetitre() ?>"></form>
+      <?php
+      } else if ($inputcat == "toutescategories") {
+      ?>
+      <div class="container">
+      <div class="row">
+      <div class="well-lg">
+      <div class="col-sm-12 col-md-10 col-lg-8">
+      <div class="card" style="margin-top: 21px">
+      <?php
+      echo $annonce->asHtml();
+      ?>
+      <form action="annonce.php" method="GET">
+      <input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">
+      <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+      <input type="hidden" name="filename" value="<?php $annonce->getDatetitre() ?>"></form>
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-                <?php
-            }
-        }
-    } else {*/
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      <?php
+      }
+      }
+      } else { */
 
-        foreach ($listeAnnonces as $annonce) {       
+    foreach ($listeAnnonces as $annonce) {
         //    $categorie = $annonce->getCategorie();
+        ?>
+        <div class="container">
+            <div class="row">
+                <div class="well-lg">
+                    <div class="col-sm-12 col-md-10 col-lg-8">
+                        <div class="card " style="margin-top: 10px">
+                            <?php
+                            echo $annonce->asHtml();
 
-            ?>
-            <div class="container">
-                <div class="row">
-                    <div class="well-lg">
-                        <div class="col-sm-12 col-md-10 col-lg-8">
-                            <div class="card " style="margin-top: 10px">
-                                <?php
-                                     
-                                echo $annonce->asHtml();
-                        
-                                echo '<div class="row"><form action="annonce.php" method="GET">'
-                                . '<input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">'
-                                . '<button class="like btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span></button>'
-                                . '<input type="hidden" name="filename" value="' . $annonce->getTitle() . '"></form></div>';
-                                ?>
-                            </div>
+                            echo '<div class="row"><form action="annonce.php" method="GET">'
+                            . '<input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">'
+                            . '<button class="like btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span></button>'
+                            . '<input type="hidden" name="filename" value="' . $annonce->getTitle() . '"></form></div>';
+                            ?>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <?php
-        }
-   // }
+        <?php
+    }
+// }
     ?>
 
 

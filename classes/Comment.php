@@ -25,7 +25,11 @@ class Comment {
     function setDestinataire($destinataire) {
         $this->destinataire = $destinataire;
     }
+    function setDate($date) {
+        $this->date = $date;
+    }
 
+    
         function getId() {
         return $this->id;
     }
@@ -53,8 +57,6 @@ class Comment {
     function getNote() {
         return $this->note;
     }
-
-
 
     function setAuthor($author) {
         $this->author = $author;
