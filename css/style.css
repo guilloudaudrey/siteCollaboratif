@@ -1,9 +1,4 @@
 
-
-
-/*header*/
-
-
 .navbar, .dropdown-menu{
     background:#efeaea;
     border: none;
@@ -180,6 +175,22 @@ footer {
 .bottom_ul li a { color:#FFF;  font-size:12px;}
 
 
+
+.profile-img-card {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.modal-content{
+
+   
+    padding: 20px 20px;
+}
 
 
 

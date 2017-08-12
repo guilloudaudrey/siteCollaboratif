@@ -151,7 +151,7 @@ session_start();
     foreach ($listeAnnonces as $annonce) {
         //    $categorie = $annonce->getCategorie();
         ?>
-        <div class="container">
+        <div class="container" id="annonces">
             <div class="row">
                 <div class="well-lg">
                     <div class="col-sm-12 col-md-10 col-lg-8">
