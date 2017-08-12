@@ -28,7 +28,7 @@ session_start();
 
         <!-------------------------------------bannière------------------------------------>
 
-        <div class="intro-header">
+        <div class="intro-header" style="margin-bottom: 40px">
             <div class="container">
                 <div class="row">
                     <h3 class=" text-ban col-lg-7 col-lg-offset-4"><span class="rouge">Cherchez</span> et <span class="rouge">proposez</span> des services <br>près de chez vous</h3>
@@ -93,9 +93,9 @@ session_start();
         ?>
         <div class="container" id="annonces">
             <div class="row">
-                <div class="well-lg">
+    
                     <div class="col-sm-12 col-md-10 col-lg-8">
-                        <div class="card " style="margin-top: 10px">
+                        <div class="card " style=">
                             <?php
                             echo $annonce->asHtml();
                             ?>
@@ -108,7 +108,7 @@ session_start();
                             </div>
                         </div>
                     </div>
-                </div>
+           
             </div>
         </div>
 

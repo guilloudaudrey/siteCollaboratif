@@ -1,3 +1,10 @@
+/*general*/
+
+body{
+    background: #f2f5f9;
+}
+
+
 .navbar,
 .dropdown-menu {
     background: #efeaea;
@@ -158,10 +165,12 @@ img.btn_close {
 }
 
 .card {
-    margin-top: 50px;
-    background: #eee;
+ 
+    background: white;
     padding: 3em;
     line-height: 1.5em;
+    border-bottom: 1px solid #dddddd;
+      
 }
 
 .like {
