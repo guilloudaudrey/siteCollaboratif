@@ -112,11 +112,15 @@ session_start();
             </div>
         </div>
 
+
+
         <?php
     }
 // }
     ?>
-
+    <div class="loadmore btn btn-danger col-lg-offset-4">
+        <a href="#" id="loadMore">Load More</a>
+    </div>
 
     <!-------------------------------------footer------------------------------------>
     <?php

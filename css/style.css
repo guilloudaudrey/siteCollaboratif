@@ -325,6 +325,16 @@ footer {
 .modal-content {
     padding: 20px 20px;
 }
+/*annonces*/
+
+.loadmore a {
+    color: white;
+    text-decoration: none;
+}
+
+.loadmore  {
+    margin-top: 20px;
+}
 
 
 /*banière*/
@@ -338,4 +348,13 @@ footer {
 
 .rouge {
     color: #dd3737;
+}
+
+
+/*footer*/
+
+.logofooter {
+    font-family: 'Anton', sans-serif;
+    font-weight: normal;
+    font-size: 2.5em;
 }

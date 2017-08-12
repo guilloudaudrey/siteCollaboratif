@@ -115,7 +115,7 @@ class Post {
         return '<div class="row" style="background: yellow"><h3>' . $this->getTitle() . '</h3></div>' 
                 . '<div class="card col-lg-9" style="margin-top: 15px"><figure class="pull-left col-sm-5 col-md-5">'
                 . '<div><img src="images/travaux.png" class="img-fluid" alt="Responsive image" style="width: 100%;height: auto"></div></figure>'
-                . '<span class="badge" style="margin-right : 5px">' . $this->getTypeannonce() . '</span><span class="badge badge-info" style="margin-right : 5px">' . $this->getCategorie() . '</span><span class="badge badge-info">' . $this->getLocalisation() . '</span>'
+                . '<span class="label label-warning" style="margin-right : 5px">' . $this->getTypeannonce() . '</span><span class="badge badge-info" style="margin-right : 5px>' . $this->getCategorie() . '</span><span class="badge badge-info">' . $this->getLocalisation() . '</span>'
                 . '<p>' . $this->getDescription() . '</p>'
                 . '<p>' . $this->getPrice() . ' €</p>'
                 . '<p>Posté le ' . $this->getDate() . ' par ' . $this->getAuthor() . '</p></div>'
