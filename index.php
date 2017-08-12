@@ -15,15 +15,7 @@ session_start();
         <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
         <script src="js/modernizr.custom.js"></script>
         <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
-        <script>
-            $(function () {
-                $('body').chocolate({
-                    images: ['images/cover2.jpg', 'images/cover3.jpg', 'images/cover4.jpg', 'images/cover5.jpg', 'images/cover6.jpg', 'images/cover7.jpg', 'images/cover8.jpg'],
-                    interval: 4000,
-                    speed: 2000,
-                });
-            });
-        </script>
+
         <title>Index</title>
     </head>
     <body>
@@ -34,15 +26,16 @@ session_start();
         include_once 'html/header.php';
         ?>
 
-        <!-------------------------------------bannière----------------------------------->
+        <!-------------------------------------bannière------------------------------------>
 
-        <div class="intro-header ">
+        <div class="intro-header">
             <div class="container">
                 <div class="row">
-                    <h3  class="pull-left col-lg-5 col-lg-offset-5" style="margin-top: 50px; margin-bottom: -20px">Besoin d'un service ?</h3></div>
+                    <h3 class=" text-ban col-lg-7 col-lg-offset-4"><span class="rouge">Cherchez</span> et <span class="rouge">proposez</span> des services <br>près de chez vous</h3>
+                </div>
                 <div class="col-lg-5 col-lg-offset-5 col-md-7 col-md-offset-3 col-xs-10 col-xs-offset-1 rechercheinputs" >
                     <div class="row">
-                        <form class="recherche col-md-10 col-lg-offset-1" style ="margin-top: 40px" method="POST" action="index.php">
+                        <form class="recherche col-md-10 col-md-offset-1" style ="margin-top: 40px" method="POST" action="index.php">
                             <div class="form-group">
                                 <select class="form-control" id="sel1" name ="categories">
                                     <option value="toutes categories" selected="selected">Toutes les catégories</option>
@@ -60,14 +53,12 @@ session_start();
                                 </select>
                             </div>
 
-                            <div class="form-group ">
-                                <input type="text" placeholder="mot-clé" class="form-control" id="sel3"/>
-                            </div>
+
 
                             <div class="form-group ">
                                 <input type="text" placeholder="Localisation" class="form-control" id="sel4" />
                             </div>
-                            <input type="submit" value="Rechercher" name="search" class="btn btn-primary" style="margin-bottom: 20px"/>
+                            <input type="submit" value="Rechercher" name="search" class="btn btn-primary btn-lg" style="margin-bottom: 20px"/>
                         </form>
                     </div>
                 </div>
@@ -85,7 +76,7 @@ session_start();
 
 
 
-    <!-------------------------------------affichage des annonces----------------------------------->
+    <!-------------------------------------affichage des annonces------------------------------------>
 
     <?php
     include_once 'classes/Post.php';
@@ -93,60 +84,9 @@ session_start();
     $db = new DataBase();
     $listeAnnonces = $db->readPostsList();
     //var_dump($listeAnnonces);
-    ?>
 
-    <?php
-    /*  if (isset($_POST['search'])) {
-      $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-      $inputcat = $post['categories'];
 
-      foreach ($listeAnnonces as $annonce) {
-      $categorie = $annonce->getCategorie();
 
-      if ($categorie == $inputcat) {
-      ?>
-      <div class="container">
-      <div class="row">
-      <div class="col-sm-12 col-md-10 col-lg-8">
-      <div class="card" >
-      <?php
-      echo $annonce->asHtml();
-      ?>
-      <form action="annonce.php" method="GET">
-      <input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">
-      <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
-      <input type="hidden" name="filename" value="<?php $annonce->getDatetitre() ?>">
-      </form>
-      </div>
-      </div>
-      </div>
-      </div>
-
-      <?php
-      } else if ($inputcat == "toutescategories") {
-      ?>
-      <div class="container">
-      <div class="row">
-      <div class="well-lg">
-      <div class="col-sm-12 col-md-10 col-lg-8">
-      <div class="card" style="margin-top: 21px">
-      <?php
-      echo $annonce->asHtml();
-      ?>
-      <form action="annonce.php" method="GET">
-      <input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">
-      <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
-      <input type="hidden" name="filename" value="<?php $annonce->getDatetitre() ?>"></form>
-
-      </div>
-      </div>
-      </div>
-      </div>
-      </div>
-      <?php
-      }
-      }
-      } else { */
 
     foreach ($listeAnnonces as $annonce) {
         //    $categorie = $annonce->getCategorie();
@@ -158,12 +98,14 @@ session_start();
                         <div class="card " style="margin-top: 10px">
                             <?php
                             echo $annonce->asHtml();
-
-                            echo '<div class="row"><form action="annonce.php" method="GET">'
-                            . '<input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">'
-                            . '<button class="like btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span></button>'
-                            . '<input type="hidden" name="filename" value="' . $annonce->getTitle() . '"></form></div>';
                             ?>
+                            <div class="row">
+                                <form action="annonce.php" method="GET">
+                                    <input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">
+                                    <button class="like btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span></button>
+                                    <input type="hidden" name="filename" value="' . $annonce->getTitle() . '">
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -176,14 +118,14 @@ session_start();
     ?>
 
 
-    <!-------------------------------------footer----------------------------------->
+    <!-------------------------------------footer------------------------------------>
     <?php
     include_once 'html/footer.php';
     ?>
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-     <script src="js/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

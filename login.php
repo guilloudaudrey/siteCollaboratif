@@ -22,21 +22,7 @@ if (isset($_POST['pseudo']) && (isset($_POST['mdp']))) {
     }
 }
         
-    /*
-    
-        if ($mdp_data === $mdp) {
-            session_start();
-            $_SESSION['nom'] = $pseudo;
-            header("location:$url");
-        } else {
-            echo 'pas connecté';
-        }
-    } else {
-        echo 'l\'utilisateur ' . $pseudo . ' n\'existe pas';
-    }
-} else {
-    echo 'pas de données';
-}
+
     
 
     

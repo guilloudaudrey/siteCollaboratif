@@ -8,8 +8,12 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>Nouvel article</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/style.css"
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+        <script src="js/modernizr.custom.js"></script>
+        <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
     </head>
     <body>
         <?php
@@ -60,21 +64,40 @@ and open the template in the editor.
             </div>
             <?php
         } else {
-            echo 'connectez-vous !';
+         
             ?>
+   
 
-            <form method="POST" action="login.php">
-                <label for="pseudo">Pseudo</label>
-                <input type="text" name="pseudo"/>
-                <label for="mdp">Mot de passe</label>
-                <input type="password" name="mdp"/>
-                <input type="submit" name="login"/>
-                <input type="hidden" name="url" value="<?php echo $url; ?>"/>
-            </form>
-            <a href="register-form.php">S'inscrire</a>
+                    <!-- Modal content-->
+                    <div class="modal-content col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1" >
+
+                        <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+                        <div class="modal-body">
+                            <form method="POST" action="login.php">
+                                <label for="pseudo">Pseudo</label>
+                                <input type="text" id="inputEmail" class="form-control" placeholder="Pseudo" required autofocus>
+                                <label for="mdp">Mot de passe</label>
+                                <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
+                                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Valider</button>
+                                <input type="hidden" name="url" value="<?php echo $url; ?>"/>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                        </div>
+                        <a href="register-form.php" class="forgot-password">
+                            Pas encore inscrit ? Créez votre compte.
+                        </a>
+                    </div>
+    
 
             <?php
         }
         ?>
+
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="js/jquery.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>

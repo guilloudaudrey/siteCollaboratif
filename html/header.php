@@ -9,7 +9,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">HLP</a>
+                    <a class="navbar-brand" href="index.php">HLP</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
@@ -59,7 +59,7 @@
             <div class="modal-body">
                 <form method="POST" action="login.php">
                     <label for="pseudo">Pseudo</label>
-                    <input type="email" id="inputEmail" class="form-control" placeholder="Pseudo" required autofocus>
+                    <input type="text" id="inputEmail" class="form-control" placeholder="Pseudo" required autofocus>
                     <label for="mdp">Mot de passe</label>
                     <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
                     <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Valider</button>
