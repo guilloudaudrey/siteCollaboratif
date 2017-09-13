@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 
 
 <?php
@@ -14,15 +19,14 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 <html>
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">      
-        <meta name="viewport" content="width=device-width, user-scalable=yes" /><!--user-scalable=yes” sert à indiquer que l’utilisateur peut zoomer sur le contenu-->
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title></title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
         <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
-        <script src="js/modernizr.custom.js"></script>
-        <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Chango" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
     </head>
     <body style="background: #c0c0c0">
 
@@ -36,6 +40,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         if (isset($_GET['filename'])) {
             $file = htmlspecialchars($_GET['filename']);
             $post = $newdb->readPost($file);
+          
             $author = $post->getAuthor();
             $title = $post->getTitle();
             //$date = $post->getDatetitre();
@@ -138,16 +143,14 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                                 $commentlist = $newdb->readCommentsList();
 
                                 foreach ($commentlist as $comm) {
-
-                                    if ($title == $comm->getArticle()) {
-                                        ?>
-                                        <div class="container">
-                                            <?php
-                                            echo $comm->asHtml();
-                                            ?>
-                                        </div>
+                                    ?>
+                                    <div class="container">
                                         <?php
-                                    }
+                                
+                                        echo $comm->asHtml();
+                                        ?>
+                                    </div>
+                                    <?php
                                 }
                             }
                             ?>

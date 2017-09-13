@@ -95,7 +95,7 @@ session_start();
             <div class="row">
     
                     <div class="col-sm-12 col-md-10 col-lg-8">
-                        <div class="card " style=">
+                        <div class="card ">
                             <?php
                             echo $annonce->asHtml();
                             ?>
@@ -103,7 +103,7 @@ session_start();
                                 <form action="annonce.php" method="GET">
                                     <input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">
                                     <button class="like btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span></button>
-                                    <input type="hidden" name="filename" value="' . $annonce->getTitle() . '">
+                                    <input type="hidden" name="filename" value="<?php echo $annonce->getTitle()?>">
                                 </form>
                             </div>
                         </div>

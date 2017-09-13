@@ -42,11 +42,11 @@ and open the template in the editor.
                         <label for="categories">Catégories</label>
                         <select name ="categories" required="required" class="form-control">
                             <option value="toutes categories" selected="selected">Toutes les catégories</option>
-                            <option value="animaux">Animaux</option>
-                            <option value="petitstravaux">Petits travaux</option>
-                            <option value="cours" >Cours</option>
-                            <option value="enfants">Garde d'enfants</option>
-                            <option value="déménagement">Déménagement</option>
+                            <option value="animaux" name="animaux">Animaux</option>
+                            <option value="petitstravaux" name="travaux">Petits travaux</option>
+                            <option value="cours" name="cours">Cours</option>
+                            <option value="enfants" name="enfants">Garde d'enfants</option>
+                            <option value="déménagement" name="demenagement">Déménagement</option>
                         </select>
                     </div>
 
@@ -68,27 +68,6 @@ and open the template in the editor.
             ?>
    
 
-                    <!-- Modal content-->
-                    <div class="modal-content col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1" >
-
-                        <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-                        <div class="modal-body">
-                            <form method="POST" action="login.php">
-                                <label for="pseudo">Pseudo</label>
-                                <input type="text" id="inputEmail" class="form-control" placeholder="Pseudo" required autofocus>
-                                <label for="mdp">Mot de passe</label>
-                                <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
-                                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Valider</button>
-                                <input type="hidden" name="url" value="<?php echo $url; ?>"/>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-                        </div>
-                        <a href="register-form.php" class="forgot-password">
-                            Pas encore inscrit ? Créez votre compte.
-                        </a>
-                    </div>
     
 
             <?php
