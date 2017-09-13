@@ -15,7 +15,7 @@ class Post {
     function __construct($title, $description, $price, $author, $categorie, $localisation, $typeannonce, $id = NULL) {
         $this->title = $title;
         $this->date = new DateTime();
-        $this->description = $description;
+        $this->description = $description; 
         $this->price = $price;
         $this->author = $author;
         $this->categorie = $categorie;
