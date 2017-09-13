@@ -20,12 +20,16 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     <head>
         <meta charset="UTF-8">
         <title></title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">      
+        <meta name="viewport" content="width=device-width, user-scalable=yes" /><!--user-scalable=yes” sert à indiquer que l’utilisateur peut zoomer sur le contenu-->
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
         <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Chango" rel="stylesheet">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+        <script src="js/modernizr.custom.js"></script>
+        <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
 
     </head>
     <body style="background: #c0c0c0">
@@ -48,7 +52,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             ?>
             <!------------------------affichage de l'annonce----------------->
 
-            <div class="row"><div class="container" style="background: white; margin-top: 60px">
+            <div class="row"><div class="container" style="margin-top: 100px">
                     <div class="row">
                         <div class="container">
 
@@ -78,18 +82,12 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                             </div>
                         </div>
 
-
-
-
-
-
-
                         <!-------------------------Formulaire pour laisser un avis-------------------------->
 
-                        <div class="row"><div class="container" >
+                        <div class="row"><div class="container col-lg-9" >
                                 <h2>Avis</h2>
                                 <hr class="my-4"></div></div>
-                        <div class="row"><div class="container" ><p>Laissez un avis sur cette annonce.</p></div></div>
+                                <div class="row"><div class="container" ><p>Laissez un avis sur cette annonce.</p></div></div>
 
                         <?php
                         if (isset($_SESSION['nom'])) {

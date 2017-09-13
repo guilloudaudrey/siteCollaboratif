@@ -14,7 +14,7 @@ class Comment {
         $this->article = $article;
         $this->texte = $texte;
         $this->note = $note;
-        $this->date = date("Y-m-d à H:i");
+        $this->date = new DateTime();
         $this->id = $id;
     }
 
@@ -80,7 +80,7 @@ class Comment {
                 $this->getTexte() . '</p><p note : ' .
                 $this->getNote() . '</p><p>auteur : ' .
                $this->getAuthor() . '</p><p>date :'.
-                $this->getDate().'</p></div>';
+                $this->getDate()->format('d/m/y à H:i').'</p></div>';
                 //$this->getDestinataire() . '</p></div>';
     }
 

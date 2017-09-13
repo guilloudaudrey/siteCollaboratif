@@ -23,16 +23,15 @@
                     </div>
                     <div class="col-md-3 col-sm-6 paddingtop-bottom">
                         <h6 class="heading7">TOP CATEGORIES</h6>
-                        <div class="post">
-                            <p>Aide aux devoirs </p>
-                            <p>Baby-sitting</p>
-                            <p>Bricolage</p>
-                            <p>Bricolage</p>
-                            <p>Bricolage</p>
-                            <p>Bricolage</p>
-                            <p>Bricolage</p>
+                        <ul class="footer-ul">
+                            <li><a href="#"> Cours</a></li>
+                            <li><a href="#"> Garde d'enfants</a></li>
+                            <li><a href="#"> Petits travaux</a></li>
+                            <li><a href="#"> Déménagement</a></li>
+                            <li><a href="#"> Animaux</a></li>
+                           
 
-                        </div>
+                        </ul>
                     </div>
                     <div class="col-md-3 col-sm-6 paddingtop-bottom">
                         <div class="fb-page" data-href="https://www.facebook.com/facebook" data-tabs="timeline" data-height="300" data-small-header="false" style="margin-bottom:15px;" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">

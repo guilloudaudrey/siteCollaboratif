@@ -11,8 +11,8 @@ class Post {
     protected $author;
     protected $typeannonce;
     protected $id;
-
-    function __construct($title, $description, $price, $author, $categorie, $localisation, $typeannonce, $id = NULL) {
+    
+                function __construct($title, $description, $price, $author, $categorie, $localisation, $typeannonce, $id = NULL) {
         $this->title = $title;
         $this->date = new DateTime();
         $this->description = $description; 
@@ -164,7 +164,7 @@ class Post {
     public function asHtmlAnnonce() {
         if ($this->categorie == "animaux") {
             $image = 'images/paw.png';
-            return '<div class="row" style="background: yellow"><h3>' . $this->getTitle() . '</h3></div>'
+            return '<div class="row" style="text-align: center; background: yellow"><h3>' . $this->getTitle() . '</h3></div>'
                     . '<div class="card col-lg-9" style="margin-top: 15px"><figure class="pull-left col-sm-5 col-md-5">'
                     . '<div><img src="' . $image . '" class="img-fluid" alt="Responsive image" style="width: 100%;height: auto"></div></figure>'
                     . '<span class="badge" style="margin-right : 5px">' . $this->getTypeannonce() . '</span><span class="badge badge-info" style="margin-right : 5px">' . $this->getCategorie() . '</span><span class="badge badge-info">' . $this->getLocalisation() . '</span>'
@@ -174,7 +174,7 @@ class Post {
             ;
         } else if ($this->categorie == "cours") {
             $image = 'images/book.png';
-            return '<div class="row" style="background: yellow"><h3>' . $this->getTitle() . '</h3></div>'
+            return '<div class="row" style="text-align: center; background: yellow"><h3>' . $this->getTitle() . '</h3></div>'
                     . '<div class="card col-lg-9" style="margin-top: 15px"><figure class="pull-left col-sm-5 col-md-5">'
                     . '<div><img src="' . $image . '" class="img-fluid" alt="Responsive image" style="width: 100%;height: auto"></div></figure>'
                     . '<span class="badge" style="margin-right : 5px">' . $this->getTypeannonce() . '</span><span class="badge badge-info" style="margin-right : 5px">' . $this->getCategorie() . '</span><span class="badge badge-info">' . $this->getLocalisation() . '</span>'
@@ -184,7 +184,7 @@ class Post {
             ;
         } else if ($this->categorie == "déménagement") {
             $image = 'images/carton.png';
-            return '<div class="row" style="background: yellow"><h3>' . $this->getTitle() . '</h3></div>'
+            return '<div class="row" style="text-align: center; background: yellow"><h3>' . $this->getTitle() . '</h3></div>'
                     . '<div class="card col-lg-9" style="margin-top: 15px"><figure class="pull-left col-sm-5 col-md-5">'
                     . '<div><img src="' . $image . '" class="img-fluid" alt="Responsive image" style="width: 100%;height: auto"></div></figure>'
                     . '<span class="badge" style="margin-right : 5px">' . $this->getTypeannonce() . '</span><span class="badge badge-info" style="margin-right : 5px">' . $this->getCategorie() . '</span><span class="badge badge-info">' . $this->getLocalisation() . '</span>'
@@ -194,7 +194,7 @@ class Post {
             ;
         } else if ($this->categorie == "petitstravaux") {
             $image = 'images/travaux.png';
-            return '<div class="row" style="background: yellow"><h3>' . $this->getTitle() . '</h3></div>'
+            return '<div class="container col-lg-9"><div class="row" style="text-align: center; background: yellow; margin-bottom: -15px;"><h3>' . $this->getTitle() . '</h3></div></div>'
                     . '<div class="card col-lg-9" style="margin-top: 15px"><figure class="pull-left col-sm-5 col-md-5">'
                     . '<div><img src="' . $image . '" class="img-fluid" alt="Responsive image" style="width: 100%;height: auto"></div></figure>'
                     . '<span class="badge" style="margin-right : 5px">' . $this->getTypeannonce() . '</span><span class="badge badge-info" style="margin-right : 5px">' . $this->getCategorie() . '</span><span class="badge badge-info">' . $this->getLocalisation() . '</span>'
@@ -205,7 +205,7 @@ class Post {
         } else if ($this->categorie == "enfants") {
             $image = 'images/kid.png';
 
-            return '<div class="row" style="background: yellow"><h3>' . $this->getTitle() . '</h3></div>'
+            return '<div class="row" style="text-align: center; background: yellow"><h3>' . $this->getTitle() . '</h3></div>'
                     . '<div class="card col-lg-9" style="margin-top: 15px"><figure class="pull-left col-sm-5 col-md-5">'
                     . '<div><img src="' . $image . '" class="img-fluid" alt="Responsive image" style="width: 100%;height: auto"></div></figure>'
                     . '<span class="badge" style="margin-right : 5px">' . $this->getTypeannonce() . '</span><span class="badge badge-info" style="margin-right : 5px">' . $this->getCategorie() . '</span><span class="badge badge-info">' . $this->getLocalisation() . '</span>'
