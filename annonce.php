@@ -87,7 +87,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                         <div class="row"><div class="container col-lg-9" >
                                 <h2>Avis</h2>
                                 <hr class="my-4"></div></div>
-                                <div class="row"><div class="container" ><p>Laissez un avis sur cette annonce.</p></div></div>
+                                <div class="row"><div class="container" ><p>Laissez un avis sur cette annonce.</p></div></div></div></div>
 
                         <?php
                         if (isset($_SESSION['nom'])) {
