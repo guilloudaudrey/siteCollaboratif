@@ -131,15 +131,15 @@ class User {
     }
 
     public function asHtml() {
-        return '<div class="row"><div class="container col-lg-10" style="margin:80px"><p><img src="images/profil.png" width= 120px>'.$this->getPseudo() . '</p>'
-                .'<p>'.$this->getDateinscription() . 'Sexe : </p><p>' .
-                $this->getGenre() . 'Age : </p><p>' .
-                $this->getAge() . 'Prénom : </p><p>' .
-                $this->prenom . 'Nom : </p><p>' .
-                $this->nom . 'Mail : </p><p>' .
-                $this->mail . 'Téléphone : </p><p>' .
-                $this->telephone . 'CP : </p><p>' .
-                $this->CP . 'Ville : </p><p>' .
+        return '<div class="row"><div class="container col-lg-5"><p><img src="images/profil.png" width= 220px></p><h1>'.$this->getPseudo() . '</h1>'
+                .'<p>Date d\'inscription : '.$this->getDateinscription() . '<p>Sexe : ' .
+                $this->getGenre() . ' </p><p>Age : ' .
+                $this->getAge() . '</p><p>Prénom : ' .
+                $this->prenom . '</p><p>Nom : ' .
+                $this->nom . '</p><p>Mail : ' .
+                $this->mail . '</p><p>Téléphone : ' .
+                $this->telephone . '</p><p>CP : ' .
+                $this->CP . '</p><p>Ville : ' .
                 $this->ville.'</p></div></div>' ;
     }
 

@@ -34,7 +34,10 @@
 
             $contenu = $instance->readUser($user);
 
-            echo $contenu->asHtml();
+            echo '<div class="container" style=" box-shadow: 0px 0px 10px 0px rgba(119, 119, 119, 0.67);
+            -moz-box-shadow: 0px 0px 10px 0px rgba(119, 119, 119, 0.67);
+            -webkit-box-shadow: 0px 0px 10px 0px rgba(119, 119, 119, 0.67);
+            background-color:white; margin-top: 100px; padding:80px">'.$contenu->asHtml();
             //echo '<form action="logout.php" method="POST"><button>Se déconnecter</button></form>';
             echo '<a href="post_form.php">Créer une nouvelle annonce</a><br/>';
             echo '<a href="index.php">Index</a>';
@@ -98,5 +101,9 @@
             }
         
         ?>
+        </div>
+        <?php
+include_once 'html/footer.php';
+?>
     </body>
 </html>
