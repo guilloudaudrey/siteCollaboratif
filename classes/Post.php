@@ -213,7 +213,7 @@ class Post {
                     . '<p>' . $this->getPrice() . ' €</p>'
                     . '<p>Posté le ' . $this->getDate()->format('d/m/y à H:i') . ' par ' . $this->getAuthor() . '</p></div>'
             ;
-        }
+        }  
     }
 
 }

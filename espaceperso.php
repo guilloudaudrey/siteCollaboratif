@@ -2,8 +2,18 @@
 
 <html>
     <head>
-        <meta charset="UTF-8">
-        <title></title>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">      
+    <meta name="viewport" content="width=device-width, user-scalable=yes" /><!--user-scalable=yes” sert à indiquer que l’utilisateur peut zoomer sur le contenu-->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+    <script src="js/modernizr.custom.js"></script>
+    <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
     </head>
     <body>
         <?php
@@ -12,8 +22,11 @@
         include_once 'classes/DataBase.php';
         include_once 'classes/Post.php';
         include_once 'classes/Comment.php';
+        $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
         $instance = new DataBase;
+
+        include_once 'html/header.php';
 
 
         if (isset($_SESSION['nom'])) {
@@ -22,11 +35,11 @@
             $contenu = $instance->readUser($user);
 
             echo $contenu->asHtml();
-            echo '<form action="logout.php" method="POST"><button>Se déconnecter</button></form>';
+            //echo '<form action="logout.php" method="POST"><button>Se déconnecter</button></form>';
             echo '<a href="post_form.php">Créer une nouvelle annonce</a><br/>';
             echo '<a href="index.php">Index</a>';
         } else {
-            include_once 'html/connexion-html.php';
+           // include_once 'html/connexion-html.php';
         }
         ?>
 
@@ -42,7 +55,7 @@
             $author = $annonce->getAuthor();
 
             if ($author == $user) {
-                echo $annonce->asHtml();
+                echo '<div class="container">'. $annonce->asHtml();
 
                 echo'
 
@@ -56,7 +69,7 @@
             <input type="hidden" name="filename" value="' . $annonce->getTitle() . '">
                 <input type="submit" value="modifier">
             </form>
-            </div>';
+            </div></div>';
             }
         }
         ?>
