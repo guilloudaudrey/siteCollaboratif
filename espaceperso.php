@@ -44,7 +44,13 @@
                     ?>
                 </div>
                 <div class="container col-lg-6">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#">Mes annonces</a></li>                
+                        <li><a href="#">Mes évaluations</a></li>
+                        <li><a href="#">Evaluations reçues</a></li>
+                    </ul>
                     <h2>Mes annonces</h2>
+
 
                     <?php
                     $listeAnnonces = $instance->readPostsList();
@@ -53,18 +59,20 @@
 
                         if ($author == $user) {
                             ?>
+
                             <div class="container col-lg-12"><?php echo $annonce->asHtml() ?>
-                                <div class="boutons">
+                                <div class="row boutons col-lg-12" style="margin-bottom: 10px;">
                                     <form method="POST" action="delete.php">
                                         <input type="hidden" name="filename" value="<?php echo $annonce->getTitle() ?>" class="text">
-                                        <input type="submit" value="supprimer">
+                                        <button type="submit" class="btn btn-default col-lg-3">supprimer</button>
                                     </form>
 
                                     <form method="POST" action="edit_form.php">
                                         <input type="hidden" name="filename" value="<?php $annonce->getTitle() ?>">
-                                        <input type="submit" value="modifier">
+                                         <button type="submit" class="btn btn-default col-lg-3">modifier</button>
                                     </form>
-                                </div></div>
+                                </div>
+                            </div>
                             <?php
                         }
                     }
