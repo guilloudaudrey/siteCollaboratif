@@ -1,9 +1,8 @@
 /*general*/
 
-body{
+body {
     background: #f2f5f9;
 }
-
 
 .navbar,
 .dropdown-menu {
@@ -165,12 +164,10 @@ img.btn_close {
 }
 
 .card {
- 
     background: white;
     padding: 3em;
     line-height: 1.5em;
     border-bottom: 1px solid #dddddd;
-      
 }
 
 .like {
@@ -334,6 +331,8 @@ footer {
 .modal-content {
     padding: 20px 20px;
 }
+
+
 /*annonces*/
 
 .loadmore a {
@@ -341,7 +340,7 @@ footer {
     text-decoration: none;
 }
 
-.loadmore  {
+.loadmore {
     margin-top: 20px;
 }
 
@@ -366,4 +365,16 @@ footer {
     font-family: 'Anton', sans-serif;
     font-weight: normal;
     font-size: 2.5em;
+}
+
+
+/*espace perso*/
+
+.espacepersocont {
+    box-shadow: 0px 0px 10px 0px rgba(119, 119, 119, 0.47);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(119, 119, 119, 0.47);
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(119, 119, 119, 0.47);
+    background-color: white;
+    margin-top: 100px;
+    padding: 80px;
 }
