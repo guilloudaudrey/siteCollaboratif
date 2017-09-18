@@ -190,7 +190,7 @@ class Post {
                     . '<span class="badge" style="margin-right : 5px">' . $this->getTypeannonce() . '</span><span class="badge badge-info" style="margin-right : 5px">' . $this->getCategorie() . '</span><span class="badge badge-info">' . $this->getLocalisation() . '</span>'
                     . '<p>' . $this->getDescription() . '</p>'
                     . '<p>' . $this->getPrice() . ' €</p>'
-                    . '<p>Posté le ' . $this->getDate()->format('d/m/y à H:i') . ' par ' . $this->getAuthor() . '</p></div>'
+                    . '<p>Posté le ' . $this->getDate()->format('d/m/y à H:i') . ' par ' . $this->getAuthor() . '</p></div></div></div>'
             ;
         } else if ($this->categorie == "petitstravaux") {
             $image = 'images/travaux.png';

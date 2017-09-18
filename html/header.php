@@ -41,12 +41,29 @@
             </div>
             <div class="modal-body">
                 <form method="POST" action="login.php">
-                    <label for="pseudo">Pseudo</label>
-                    <input type="text" name="pseudo"/>
-                    <label for="mdp">Mot de passe</label>
-                    <input type="password" name="mdp"/>
-                    <input type="submit" name="login"/>
-                    <input type="hidden" name="url" value="<?php echo $url; ?>"/>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <label for="pseudo">Pseudo</label>
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                            <input type="text" name="pseudo" aria-describedby="basic-addon1" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px">
+                        <div class="col-lg-3" >
+                            <label for="mdp">Mot de passe</label>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock"></span></span>
+                            <input type="password" name="mdp" aria-describedby="basic-addon1" class="form-control"/>
+                        </div>
+                    </div>
+                    <div  style="text-align: center; margin-top: 20px" >
+                        <input type="submit" name="login" class="btn btn-primary"/>
+                        <input type="hidden" name="url" value="<?php echo $url; ?>"/>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">

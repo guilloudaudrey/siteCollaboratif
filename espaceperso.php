@@ -45,61 +45,71 @@
                 </div>
                 <div class="container col-lg-6">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#">Mes annonces</a></li>                
-                        <li><a href="#">Mes évaluations</a></li>
-                        <li><a href="#">Evaluations reçues</a></li>
+                        <li class="active"><a data-toggle="tab" href="#home">Mes annonces</a></li>
+                        <li><a data-toggle="tab" href="#menu1">Mes évaluations</a></li>
+                        <li><a data-toggle="tab" href="#menu2">Evaluations reçues</a></li>
                     </ul>
-                    <h2>Mes annonces</h2>
+
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade active in" id="home">
+                            <h2>Mes annonces</h2>
 
 
-                    <?php
-                    $listeAnnonces = $instance->readPostsList();
-                    foreach ($listeAnnonces as $annonce) {
-                        $author = $annonce->getAuthor();
+                            <?php
+                            $listeAnnonces = $instance->readPostsList();
+                            foreach ($listeAnnonces as $annonce) {
+                                $author = $annonce->getAuthor();
 
-                        if ($author == $user) {
+                                if ($author == $user) {
+                                    echo $annonce->asHtml();
+
+                                    echo'<div class="row boutons col-lg-12" style="margin-bottom: 10px; margin-top: 10px;">
+                                        <form method="POST" action="delete.php">
+                                            <input type="hidden" name="filename" value="' . $annonce->getTitle() . '" class="text">
+                                            <input type="submit" class="btn btn-default col-lg-3" style="margin-right: 5px" value="supprimer">
+                                        </form>
+
+                                        <form method="POST" action="edit_form.php">
+                                            <input type="hidden" name="filename" value="' . $annonce->getTitle() . '">
+                                            <input type="submit" class="btn btn-default col-lg-3" value="modifier">
+                                        </form>
+                                    
+                                </div>';
+                                }
+                            }
                             ?>
 
-                            <div class="container col-lg-12"><?php echo $annonce->asHtml() ?>
-                                <div class="row boutons col-lg-12" style="margin-bottom: 10px;">
-                                    <form method="POST" action="delete.php">
-                                        <input type="hidden" name="filename" value="<?php echo $annonce->getTitle() ?>" class="text">
-                                        <button type="submit" class="btn btn-default col-lg-3">supprimer</button>
-                                    </form>
+                            <div id="menu1" class="tab-pane fade">
+                                <h2>Evaluations émises</h2>
+                                <?php
+                                $listecomm = $instance->readCommentsList();
+                                $listepost = $instance->readPostsList();
 
-                                    <form method="POST" action="edit_form.php">
-                                        <input type="hidden" name="filename" value="<?php $annonce->getTitle() ?>">
-                                         <button type="submit" class="btn btn-default col-lg-3">modifier</button>
-                                    </form>
-                                </div>
+                                foreach ($listecomm as $comm) {
+                                    if ($user == $comm->getAuthor()) {
+
+                                        echo $comm->asHtml();
+                                    }
+                                }
+                                ?>
                             </div>
+                             <div id="menu2" class="tab-pane fade">
+
+
+                            <h2>Evaluations reçues</h2>
                             <?php
-                        }
-                    }
-                    ?>
-                    <h2>Evaluations émises</h2>
-                    <?php
-                    $listecomm = $instance->readCommentsList();
-                    $listepost = $instance->readPostsList();
+                            foreach ($listecomm as $comm) {
 
-                    foreach ($listecomm as $comm) {
-                        if ($user == $comm->getAuthor()) {
-
-                            echo $comm->asHtml();
-                        }
-                    }
-                    ?>
-                    <h2>Evaluations reçues</h2>
-                    <?php
-                    foreach ($listecomm as $comm) {
-
-                        if ($user == $author) {
+                                if ($user == $author) {
 
 
-                            echo $comm->asHtml();
-                        }
-                    }
-                    ?>
+                                    echo $comm->asHtml();
+                                }
+                            }
+                            ?>
+                             </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -108,6 +118,9 @@
         include_once 'html/footer.php';
         ?>
 
-
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>
