@@ -298,3 +298,14 @@ footer {
     margin-top: 100px;
     padding: 80px;
 }
+
+
+
+.annoncecont{
+    box-shadow: 0px 0px 10px 0px rgba(119, 119, 119, 0.47);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(119, 119, 119, 0.47);
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(119, 119, 119, 0.47);
+    background-color: white;
+    margin-top: 100px;
+    padding: 80px;
+}
