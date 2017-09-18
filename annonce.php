@@ -118,6 +118,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
 
 
+
                     <div class="container"><h2>Liste commentaires</h2>
 
                         <?php
@@ -125,35 +126,37 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
                         foreach ($commentlist as $comm) {
                             ?>
-
-                            <?php
-                            echo $comm->asHtml();
-                            ?>
-
+                            <div class="container">
+                                <?php
+                                echo $comm->asHtml();
+                                ?>
+                            </div>
                         </div>
+                    </div>
+                </div>
 
-                        <?php
-                    }
-                }
-                ?>
-            </div>
-        </div>
-    </div>
-
-
-        <?php
-        /* --------------------footer---------------------------------- */
-
-        include_once 'html/footer.php';
+                <?php
+            }
+        }
         ?>
 
+    </div>
+</div>
+
+
+<?php
+/* --------------------footer---------------------------------- */
+
+include_once 'html/footer.php';
+?>
 
 
 
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="js/jquery.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-    </body>
+<script src="js/jquery.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
 </html>
