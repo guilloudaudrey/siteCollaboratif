@@ -65,10 +65,10 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                         <p class="col-lg-6 col-lg-offset-3" style="text-align: center"><?php echo $author ?><p>
                         <div class="col-lg-6 col-lg-offset-2"><img src="images/profil.png" class="img-fluid" alt="Responsive image" style="width: 150%;height: auto"></div>
                         <input type="hidden" name="profilpub" value="<?php echo $author ?>">
-                        <button class="btn btn-primary col-lg-6 col-lg-offset-3" style="margin-top: 10px">voir profil</button>
+                        <button class="btn btn-secondary col-lg-6 col-lg-offset-3" style="margin-top: 10px">voir profil</button>
                     </form>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3" style="margin-top: 15px;">
                     <button class="btn btn-primary col-lg-10 col-lg-offset-1" style="margin-top: 10px">
                         <span class="glyphicon glyphicon-envelope" style="margin-right : 5px">
                         </span>Envoyer un message
@@ -81,11 +81,6 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
                 <!-------------------------Formulaire pour laisser un avis-------------------------->
 
-                <div class="row"><div class="container col-lg-9" >
-                        <h2>Avis</h2>
-                        <hr class="my-4"></div>
-                </div>
-                <div class="row"><div class="container" ><p>Laissez un avis sur cette annonce.</p></div></div>
 
                 <?php
                 if (isset($_SESSION['nom'])) {
@@ -94,6 +89,13 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
                     if ($user !== $author) {
                         ?>
+                        <div class="row"><div class="container col-lg-9" >
+                                <h2>Avis</h2>
+                                <hr class="my-4"></div>
+                        </div>
+                        <div class="row"><div class="container" ><p>Laissez un avis sur cette annonce.</p></div></div>
+
+
 
                         <div class="container"><form method="GET" action="create-comment.php">
                                 <label for="note">Note : </label>
@@ -125,30 +127,30 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
 
 
-
-                <h2>Liste commentaires</h2>
-
-                <?php
-                $commentlist = $newdb->readCommentsList();
-
-                foreach ($commentlist as $comm) {
-                    ?>
+                <div class="container col-lg-10" >
+                    <h2>Liste commentaires</h2>
 
                     <?php
-                    echo $comm->asHtml();
-                    ?>
+                    $commentlist = $newdb->readCommentsList();
+
+                    foreach ($commentlist as $comm) {
+                        ?>
+
+                        <?php
+                        echo $comm->asHtml();
+                        ?>
 
 
-                </div>
 
 
 
-                <?php
-            }
-        }
-        ?>
 
-
+                        <?php
+                    }
+                }
+                ?>
+            </div>
+        </div>
 
 
         <?php
@@ -162,7 +164,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="js/jquery.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
     </body>

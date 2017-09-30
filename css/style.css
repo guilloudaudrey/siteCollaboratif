@@ -88,6 +88,14 @@ img.btn_close {
     padding: 3em;
     line-height: 1.5em;
     border-bottom: 1px solid #dddddd;
+    
+}
+
+.cardindex{
+        box-shadow: 0px 0px 10px 0px rgba(119, 119, 119, 0.47);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(119, 119, 119, 0.47);
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(119, 119, 119, 0.47);
+    background-color: white;
 }
 
 .like {
@@ -307,5 +315,6 @@ footer {
     -webkit-box-shadow: 0px 0px 10px 0px rgba(119, 119, 119, 0.47);
     background-color: white;
     margin-top: 100px;
-   
+   padding-bottom: 50px;
 }
+

@@ -95,7 +95,7 @@ session_start();
             <div class="row">
     
                     <div class="col-sm-12 col-md-10 col-lg-8">
-                        <div class="card ">
+                        <div class="card cardindex">
                             <?php
                             echo $annonce->asHtml();
                             ?>

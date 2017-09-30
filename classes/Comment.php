@@ -76,8 +76,8 @@ class Comment {
 
 
     public function asHtml() {
-        return '<div style="background-color :grey"><p>' .
-                $this->getTexte() . '</p><p note : ' .
+        return '<div style="border: 1px solid lightgrey; padding: 10px;margin-top:5px; margin-bottom:5px;">'
+        . '<p>'.$this->getTexte() . '</p><p note : ' .
                 $this->getNote() . '</p><p>auteur : ' .
                $this->getAuthor() . '</p><p>date :'.
                 $this->getDate()->format('d/m/y à H:i').'</p></div>';
