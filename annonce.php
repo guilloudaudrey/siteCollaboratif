@@ -83,7 +83,8 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
                 <div class="row"><div class="container col-lg-9" >
                         <h2>Avis</h2>
-                        <hr class="my-4"></div></div>
+                        <hr class="my-4"></div>
+                </div>
                 <div class="row"><div class="container" ><p>Laissez un avis sur cette annonce.</p></div></div>
 
                 <?php
@@ -104,59 +105,65 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                                     <option value="4">4</option
                                     <option value="5">5</option>
                                 </select></div>
-                        <div class="row"><div class="container"><textarea cols="50" rows="8" name="comm"></textarea></div></div>
-                        <div class="row"><div class="container"><button name="annonce" class="btn btn-danger">Ajouter un avis</button><br/>
-                                <input type="hidden" name="url" value="<?php echo $url; ?>"/>
-                                <input type="hidden" name="filename" value="<?php echo $title ?>">
-                                </form></div>
-                            <?php
-                        }
-                    }
-                    ?>
-
-                    <!--------------------affichage des commentaires/avis---------------------------------->
-
-
-
-
-                    <div class="container"><h2>Liste commentaires</h2>
-
-                        <?php
-                        $commentlist = $newdb->readCommentsList();
-
-                        foreach ($commentlist as $comm) {
-                            ?>
-                            <div class="container">
-                                <?php
-                                echo $comm->asHtml();
-                                ?>
+                        <div class="row">
+                            <div class="container"><textarea cols="50" rows="8" name="comm"></textarea>
                             </div>
                         </div>
-                    </div>
+                        <div class="row">
+                            <div class="container"><button name="annonce" class="btn btn-danger">Ajouter un avis</button><br/>
+                                <input type="hidden" name="url" value="<?php echo $url; ?>"/>
+                                <input type="hidden" name="filename" value="<?php echo $title ?>">
+                                </form>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                }
+                ?>
+
+                <!--------------------affichage des commentaires/avis---------------------------------->
+
+
+
+
+                <h2>Liste commentaires</h2>
+
+                <?php
+                $commentlist = $newdb->readCommentsList();
+
+                foreach ($commentlist as $comm) {
+                    ?>
+
+                    <?php
+                    echo $comm->asHtml();
+                    ?>
+
+
                 </div>
+
+
 
                 <?php
             }
         }
         ?>
 
-    </div>
-</div>
-
-
-<?php
-/* --------------------footer---------------------------------- */
-
-include_once 'html/footer.php';
-?>
 
 
 
+        <?php
+        /* --------------------footer---------------------------------- */
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-</body>
+        include_once 'html/footer.php';
+        ?>
+
+
+
+
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+    </body>
 </html>
