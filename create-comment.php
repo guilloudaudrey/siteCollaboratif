@@ -19,15 +19,17 @@ if (isset($_GET['annonce'])) {
         
         echo $userdata->getId();
         echo $postdata->getId();
+        echo $userdata->getPseudo();
       
         
         
         $post = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
           echo $post['comm'];
           echo $post['note'];
-        $instance->createComment(new Comment($post['comm'], $post['note'], $userdata->getId(), $postdata->getId()));
+          $date = date("Y-m-d H:i:s");
+        $instance->createComment(new Comment($post['comm'], $post['note'], $date, $userdata->getId(), $postdata->getId()));
         
-        header("location:$url");
+        //header("location:$url");
     
     }
 } else {

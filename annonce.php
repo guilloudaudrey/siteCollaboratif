@@ -62,59 +62,82 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
                 <div class= "col-lg-3 " style="margin-top: 15px;  height: 200px">
                     <form action="espacepublic.php" method="GET" >
-                        <p class="col-lg-6 col-lg-offset-3" style="text-align: center"><?php echo $author ?><p>
-                        <div class="col-lg-6 col-lg-offset-2"><img src="images/profil.png" class="img-fluid" alt="Responsive image" style="width: 150%;height: auto"></div>
+                        <p class="col-lg-6 col-lg-offset-3" style="text-align: center">
+                            <?php echo $author ?>
+                        <p>
+                        <div class="col-lg-6 col-lg-offset-2">
+                            <img src="images/profil.png" class="img-fluid" alt="Responsive image" style="width: 150%;height: auto">
+                        </div>
                         <input type="hidden" name="profilpub" value="<?php echo $author ?>">
-                        <button class="btn btn-secondary col-lg-6 col-lg-offset-3" style="margin-top: 10px">voir profil</button>
+                        <button class="btn btn-secondary col-lg-6 col-lg-offset-3" style="margin-top: 10px">
+                            voir profil
+                        </button>
                     </form>
                 </div>
                 <div class="col-lg-3" style="margin-top: 15px;">
                     <button class="btn btn-primary col-lg-10 col-lg-offset-1" style="margin-top: 10px">
-                        <span class="glyphicon glyphicon-envelope" style="margin-right : 5px">
-                        </span>Envoyer un message
+                        <span class="glyphicon glyphicon-envelope" style="margin-right : 5px"></span>
+                        Envoyer un message
                     </button>
                     <button type="button" class="btn btn-primary col-lg-10 col-lg-offset-1" style="margin-top: 10px">
-                        <span class="glyphicon glyphicon-earphone" style="margin-right : 5px"></span>Afficher le numéro
+                        <span class="glyphicon glyphicon-earphone" style="margin-right : 5px"></span>
+                        Afficher le numéro
                     </button>
                 </div>
 
 
                 <!-------------------------Formulaire pour laisser un avis-------------------------->
 
+  <?php
+                    if (isset($_SESSION['nom'])) {
+                        $user = $_SESSION['nom'];
 
-                <?php
-                if (isset($_SESSION['nom'])) {
-                    $user = $_SESSION['nom'];
 
-
-                    if ($user !== $author) {
-                        ?>
-                        <div class="row"><div class="container col-lg-9" >
-                                <h2>Avis</h2>
-                                <hr class="my-4"></div>
+                        if ($user !== $author) {
+                            ?>
+                <div class="container">
+                    <div class="row">
+                        <div class="container col-lg-9">
+                            <h2>Avis</h2>
+                            <hr class="my-4">
                         </div>
-                        <div class="row"><div class="container" ><p>Laissez un avis sur cette annonce.</p></div></div>
-
-
-
-                        <div class="container"><form method="GET" action="create-comment.php">
-                                <label for="note">Note : </label>
-                                <select name="note">
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option
-                                    <option value="5">5</option>
-                                </select></div>
-                        <div class="row">
-                            <div class="container"><textarea cols="50" rows="8" name="comm"></textarea>
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="container" >
+                            <p>Laissez un avis sur cette annonce.</p>
                         </div>
-                        <div class="row">
-                            <div class="container"><button name="annonce" class="btn btn-danger">Ajouter un avis</button><br/>
-                                <input type="hidden" name="url" value="<?php echo $url; ?>"/>
-                                <input type="hidden" name="filename" value="<?php echo $title ?>">
+                    </div>
+                  
+
+
+
+                            <div class="container">
+                                <form method="GET" action="create-comment.php">
+                                    <label for="note">Note : </label>
+                                    <select name="note">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option
+                                        <option value="5">5</option>
+                                    </select>
+
+
+                                    <div class="row">
+                                        <div class="container">
+                                            <textarea cols="50" rows="8" name="comm"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="container">
+                                            <button name="annonce" class="btn btn-danger">
+                                                Ajouter un avis
+                                            </button><br/>
+                                            <input type="hidden" name="url" value="<?php echo $url; ?>"/>                       
+                                            <input type="hidden" name="filename" value="<?php echo $title; ?>">                                  
+                                        </div>                           
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -127,25 +150,13 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
 
 
-                <div class="container col-lg-10" >
+                <div class="container col-lg-10">
                     <h2>Liste commentaires</h2>
-
                     <?php
                     $commentlist = $newdb->readCommentsList();
-
-                    foreach ($commentlist as $comm) {
-                        ?>
-
-                        <?php
+                    foreach ($commentlist as $comm) 
+                        {
                         echo $comm->asHtml();
-                        ?>
-
-
-
-
-
-
-                        <?php
                     }
                 }
                 ?>

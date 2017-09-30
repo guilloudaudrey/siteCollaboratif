@@ -9,13 +9,14 @@ class Comment {
     private $date;
     private $id;
     private $destinataire;
-                function __construct($texte, $note, $author, $article, $id = NULL) {
+
+    function __construct($texte, $note, $date, $author, $article) {
         $this->author = $author;
         $this->article = $article;
         $this->texte = $texte;
         $this->note = $note;
-        $this->date = new DateTime();
-        $this->id = $id;
+        $this->date = $date;
+
     }
 
     function getDestinataire() {
@@ -25,12 +26,12 @@ class Comment {
     function setDestinataire($destinataire) {
         $this->destinataire = $destinataire;
     }
+
     function setDate($date) {
         $this->date = $date;
     }
 
-    
-        function getId() {
+    function getId() {
         return $this->id;
     }
 
@@ -74,14 +75,15 @@ class Comment {
         $this->note = $note;
     }
 
-
     public function asHtml() {
-        return '<div style="border: 1px solid lightgrey; padding: 10px;margin-top:5px; margin-bottom:5px;">'
-        . '<p>'.$this->getTexte() . '</p><p note : ' .
-                $this->getNote() . '</p><p>auteur : ' .
-               $this->getAuthor() . '</p><p>date :'.
-                $this->getDate()->format('d/m/y à H:i').'</p></div>';
-                //$this->getDestinataire() . '</p></div>';
+        return '<div style="border: 1px solid lightgrey; padding: 10px;margin-top:5px; margin-bottom:5px">
+                    <p>' . $this->getTexte() . '</p>
+                    <p> note : ' . $this->getNote() . '</p>
+                    <p>auteur : ' . $this->getAuthor() . '</p>
+                    <p>date : ' . $this->getDate() . '</p>
+                    <p>destinataire : '. $this->getDestinataire() . '</p>
+                </div>';
+
     }
 
 }

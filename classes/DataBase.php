@@ -89,7 +89,7 @@ class DataBase {
 
         $texte = $comment->getTexte();
         $note = $comment->getNote();
-        $date = $comment->getDate()->format('d/m/y');
+        $date = $comment->getDate();
         $author = $comment->getAuthor();
         $article = $comment->getArticle();
 
@@ -240,11 +240,12 @@ class DataBase {
             $texte = $comm['texte'];
             $note = $comm['note'];
             $date = $comm['date'];
-            $author = $comm['author'];
+            $author = $comm['pseudo'];
             $article = $comm['article'];
-            $id = $comm['id'];
+           
+            
  
-            $newcomm = new Comment($texte, $note, $date, $author, $article, $id);
+            $newcomm = new Comment($texte, $note, $date, $author, $article);
             $commslist[] = $newcomm;
         }
         return $commslist;
