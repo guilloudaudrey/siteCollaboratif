@@ -32,7 +32,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
 
     </head>
-    <body style="background: #c0c0c0">
+    <body>
 
         <!-------------------------------------header----------------------------------->
 
@@ -88,13 +88,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
                 <!-------------------------Formulaire pour laisser un avis-------------------------->
 
-  <?php
-                    if (isset($_SESSION['nom'])) {
-                        $user = $_SESSION['nom'];
 
-
-                        if ($user !== $author) {
-                            ?>
                 <div class="container">
                     <div class="row">
                         <div class="container col-lg-9">
@@ -107,7 +101,13 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                             <p>Laissez un avis sur cette annonce.</p>
                         </div>
                     </div>
-                  
+                    <?php
+                    if (isset($_SESSION['nom'])) {
+                        $user = $_SESSION['nom'];
+
+
+                        if ($user !== $author) {
+                            ?>
 
 
 
@@ -156,8 +156,10 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                     $commentlist = $newdb->readCommentsList();
                     foreach ($commentlist as $comm) 
                         {
+                     
                         echo $comm->asHtml();
-                    }
+                        }
+                    
                 }
                 ?>
             </div>

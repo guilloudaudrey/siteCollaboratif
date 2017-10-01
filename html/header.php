@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-default navbar-fixed-top topnav .navbar-expand{-sm}" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top topnav .navbar-expand{-sm}" role="navigation" style="background-color: white">
     <div class="container topnav ">
         <div class="navbar-header col-md-12 col-lg-12 col-sm-12" >
             <a class="navbar-brand " href="index.php">HLP</a>
@@ -15,11 +15,20 @@
             <?php
         } else {
             ?>
-            <div class="col-lg-5 col-md-7 col-sm-5 pull-right"><div class="col-lg-4 col-md-6 col-sm-4" style="margin-top: 14px"> Bonjour <?php echo $_SESSION['nom'] ?> !</div>
+            <div class="col-lg-5 col-md-7 col-sm-5 pull-right">
+                <div class="col-lg-4 col-md-6 col-sm-4" style="margin-top: 14px"> 
+                    Bonjour <?php echo $_SESSION['nom'] ?> !
+                </div>
                 <form action="logout.php" method="POST" class="col-lg-4 pull-right" style="margin-top: 8px; text-align: center">
-                    <button class="btn btn-default ">Se déconnecter</button>
+                    <button class="btn btn-default ">
+                        Se déconnecter
+                    </button>
                 </form>
-                <div class="col-lg-4 pull-right" style="margin-top: 8px"><a class = "btn btn-default" href="espaceperso.php" role="button">Espace personnel</a></div>
+                <div class="col-lg-4 pull-right" style="margin-top: 8px">
+                    <a class = "btn btn-default" href="espaceperso.php" role="button">
+                        Espace personnel
+                    </a>
+                </div>
             </div>
             <?php
         }

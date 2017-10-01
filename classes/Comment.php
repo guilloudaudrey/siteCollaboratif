@@ -2,12 +2,13 @@
 
 class Comment {
 
-    private $author;
-    private $article;
     private $texte;
     private $note;
     private $date;
-    private $id;
+    private $author;
+    private $article;
+
+    // private $id;
     private $destinataire;
 
     function __construct($texte, $note, $date, $author, $article) {
@@ -16,7 +17,6 @@ class Comment {
         $this->texte = $texte;
         $this->note = $note;
         $this->date = $date;
-
     }
 
     function getDestinataire() {
@@ -81,9 +81,8 @@ class Comment {
                     <p> note : ' . $this->getNote() . '</p>
                     <p>auteur : ' . $this->getAuthor() . '</p>
                     <p>date : ' . $this->getDate() . '</p>
-                    <p>destinataire : '. $this->getDestinataire() . '</p>
+                    <p>destinataire : ' . $this->getDestinataire() . '</p>
                 </div>';
-
     }
 
 }

@@ -148,35 +148,38 @@ class DataBase {
 
 //unserialize annonce
     public function readPost($title): Post {
-        $stmt = $this->pdo->query('SELECT * FROM post INNER JOIN user ON post.author = user.id WHERE title="' . $title . '";');
+        $stmt = $this->pdo->query('SELECT *, post.id as post_id FROM post LEFT JOIN user ON post.author = user.id WHERE title="' . $title . '";');
+        //$stmt = $this->pdo->query('SELECT * FROM post INNER JOIN user ON post.author = user.id WHERE title="' . $tit . '";');
         $post = $stmt->fetch();
         $title = $post['title'];
         $categorie = $post['categorie'];
-        $date = $post['date'];
+        //$date = $post['date'];
         $description = $post['description'];
         $localisation = $post['localisation'];
         $price = $post['price'];
         $typeannonce = $post['typeannonce'];
         $author = $post['pseudo'];
-        $id = $post['id'];
+        $id = $post['post_id'];
 
-        $newpost = new Post($title, $description, $price, $author, $categorie, $localisation, $typeannonce);
+        $newpost = new Post($title, $description, $price, $author, $categorie, $localisation, $typeannonce, $id);
         return $newpost;
     }
 
 //unserialize comment
-    public function readComment($comment): Comment {
-        $stmt = $this->pdo->query('SELECT * FROM comment INNER JOIN user ON comment.author = user.id INNER JOIN post ON comment.article = user.id WHERE id="' . $id . '";');
+    public function readComment($id): Comment {
+        //$stmt = $this->pdo->query('SELECT * FROM comment INNER JOIN user ON comment.author = user.id WHERE id="' . $id . '";');
+         $stmt = $this->pdo->query('SELECT * FROM comment INNER JOIN user ON comment.author = user.id INNER JOIN post ON comment.article = post.id  WHERE id="' . $comment . '";');
         $post = $stmt->fetch();
-
+        
         $texte = $post['texte'];
         $note = $post['note'];
         $date = $post['date'];
         $author = $post['pseudo'];
         $article = $post['article'];
+        $id = $post['id'];
 
 
-        $newpost = new Post($texte, $note, $date, $author, $article);
+        $newpost = new Post($texte, $note, $date, $author, $article,  $id);
         return $newpost;
     }
 
@@ -231,9 +234,9 @@ class DataBase {
 
 //parcourir les commentaires 
     public function readCommentsList(): Array {
-        
-        
-        $stmt = $this->pdo->query('SELECT * FROM comment INNER JOIN user ON comment.author = user.id');
+
+
+        $stmt = $this->pdo->query('SELECT * FROM comment INNER JOIN user ON comment.author = user.id ');
         $comms = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $commslist = [];
         foreach ($comms as $comm) {
@@ -242,14 +245,13 @@ class DataBase {
             $date = $comm['date'];
             $author = $comm['pseudo'];
             $article = $comm['article'];
-           
-            
- 
+
+
+
             $newcomm = new Comment($texte, $note, $date, $author, $article);
             $commslist[] = $newcomm;
         }
         return $commslist;
-        
     }
 
 ///////////////////////////// UPDATE /////////////////////////

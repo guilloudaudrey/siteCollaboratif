@@ -62,19 +62,20 @@
 
                                 if ($author == $user) {
                                     echo $annonce->asHtml();
-
-                                    echo'<div class="row boutons col-lg-12" style="margin-bottom: 10px; margin-top: 10px;">
+                                    ?>
+                                    <div class="row boutons col-lg-12" style="margin-bottom: 10px; margin-top: 10px;">
                                         <form method="POST" action="delete.php">
-                                            <input type="hidden" name="filename" value="' . $annonce->getTitle() . '" class="text">
+                                            <input type="hidden" name="filename" value="<?php echo $annonce->getTitle() ?>" class="text">
                                             <input type="submit" class="btn btn-default col-lg-3" style="margin-right: 5px" value="supprimer">
                                         </form>
 
                                         <form method="POST" action="edit_form.php">
-                                            <input type="hidden" name="filename" value="' . $annonce->getTitle() . '">
+                                            <input type="hidden" name="filename" value="<?php $annonce->getTitle() ?>">
                                             <input type="submit" class="btn btn-default col-lg-3" value="modifier">
                                         </form>
-                                    
-                                </div>';
+
+                                    </div>
+                                    <?php
                                 }
                             }
                             ?>
@@ -93,21 +94,19 @@
                                 }
                                 ?>
                             </div>
-                             <div id="menu2" class="tab-pane fade">
+                            <div id="menu2" class="tab-pane fade">
+                                <h2>Evaluations reçues</h2>
+                                <?php
+                                foreach ($listecomm as $comm) {
+
+                                    if ($user == $author) {
 
 
-                            <h2>Evaluations reçues</h2>
-                            <?php
-                            foreach ($listecomm as $comm) {
-
-                                if ($user == $author) {
-
-
-                                    echo $comm->asHtml();
+                                        echo $comm->asHtml();
+                                    }
                                 }
-                            }
-                            ?>
-                             </div>
+                                ?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -118,9 +117,9 @@
         include_once 'html/footer.php';
         ?>
 
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="js/jquery.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="js/jquery.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>
