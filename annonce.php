@@ -48,7 +48,6 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             $author = $post->getAuthor();
             $title = $post->getTitle();
             //$date = $post->getDatetitre();
-            $listecomm = $newdb->readCommentsList();
             ?>
             <!------------------------affichage de l'annonce----------------->
             <div class="container annoncecont">
@@ -96,11 +95,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                             <hr class="my-4">
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="container" >
-                            <p>Laissez un avis sur cette annonce.</p>
-                        </div>
-                    </div>
+
                     <?php
                     if (isset($_SESSION['nom'])) {
                         $user = $_SESSION['nom'];
@@ -108,7 +103,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
                         if ($user !== $author) {
                             ?>
-
+     
 
 
                             <div class="container">
@@ -141,6 +136,8 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                                 </form>
                             </div>
                         </div>
+
+
                         <?php
                     }
                 }
@@ -154,31 +151,32 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                     <h2>Liste commentaires</h2>
                     <?php
                     $commentlist = $newdb->readCommentsList();
-                    foreach ($commentlist as $comm) 
-                        {
-                     
-                        echo $comm->asHtml();
+                    foreach ($commentlist as $comment) {
+
+                        if ($comment->getArticle() == $post->getId()) {
+                            echo $comment->asHtml();
                         }
-                    
+                    }
                 }
                 ?>
             </div>
         </div>
+    </div>
 
 
-        <?php
-        /* --------------------footer---------------------------------- */
+    <?php
+    /* --------------------footer---------------------------------- */
 
-        include_once 'html/footer.php';
-        ?>
-
-
+    include_once 'html/footer.php';
+    ?>
 
 
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="js/jquery.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-    </body>
+    <script src="js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
 </html>

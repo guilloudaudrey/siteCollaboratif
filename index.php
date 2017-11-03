@@ -55,9 +55,7 @@ session_start();
 
 
 
-                            <div class="form-group ">
-                                <input type="text" placeholder="Localisation" class="form-control" id="sel4" />
-                            </div>
+                            
                             <input type="submit" value="Rechercher" name="search" class="btn btn-primary btn-lg" style="margin-bottom: 20px"/>
                         </form>
                     </div>
@@ -95,14 +93,14 @@ session_start();
             <div class="row">
     
                     <div class="col-sm-12 col-md-10 col-lg-8">
-                        <div class="card cardindex">
+                        <div class="card cardindex" style="margin-top: 10px">
                             <?php
                             echo $annonce->asHtml();
                             ?>
                             <div class="row">
                                 <form action="annonce.php" method="GET">
                                     <input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">
-                                    <button class="like btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span></button>
+                                    
                                     <input type="hidden" name="filename" value="<?php echo $annonce->getTitle()?>">
                                 </form>
                             </div>
@@ -118,9 +116,7 @@ session_start();
     }
 // }
     ?>
-    <div class="loadmore btn btn-danger col-lg-offset-4">
-        <a href="#" id="loadMore">Load More</a>
-    </div>
+
 
     <!-------------------------------------footer------------------------------------>
     <?php

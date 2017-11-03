@@ -22,7 +22,7 @@ class DataBase {
         $mdp = $user->getMdp();
         $genre = $user->getGenre();
         $age = $user->getAge();
-        $inscription = $user->getDateinscription()->format('d/m/y');
+        $inscription = $user->getDateinscription();
         $nom = $user->getNom();
         $prenom = $user->getPrenom();
         $cp = $user->getCP();
@@ -166,7 +166,7 @@ class DataBase {
     }
 
 //unserialize comment
-    public function readComment($id): Comment {
+    public function readComment($comment): Comment {
         //$stmt = $this->pdo->query('SELECT * FROM comment INNER JOIN user ON comment.author = user.id WHERE id="' . $id . '";');
          $stmt = $this->pdo->query('SELECT * FROM comment INNER JOIN user ON comment.author = user.id INNER JOIN post ON comment.article = post.id  WHERE id="' . $comment . '";');
         $post = $stmt->fetch();
@@ -187,7 +187,8 @@ class DataBase {
 //parcourir les posts
     public function readPostsList(): Array {
 
-        $stmt = $this->pdo->query('SELECT * FROM post INNER JOIN user ON post.author = user.id');
+       $stmt = $this->pdo->query('SELECT * FROM post INNER JOIN user ON post.author = user.id');
+        //$stmt = $this->pdo->query('SELECT * FROM comment INNER JOIN user ON comment.author = user.id INNER JOIN post ON comment.article = post.id');
         $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $postslist = [];
         foreach ($posts as $post) {
@@ -236,7 +237,8 @@ class DataBase {
     public function readCommentsList(): Array {
 
 
-        $stmt = $this->pdo->query('SELECT * FROM comment INNER JOIN user ON comment.author = user.id ');
+        //$stmt = $this->pdo->query('SELECT * FROM comment INNER JOIN user ON comment.author = user.id ');
+        $stmt = $this->pdo->query('SELECT * FROM comment INNER JOIN user ON comment.author = user.id INNER JOIN post ON comment.article = post.id');
         $comms = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $commslist = [];
         foreach ($comms as $comm) {

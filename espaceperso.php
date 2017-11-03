@@ -99,7 +99,7 @@
                                 <?php
                                 foreach ($listecomm as $comm) {
 
-                                    if ($user == $author) {
+                                    if ($comm->getDestinataire() == $author) {
 
 
                                         echo $comm->asHtml();

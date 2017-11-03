@@ -17,10 +17,7 @@ if (isset($_GET['annonce'])) {
         $postdata = $instance->readPost($title);
         $userdata = $instance->readUser($user);
         
-        echo $postdata->getId();
         
-  
-echo $userdata->getId();
 
    
      $number =  intval($postdata->getId()) ;
@@ -34,7 +31,7 @@ echo $userdata->getId();
           //var_dump($newcomm);
         $instance->createComment($newcomm);
         
-       //header("location:$url");
+       header("location:$url");
     
     }
 } else {
