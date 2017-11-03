@@ -3,13 +3,15 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">      
+        <meta name="viewport" content="width=device-width, user-scalable=yes" /><!--user-scalable=yes” sert à indiquer que l’utilisateur peut zoomer sur le contenu-->
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
         <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Chango" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
         <script src="js/modernizr.custom.js"></script>
-        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
     </head>
     <body>
         <?php
@@ -24,45 +26,46 @@
 
             $profil = htmlspecialchars($_GET['profilpub']);
 
-                $user = $newdb->readUser($profil);
-                ?>
-                <div class="container" style="margin-top: 100px">
-                    <p>Membre inscrit depuis le : <?php echo $user->getDateinscription() ?></p>
-                    <?php
+            $user = $newdb->readUser($profil);
+            ?>
+            <div class="container">
+
+                <?php
             }
 
             include_once 'html/header.php';
             ?>
+            <div class="container espacepersocont ">
+                <h2>Ses annonces</h2>
+                <?php
+                $listeAnnonces = $newdb->readPostsList();
+                $pseudo = $user->getPseudo();
 
-            <h2>Ses annonces</h2>
-            <?php
-            $listeAnnonces = $newdb->readPostsList();
-            $pseudo = $user->getPseudo();
 
-
-            foreach ($listeAnnonces as $annonce) {
-                $auteur = $annonce->getAuthor();
-                if ($pseudo == $auteur) {
-                    echo $annonce->asHtml();
-                }
-            }
-            ?>
-
-            <h2>Evaluations reçues</h2>
-            <?php
-            $listecomm = $newdb->readCommentsList();
-            foreach ($listecomm as $comm) {
-               // $destinataire = $comm->getDestinataire();
-                //if ($pseudo == $destinataire) {
-                    echo '<div>'. $comm->asHtml() . '</div>';
-                }
-          //  }
-            ?>
+                foreach ($listeAnnonces as $annonce) {
+                    $auteur = $annonce->getAuthor();
+                    if ($pseudo == $auteur) {
+                        ?>
+                        <div class="row" >
+                            <div class="col-lg-12" style="margin-top: 10px">
+                                <?php
+                                echo $annonce->asHtml();
+                            }
+                        }
+                        ?>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+</div>
+        <?php
+      include_once 'html/footer.php';
+      ?>
 
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-     <script src="js/jquery.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>

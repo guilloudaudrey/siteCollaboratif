@@ -47,7 +47,7 @@
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#home">Mes annonces</a></li>
                         <li><a data-toggle="tab" href="#menu1">Mes évaluations</a></li>
-                        <li><a data-toggle="tab" href="#menu2">Evaluations reçues</a></li>
+
                     </ul>
 
                     <div id="myTabContent" class="tab-content">
@@ -94,32 +94,20 @@
                                 }
                                 ?>
                             </div>
-                            <div id="menu2" class="tab-pane fade">
-                                <h2>Evaluations reçues</h2>
-                                <?php
-                                foreach ($listecomm as $comm) {
-
-                                    if ($comm->getDestinataire() == $author) {
-
-
-                                        echo $comm->asHtml();
-                                    }
-                                }
-                                ?>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <?php
-        include_once 'html/footer.php';
-        ?>
+    <?php
+    include_once 'html/footer.php';
+    ?>
 
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="js/jquery.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-    </body>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
 </html>
