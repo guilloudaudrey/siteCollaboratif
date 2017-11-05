@@ -12,8 +12,8 @@
         <link rel="stylesheet" href="css/style.css">
         <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
-        <script src="js/modernizr.custom.js"></script>
-        <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
+
+     
     </head>
     <body>
         <?php
@@ -53,9 +53,11 @@
                     <?php
                     $listeAnnonces = $instance->readPostsList();
                     foreach ($listeAnnonces as $annonce) {
+                     
                         $author = $annonce->getAuthor();
 
                         if ($author == $user) {
+                              
                             echo $annonce->asHtml();
                             ?>
                             <div class="row boutons col-lg-12" style="margin-bottom: 10px; margin-top: 10px;">
@@ -65,7 +67,7 @@
                                 </form>
 
                                 <form method="POST" action="edit_form.php">
-                                    <input type="hidden" name="filename" value="<?php $annonce->getTitle() ?>">
+                                    <input type="hidden" name="filename" value="<?php echo $annonce->getTitle() ?>">
                                     <input type="submit" class="btn btn-default col-lg-3" value="modifier">
                                 </form>
 
@@ -101,7 +103,6 @@
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="js/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
