@@ -81,7 +81,6 @@ class Comment {
                     <p> note : ' . $this->getNote() . '</p>
                     <p>auteur : ' . $this->getAuthor() . '</p>
                     <p>date : ' . $this->getDate() . '</p>
-                    <p>destinataire : ' . $this->getDestinataire() . '</p>
                 </div>';
     }
 

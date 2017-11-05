@@ -59,13 +59,13 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
                 <!---------------lien vers l'espace public de l'auteur de l'annonce------------------>
 
-                <div class= "col-lg-3 " style="margin-top: 15px;  height: 200px">
+                <div class= "col-lg-3 " style="margin-top: 15px">
                     <form action="espacepublic.php" method="GET" >
                         <p class="col-lg-6 col-lg-offset-3" style="text-align: center">
                             <?php echo $author ?>
                         <p>
-                        <div class="col-lg-6 col-lg-offset-2">
-                            <img src="images/profil.png" class="img-fluid" alt="Responsive image" style="width: 150%;height: auto">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <img src="images/profil.png" class="img-fluid" alt="Responsive image" style="width: 100%;height: auto">
                         </div>
                         <input type="hidden" name="profilpub" value="<?php echo $author ?>">
                         <button class="btn btn-secondary col-lg-6 col-lg-offset-3" style="margin-top: 10px">
