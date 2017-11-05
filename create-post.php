@@ -9,13 +9,14 @@ if (isset($_POST['newpost'])) {
     if (isset($_SESSION['nom'])) {
         $user = $_SESSION['nom'];
         $db = new DataBase();
+        $date = date("Y-m-d H:i:s");
 
         //if (is_file('utilisateur/' . $user . '.txt')) {
         $contenu = $db->readUser($user);
 
         
             $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-            $db->createPost(new Post($post['title'], $post['description'], $post['price'], $contenu->getId(), $post['categories'], $post['localisation'], $post['type']));
+            $db->createPost(new Post($post['title'], $post['description'], $post['price'], $contenu->getId(), $post['categories'], $post['localisation'], $post['type'], $date));
            header("location:index.php");
         }
     //}

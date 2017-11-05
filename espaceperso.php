@@ -55,7 +55,6 @@
                     foreach ($listeAnnonces as $annonce) {
                      
                         $author = $annonce->getAuthor();
-
                         if ($author == $user) {
                               
                             echo $annonce->asHtml();
@@ -82,8 +81,9 @@
                     <?php
                     $listecomm = $instance->readCommentsList();
                     $listepost = $instance->readPostsList();
-
+                   
                     foreach ($listecomm as $comm) {
+                     
                         if ($user == $comm->getAuthor()) {
 
                             echo $comm->asHtml();

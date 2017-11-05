@@ -121,7 +121,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
                                     <div class="row">
                                         <div class="container">
-                                            <textarea class="col-lg-9" rows="5" style="margin-bottom: 20px"></textarea>
+                                            <textarea class="col-lg-9" rows="5" style="margin-bottom: 20px" name="texte"></textarea>
                                         </div>
                                     </div>
                                     <div class="row">

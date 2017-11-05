@@ -40,7 +40,7 @@ session_start();
                                 <select class="form-control" id="sel1" name ="categories">
                                     <option value="toutes categories" selected="selected">Toutes les catégories</option>
                                     <option value="animaux">Animaux</option>
-                                    <option value="petits travaux">Petits travaux</option>
+                                    <option value="petitstravaux">Petits travaux</option>
                                     <option value="cours" >Cours</option>
                                     <option value="enfants">Garde d'enfants</option>
                                     <option value="déménagement">Déménagement</option>
@@ -55,7 +55,7 @@ session_start();
 
 
 
-                            
+
                             <input type="submit" value="Rechercher" name="search" class="btn btn-primary btn-lg" style="margin-bottom: 20px"/>
                         </form>
                     </div>
@@ -84,14 +84,49 @@ session_start();
     //var_dump($listeAnnonces);
 
 
+    if (isset($_POST['search'])) {
+        $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        $inputcat = $post['categories'];
 
 
-    foreach ($listeAnnonces as $annonce) {
-        //    $categorie = $annonce->getCategorie();
-        ?>
-        <div class="container" id="annonces">
-            <div class="row">
-    
+        foreach ($listeAnnonces as $annonce) {
+             $categorie = $annonce->getCategorie();
+            if ($categorie == $inputcat) {
+                //    $categorie = $annonce->getCategorie();
+                ?>
+                <div class="container" id="annonces">
+                    <div class="row">
+
+                        <div class="col-sm-12 col-md-10 col-lg-8">
+                            <div class="card cardindex" style="margin-top: 10px">
+                                <?php
+                                echo $annonce->asHtml();
+                                ?>
+                                <div class="row">
+                                    <form action="annonce.php" method="GET">
+                                        <input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">
+
+                                        <input type="hidden" name="filename" value="<?php echo $annonce->getTitle() ?>">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <?php
+            }
+        }
+    } else {
+        foreach ($listeAnnonces as $annonce) {
+            //    $categorie = $annonce->getCategorie();
+            ?>
+            <div class="container" id="annonces">
+                <div class="row">
+
                     <div class="col-sm-12 col-md-10 col-lg-8">
                         <div class="card cardindex" style="margin-top: 10px">
                             <?php
@@ -100,21 +135,19 @@ session_start();
                             <div class="row">
                                 <form action="annonce.php" method="GET">
                                     <input type="submit" value="en savoir plus" class="btn btn-outline-info" style="margin-right: 5px">
-                                    
-                                    <input type="hidden" name="filename" value="<?php echo $annonce->getTitle()?>">
+
+                                    <input type="hidden" name="filename" value="<?php echo $annonce->getTitle() ?>">
                                 </form>
                             </div>
                         </div>
                     </div>
-           
+
+                </div>
             </div>
-        </div>
-
-
-
-        <?php
+            <?php
+        }
     }
-// }
+    // }
     ?>
 
 
