@@ -20,10 +20,14 @@ and open the template in the editor.
         session_start();
         $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         if (isset($_SESSION['nom'])) {
+               include_once 'html/header.php';
             ?>
-            <div class="container col-lg-6 col-md-offset-3 col-md-6 col-md-offset-3 col-xs-8 col-xs-offset-2" id="formulaire">
-                <form action="create-post.php" method="POST">
-                    <div class="form-group">
+            <div class="container">
+                 <div class="container espacepersocont ">
+                     <h1>Nouvelle annonce</h1>
+
+                 <form action="create-post.php" method="POST" class="col-lg-8 col-lg-offset-2">
+                     <div class="form-group" >
                         <label for="Type">Type</label>
                         <select name ="type" required="required" class="form-control">
                             <option value="Offre" selected="selected">Offre</option>
@@ -56,27 +60,28 @@ and open the template in the editor.
                     </div>
                     <div class="form-group">
                         <label for="price">Prix</label>
-                        <input type="number" name="price" required="required" class="form-control"/> €
+                        <input type="number" name="price" required="required" class="form-control" placeholder="__ €"/> 
                     </div>
 
-                    <input type="submit" value="Envoyer" name="newpost"/>
+                    <input type="submit" value="Envoyer" name="newpost" class="btn btn-primary"/>
                 </form>
             </div>
-            <?php
-        } else {
-         
-            ?>
-   
-
-    
-
-            <?php
-        }
+        </div>
+        <?php
+           include_once 'html/footer.php';
+    } else {
         ?>
 
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="js/jquery.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-    </body>
+
+
+
+        <?php
+    }
+    ?>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
 </html>
