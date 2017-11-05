@@ -12,7 +12,7 @@ class Post {
     protected $typeannonce;
     protected $id;
 
-    function __construct($title, $description, $price, $author, $categorie, $localisation, $typeannonce, $date, $id = NULL) {
+    function __construct($title, $description, $price, $author, $categorie, $localisation, $typeannonce, $date, $id=NULL) {
         $this->title = $title;
         $this->date = $date;
         $this->description = $description;

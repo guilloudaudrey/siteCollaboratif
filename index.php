@@ -46,12 +46,7 @@ session_start();
                                     <option value="déménagement">Déménagement</option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <select class="form-control" id="sel2" name ="type" required="required">
-                                    <option value="Offre" selected="selected">Offre</option>
-                                    <option value="Demande">Demande</option>
-                                </select>
-                            </div>
+               
 
 
 

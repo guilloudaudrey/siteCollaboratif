@@ -64,7 +64,6 @@ class DataBase {
         $price = $post->getPrice();
         $author = $post->getAuthor();
         $typeannonce = $post->getTypeannonce();
-
         $stmt = $this->pdo->prepare('INSERT INTO post(title, categorie, date, description, localisation, price, typeannonce, author) VALUES(:title, :categorie, :date, :description, :localisation, :price, :typeannonce, :author);');
         $stmt->bindValue('title', $title);
         $stmt->bindValue('categorie', $categorie);
@@ -74,9 +73,7 @@ class DataBase {
         $stmt->bindValue('price', $price);
         $stmt->bindValue('author', $author);
         $stmt->bindValue('typeannonce', $typeannonce);
-
         if ($stmt->execute()) {
-
             $post->setId(intval($this->pdo->lastInsertId()));
             return TRUE;
         }
@@ -159,7 +156,7 @@ class DataBase {
         $price = $post['price'];
         $typeannonce = $post['typeannonce'];
         $author = $post['pseudo'];
-        $id = $post['id'];
+        $id = $post['post_id'];
 
         $newpost = new Post($title1, $description, $price, $author, $categorie, $localisation, $typeannonce, $id);
         return $newpost;

@@ -27,12 +27,12 @@ if (isset($_GET['annonce'])) {
 echo $userdata->getId();
 echo $number;
           $date = date("Y-m-d H:i:s");
-          $newcomm = new Comment($post['texte'], $post['note'], $date, $userdata->getId(), $number);
+          $newcomm = new Comment($post['texte'], $post['note'], $date, $userdata->getId(), 69);
       
           //var_dump($newcomm);
         $instance->createComment($newcomm);
         
-       //header("location:$url");
+       header("location:$url");
     
     }
 } else {
