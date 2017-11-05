@@ -7,7 +7,6 @@ class Comment {
     private $date;
     private $author;
     private $article;
-
     // private $id;
     private $destinataire;
 
@@ -77,10 +76,12 @@ class Comment {
 
     public function asHtml() {
         return '<div style="border: 1px solid lightgrey; padding: 10px;margin-top:5px; margin-bottom:5px">
-                    <p>' . $this->getTexte() . '</p>
-                    <p> note : ' . $this->getNote() . '</p>
+                    <p style="font-weight:bold">' . $this->getTexte() . '</p>
+                    <p>Note : ' . $this->getNote() . '/5 </p>
+                        <section style="color:darkgrey; line-height:0.9em">
                     <p>auteur : ' . $this->getAuthor() . '</p>
                     <p>date : ' . $this->getDate() . '</p>
+                        </section>
                 </div>';
     }
 
