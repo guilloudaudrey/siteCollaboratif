@@ -121,12 +121,12 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
                                     <div class="row">
                                         <div class="container">
-                                            <textarea cols="50" rows="8" name="comm"></textarea>
+                                            <textarea class="col-lg-9" rows="5" style="margin-bottom: 20px"></textarea>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="container">
-                                            <button name="annonce" class="btn btn-danger">
+                                            <button name="annonce" class="btn btn-danger" style="margin-bottom: 20px">
                                                 Ajouter un avis
                                             </button><br/>
                                             <input type="hidden" name="url" value="<?php echo $url; ?>"/>                       
@@ -148,7 +148,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
 
                 <div class="container col-lg-10">
-                    <h2>Liste commentaires</h2>
+                    
                     <?php
                     $commentlist = $newdb->readCommentsList();
                     foreach ($commentlist as $comment) {
