@@ -1,40 +1,55 @@
 
-<nav class="navbar navbar-default navbar-fixed-top topnav .navbar-expand{-sm}" role="navigation" style="background-color: white">
-    <div class="container topnav ">
-        <div class="navbar-header col-md-12 col-lg-12 col-sm-12" >
+<nav class="navbar navbar-fixed-top" role="navigation" style="background-color: white">
+
+    <div class="container topnav col-lg-12 col-md-12 col-sm-12">
+        <div class="navbar-header col-lg-12">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" >
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar" style="background: black"></span>
+                <span class="icon-bar" style="background: black"></span>
+                <span class="icon-bar" style="background: black"></span>
+            </button>
+
+
+
             <a class="navbar-brand " href="index.php">HLP</a>
-        
-        <?php
-        $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-        if (!isset($_SESSION['nom'])) {
-            ?>
-            <ul class="nav navbar-nav col-lg-6 pull-right" >
-                <li class="pull-right"><a href="register-form.php">S'inscrire</a></li>
-                <li class="pull-right"><a href="#?w=500" rel="popup_name" data-toggle="modal" data-target="#myModal">Se connecter</a></li>
-            </ul>
-            <?php
-        } else {
-            ?>
-            <div class="col-lg-5 col-md-7 col-sm-5 pull-right">
-                <div class="col-lg-4 col-md-6 col-sm-4" style="margin-top: 14px"> 
-                    Bonjour <?php echo $_SESSION['nom'] ?> !
+            <div class="collapse navbar-collapse col-lg-12 pull-right" id="bs-example-navbar-collapse-1">
+
+                <?php
+                $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+                if (!isset($_SESSION['nom'])) {
+                    ?>
+                    <ul class="nav navbar-nav col-lg-12 pull-right" >
+                        <li class="pull-right"><a href="register-form.php">S'inscrire</a></li>
+                        <li class="pull-right"><a href="#?w=500" rel="popup_name" data-toggle="modal" data-target="#myModal">Se connecter</a></li>
+                    </ul>
+                    <?php
+                } else {
+                    ?>
+            
+                <div class="col-lg-12 col-md-12 col-sm-12 pull-right">
+                    <div class="col-lg-4 col-md-6 col-sm-4" style="margin-top: 14px"> 
+                        Bonjour <?php echo $_SESSION['nom'] ?> !
+                    </div>
+                    <form action="logout.php" method="POST" class="col-lg-4 col-md-12 col-sm-12 " style="margin-top: 8px; text-align: center">
+                        <button class="btn btn-default ">
+                            Se déconnecter
+                        </button>
+                    </form>
+                    <div class="col-lg-4" style="margin-top: 8px">
+                        <a class = "btn btn-default" href="espaceperso.php" role="button">
+                            Espace personnel
+                        </a>
+                    </div>
                 </div>
-                <form action="logout.php" method="POST" class="col-lg-4 pull-right" style="margin-top: 8px; text-align: center">
-                    <button class="btn btn-default ">
-                        Se déconnecter
-                    </button>
-                </form>
-                <div class="col-lg-4 pull-right" style="margin-top: 8px">
-                    <a class = "btn btn-default" href="espaceperso.php" role="button">
-                        Espace personnel
-                    </a>
-                </div>
-            </div>
-            <?php
-        }
-        ?>
+                <?php
+            }
+            ?>
+
     </div>
+        </div>
     </div>
+
 </nav>
 
 
