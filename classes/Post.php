@@ -12,7 +12,7 @@ class Post {
     protected $typeannonce;
     protected $id;
 
-    function __construct($title, $description, $price, $author, $categorie, $localisation, $typeannonce, $date, $id=NULL) {
+    function __construct($title, $description, $price, $author, $categorie, $localisation, $typeannonce, $date, $id = NULL) {
         $this->title = $title;
         $this->date = $date;
         $this->description = $description;
@@ -24,7 +24,7 @@ class Post {
         $this->id = $id;
     }
 
-    function getId() {
+    public function getId() {
         return $this->id;
     }
 
@@ -108,7 +108,7 @@ class Post {
                     . '<h3>' . $this->getTitle() . '</h3>'
                     . '<p>' . $this->getDescription() . '</p>'
                     . '<p>' . $this->getPrice() . ' €</p>'
-                    . '<p>Posté le ' . $this->getDate() . ' par ' . $this->getAuthor() . '</p>'
+                    . '<p>Posté par ' . $this->getAuthor() . '</p>'
             ;
         } else if ($this->categorie == "cours") {
             $image = 'images/book.png';
@@ -120,7 +120,7 @@ class Post {
                     . '<h3>' . $this->getTitle() . '</h3>'
                     . '<p>' . $this->getDescription() . '</p>'
                     . '<p>' . $this->getPrice() . ' €</p>'
-                    . '<p>Posté le ' . $this->getDate() . ' par ' . $this->getAuthor() . '</p>'
+                    . '<p>Posté par ' . $this->getAuthor() . '</p>'
             ;
         } else if ($this->categorie == "déménagement") {
             $image = 'images/carton.png';
@@ -132,7 +132,7 @@ class Post {
                     . '<h3>' . $this->getTitle() . '</h3>'
                     . '<p>' . $this->getDescription() . '</p>'
                     . '<p>' . $this->getPrice() . ' €</p>'
-                    . '<p>Posté le ' . $this->getDate() . ' par ' . $this->getAuthor() . '</p>'
+                    . '<p>Posté par ' . $this->getAuthor() . '</p>'
             ;
         } else if ($this->categorie == "petitstravaux") {
             $image = 'images/travaux.png';
@@ -144,7 +144,7 @@ class Post {
                     . '<h3>' . $this->getTitle() . '</h3>'
                     . '<p>' . $this->getDescription() . '</p>'
                     . '<p>' . $this->getPrice() . ' €</p>'
-                    . '<p>Posté le ' . $this->getDate() . ' par ' . $this->getAuthor() . '</p>'
+                    . '<p>Posté par ' . $this->getAuthor() . '</p>'
             ;
         } else if ($this->categorie == "enfants") {
             $image = 'images/kid.png';
@@ -156,7 +156,7 @@ class Post {
                     . '<h3>' . $this->getTitle() . '</h3>'
                     . '<p>' . $this->getDescription() . '</p>'
                     . '<p>' . $this->getPrice() . ' €</p>'
-                    . '<p>Posté le ' . $this->getDate() . ' par ' . $this->getAuthor() . '</p>'
+                    . '<p>Posté par ' . $this->getAuthor() . '</p>'
             ;
         }
     }

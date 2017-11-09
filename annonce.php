@@ -152,7 +152,7 @@ $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                     <?php
                     $commentlist = $newdb->readCommentsList();
                     foreach ($commentlist as $comment) {
-                        var_dump($commentlist);
+                    
                         if ($comment->getArticle() == $post->getId()) {
                             echo $comment->asHtml();
                         }

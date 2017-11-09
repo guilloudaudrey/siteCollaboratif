@@ -16,7 +16,7 @@ session_start();
         <script src="js/modernizr.custom.js"></script>
         <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
 
-        <title>Index</title>
+        <title>Accueil</title>
     </head>
     <body>
 

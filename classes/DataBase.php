@@ -150,7 +150,7 @@ class DataBase {
         $post = $stmt->fetch();
         $title1 = $post['title'];
         $categorie = $post['categorie'];
-        //$date = $post['date'];
+        $date = $post['date'];
         $description = $post['description'];
         $localisation = $post['localisation'];
         $price = $post['price'];
@@ -158,7 +158,7 @@ class DataBase {
         $author = $post['pseudo'];
         $id = $post['post_id'];
 
-        $newpost = new Post($title1, $description, $price, $author, $categorie, $localisation, $typeannonce, $id);
+        $newpost = new Post($title1, $description, $price, $author, $categorie, $localisation, $typeannonce, $date,  $id);
         return $newpost;
     }
 
